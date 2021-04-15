@@ -44,6 +44,7 @@
             android:fontFamily="@font/poppins"
             android:minWidth="128dp"
             android:text="Recipe Name"
+            android:textAppearance="@style/H2"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -58,7 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="Duration" />
+                android:text="Duration"
+                android:textAppearance="@style/Label" />
 
             <TextView
                 android:id="@+id/tvRecipeCardCategory"
@@ -68,6 +70,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins"
                 android:text="Category"
+                android:textAppearance="@style/Link"
                 android:textStyle="bold"
                 android:typeface="normal" />
         </LinearLayout>

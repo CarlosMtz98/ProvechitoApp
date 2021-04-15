@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mid_white"
     tools:context=".views.HomeFragment">
 
     <LinearLayout
@@ -21,6 +22,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:text="Inicio"
+            android:textAppearance="@style/H1"
             android:textSize="36sp" />
 
         <Space
@@ -43,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
                     android:text="Recomendaciones"
+                    android:textAppearance="@style/H2"
                     android:textSize="24sp" />
 
                 <TextView
@@ -50,7 +53,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-                    android:text="Mira las recetas que tenemos para ti" />
+                    android:text="Mira las recetas que tenemos para ti"
+                    android:textAppearance="@style/BodyText" />
 
             </LinearLayout>
 
@@ -64,6 +68,7 @@
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
+                android:backgroundTint="@color/mid_white"
                 android:src="@drawable/ic_next_arrow" />
 
         </LinearLayout>
