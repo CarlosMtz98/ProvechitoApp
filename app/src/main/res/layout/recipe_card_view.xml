@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
             android:minWidth="128dp"
             android:text="Recipe Name"
             android:textSize="24sp" />
@@ -56,6 +57,7 @@
                 android:id="@+id/tvRecipeDurationCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
                 android:text="Duration" />
 
             <TextView
@@ -64,8 +66,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/poppins"
                 android:text="Category"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:typeface="normal" />
         </LinearLayout>
 
     </LinearLayout>
