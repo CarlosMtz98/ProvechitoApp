@@ -12,7 +12,7 @@ class StatisticsCardAdapter (val arrStatisticsCard: ArrayList<StatisticsCard>) :
     inner class ViewHolder(val binding: StatisticsCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: StatisticsCard) {
             binding.tvStatisticsNameCard.text = cardItem.name
-            binding.tvStadistic.text = cardItem.stadistic
+            binding.tvStadistic.text = cardItem.statistic
         }
     }
 
