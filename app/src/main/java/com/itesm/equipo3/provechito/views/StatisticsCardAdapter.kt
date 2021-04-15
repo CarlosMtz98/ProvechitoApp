@@ -3,15 +3,15 @@ package com.itesm.equipo3.provechito.views
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.itesm.equipo3.provechito.databinding.StadisticsCardViewBinding
+import com.itesm.equipo3.provechito.databinding.StatisticsCardViewBinding
 
-import com.itesm.equipo3.provechito.models.StadisticsCard
+import com.itesm.equipo3.provechito.models.StatisticsCard
 
-class StadisticsCardAdapter (val arrStadisticsCard: ArrayList<StadisticsCard>) : RecyclerView.Adapter<StadisticsCardAdapter.ViewHolder>() {
+class StatisticsCardAdapter (val arrStatisticsCard: ArrayList<StatisticsCard>) : RecyclerView.Adapter<StatisticsCardAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: StadisticsCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun set(cardItem: StadisticsCard) {
-            binding.tvStadisticsNameCard.text = cardItem.name
+    inner class ViewHolder(val binding: StatisticsCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun set(cardItem: StatisticsCard) {
+            binding.tvStatisticsNameCard.text = cardItem.name
             binding.tvStadistic.text = cardItem.stadistic
         }
     }
@@ -19,7 +19,7 @@ class StadisticsCardAdapter (val arrStadisticsCard: ArrayList<StadisticsCard>) :
     var listener: ClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            StadisticsCardViewBinding.inflate(
+            StatisticsCardViewBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -28,11 +28,11 @@ class StadisticsCardAdapter (val arrStadisticsCard: ArrayList<StadisticsCard>) :
     }
 
     override fun getItemCount(): Int {
-        return arrStadisticsCard.size
+        return arrStatisticsCard.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tarjeta = arrStadisticsCard[position]
+        val tarjeta = arrStatisticsCard[position]
         holder.set(tarjeta)
 
         holder.binding.root.setOnClickListener {

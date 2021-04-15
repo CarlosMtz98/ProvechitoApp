@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.databinding.FragmentProfileBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
-import com.itesm.equipo3.provechito.models.StadisticsCard
+import com.itesm.equipo3.provechito.models.StatisticsCard
 
 /*
     Autor: Zoe Caballero
  */
 class ProfileFragment : Fragment(), ClickListener {
-    private lateinit var arrStadisticsCard: ArrayList<StadisticsCard>
+    private lateinit var arrStatisticsCard: ArrayList<StatisticsCard>
     private lateinit var arrLastRecipesCard: ArrayList<RecipeCard>
     private var _binding: FragmentProfileBinding? = null
 
@@ -63,24 +63,24 @@ class ProfileFragment : Fragment(), ClickListener {
     private fun configureStadisticsRV() {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rvStadisticsCards.layoutManager = layout
+        binding.rvStatisticsCards.layoutManager = layout
 
-        arrStadisticsCard = getProfileStadistics()
-        val adaptador = StadisticsCardAdapter(arrStadisticsCard)
-        binding.rvStadisticsCards.adapter = adaptador
+        arrStatisticsCard = getProfileStatistics()
+        val adaptador = StatisticsCardAdapter(arrStatisticsCard)
+        binding.rvStatisticsCards.adapter = adaptador
 
         adaptador.listener = this
     }
 
-    private fun getProfileStadistics(): ArrayList<StadisticsCard>{
+    private fun getProfileStatistics(): ArrayList<StatisticsCard>{
         return arrayListOf(
-            StadisticsCard("Recetas Realizadas", "10"),
-            StadisticsCard("Recetas Dominadas", "10")
+            StatisticsCard("Recetas Realizadas", "10"),
+            StatisticsCard("Recetas Dominadas", "10")
         )
     }
 
     override fun clicked(posicion: Int) {
-        val stadisticsCard = arrStadisticsCard[posicion]
+        val stadisticsCard = arrStatisticsCard[posicion]
         println("posicion: ${stadisticsCard}")
     }
 
