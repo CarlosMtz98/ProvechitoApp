@@ -19,6 +19,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
             android:text="Inicio"
             android:textSize="36sp" />
 
@@ -40,6 +41,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:text="Recomendaciones"
                     android:textSize="24sp" />
 
@@ -47,6 +49,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:text="Mira las recetas que tenemos para ti" />
 
             </LinearLayout>
