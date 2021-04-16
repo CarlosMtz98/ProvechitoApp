@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.itesm.equipo3.provechito.R
 
 class CustomAdapter : RecyclerView.Adapter<BaseViewHolder> {
 
@@ -27,7 +28,7 @@ class CustomAdapter : RecyclerView.Adapter<BaseViewHolder> {
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : BaseViewHolder {
         val layoutInflater : LayoutInflater = LayoutInflater.from(parent.getContext())
-        val view : View = layoutInflater.inflate(R.layout.item_cell, parent, false)
+        val view : View = layoutInflater.inflate(R.layout.ingredient_item_view, parent, false)
         return CustomViewHolder(parent.getContext(), view, customListeners)
     }
 

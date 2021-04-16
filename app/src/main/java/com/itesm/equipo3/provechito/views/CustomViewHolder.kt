@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import com.itesm.equipo3.provechito.R
 
 class CustomViewHolder : BaseViewHolder {
 
@@ -13,14 +14,14 @@ class CustomViewHolder : BaseViewHolder {
         private val TAG : String = CustomViewHolder::class.java.getSimpleName()
     }
     /**Data */
-    private val textView : TextView
+    //private val textView : TextView
     /**With Events and Others */
     private val leftImage : ImageView
     private val rightImage : ImageView
     private val cardView : CardView
 
     constructor(context : Context, itemView : View, customListeners : CustomListeners) : super(context, itemView, customListeners) {
-        textView = itemView.findViewById(R.id.text_view)
+        //textView = itemView.findViewById(R.id.text_view)
         cardView = itemView.findViewById(R.id.card_view)
         leftImage = itemView.findViewById(R.id.button_left)
         rightImage = itemView.findViewById(R.id.button_right)
@@ -28,7 +29,7 @@ class CustomViewHolder : BaseViewHolder {
 
     override fun bindDataToViewHolder(item : CustomViewModel, position : Int, swipeState : SwipeState) {
         //region Input Data
-        textView.setText(item.name)
+        //textView.setText(item.name)
         setSwipe(cardView, item.state)
         //endregion
         //region Set Event Listener

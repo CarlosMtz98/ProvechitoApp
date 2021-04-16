@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), HomeClcikListener {
+class MainActivity : AppCompatActivity(), HomeClcikListener, ClickListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +80,14 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
                 .replace(R.id.mainFrameLayout, categoriesFragment)
                 .addToBackStack(null)
                 .commit()
+    }
+
+    override fun clicked(posicion: Int) {
+        val recipeDetailFragment = RecipeDetailFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFrameLayout, recipeDetailFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 }
