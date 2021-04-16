@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="¡Ya está!"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/H1" />
 
         <TextView
             android:id="@+id/textView13"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="¿Qué te pareció?"
             android:textAlignment="center"
-            android:textSize="16sp" />
+            android:textAppearance="@style/BodyText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,13 +51,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nombre Receta"
-                    android:textSize="16dp" />
+                    android:textAppearance="@style/H2" />
 
                 <TextView
                     android:id="@+id/tvCategorie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Categoría" />
+                    android:text="Categoría"
+                    android:textAppearance="@style/Link" />
 
             </LinearLayout>
 
@@ -65,7 +66,10 @@
                 android:id="@+id/recipeReviewFavImgButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20"
                 android:layout_weight="1"
+                android:background="@color/cardview_shadow_end_color"
                 android:src="@drawable/ic_heart" />
         </LinearLayout>
 
@@ -88,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -95,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -102,6 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -123,6 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -130,6 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -137,6 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -158,6 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -165,6 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -172,6 +184,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -181,7 +194,7 @@
         android:id="@+id/sendReviewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Enviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
