@@ -11,10 +11,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -54,7 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/ic_settings"
                     android:src="@drawable/ic_settings"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Profile Name"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/H1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imgFotoPerfil" />
@@ -93,13 +90,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Estadísticas"
-                            android:textSize="24sp" />
+                            android:textAppearance="@style/H2" />
 
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="¡Mira todo lo que has logrado!" />
+                            android:text="¡Mira todo lo que has logrado!"
+                            android:textAppearance="@style/BodyText" />
 
                     </LinearLayout>
 
@@ -112,6 +110,8 @@
                         android:id="@+id/imageButton"
                         android:layout_width="32dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_next_arrow"
                         android:src="@drawable/ic_next_arrow" />
 
                 </LinearLayout>
@@ -140,13 +140,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Últimas Recetas"
-                            android:textSize="24sp" />
+                            android:textAppearance="@style/H1" />
 
                         <TextView
                             android:id="@+id/textView10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Estas son las últimas recetas que hiciste :)" />
+                            android:text="Estas son las últimas recetas que hiciste :)"
+                            android:textAppearance="@style/BodyText" />
                     </LinearLayout>
 
                     <Space
@@ -158,6 +159,8 @@
                         android:id="@+id/imageButton3"
                         android:layout_width="32dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_next_arrow"
                         android:src="@drawable/ic_next_arrow" />
                 </LinearLayout>
 
