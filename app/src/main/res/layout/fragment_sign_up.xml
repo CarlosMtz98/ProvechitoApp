@@ -44,19 +44,16 @@
             android:textAppearance="@style/Theme.Provechito"
             android:textSize="18sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/textInputEmailSignUp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEmailSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="18dp"
-                android:background="@drawable/round_corner_toggle"
-                android:hint="Correo"
-                android:padding="8dp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:background="@drawable/round_corner_toggle"
+            android:ems="10"
+            android:hint="Correo"
+            android:inputType="textEmailAddress"
+            android:padding="8dp" />
 
 
         <TextView
