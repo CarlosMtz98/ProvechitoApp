@@ -6,20 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.itesm.equipo3.provechito.databinding.FragmentSignInBinding
+import com.itesm.equipo3.provechito.databinding.FragmentSignUpBinding
+
 /*
 * Autor: Zoe CD
  */
 
-class SignInFragment : Fragment(){
+class SignUpFragment : Fragment(){
 
-    private var _binding: FragmentSignInBinding? = null
-    private  val binding get() = _binding!!
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding get() = _binding!!
     private lateinit var clickListener: SignInClickListener
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onAttach(context: Context) {
@@ -28,37 +29,36 @@ class SignInFragment : Fragment(){
         if (context is SignInClickListener) {
             clickListener = context
         } else {
-            throw ClassCastException(context.toString() + " must implement SignInListener.")
+            throw ClassCastException(context.toString() + " must implement SignUpListener.")
         }
 
     }
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSignInBinding.inflate(inflater, container,false)
+        _binding = FragmentSignUpBinding.inflate(inflater,container,false)
 
-        binding.tvSignUp.setOnClickListener {
+        binding.tvSignIn.setOnClickListener {
             println("Go to sign up")
-            clickListener.onSignUpFragClicked()
+            clickListener.onSignInFragClicked()
         }
-        binding.btnSignIn.setOnClickListener{
+        binding.btnSignUp.setOnClickListener{
             clickListener.onSignInButtonClicked()
         }
 
         return binding.root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-
-
     companion object {
-        fun newInstance(): SignInFragment {
-            return SignInFragment()
+        fun newInstance(): SignUpFragment {
+            return SignUpFragment()
         }
     }
 
