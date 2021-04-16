@@ -34,8 +34,10 @@
             android:id="@+id/recipeCardImage"
             android:layout_width="160dp"
             android:layout_height="192dp"
+            android:adjustViewBounds="true"
             android:background="@drawable/round_corner_toggle"
             android:backgroundTint="@color/pink"
+            android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView

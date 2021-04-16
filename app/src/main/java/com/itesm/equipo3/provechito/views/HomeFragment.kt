@@ -28,13 +28,11 @@ class HomeFragment : Fragment(), ClickListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
         if (context is HomeClcikListener) {
             listener = context
         } else {
             throw ClassCastException(context.toString() + " must implement HomeClickListner.")
         }
-
     }
 
     override fun onCreateView(
@@ -112,9 +110,9 @@ class HomeFragment : Fragment(), ClickListener {
 
     private fun getHomeCategory(): ArrayList<CategoryCard>{
         return arrayListOf(
-            CategoryCard("Comida Italiana", ""),
-            CategoryCard("Comida Mexicana", ""),
-            CategoryCard("Comida Argentina", "")
+            CategoryCard("Comida Italiana", "https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
+            CategoryCard("Comida Mexicana", "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
+            CategoryCard("Comida Argentina", "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80")
         )
     }
 
@@ -128,7 +126,7 @@ class HomeFragment : Fragment(), ClickListener {
 
     private fun getRecentRecipes() : ArrayList<RecipeCard> {
         return arrayListOf(
-                RecipeCard("Pastel de chocolate", "Repostería", "https://shorturl.at/oFLOX", "1h 15min")
+                RecipeCard("Pastel de chocolate", "Repostería", "https://images.unsplash.com/photo-1614786482494-7fc57abd0074?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "1h 15min")
         )
     }
 
