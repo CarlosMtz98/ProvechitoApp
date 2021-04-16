@@ -92,4 +92,12 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
                 .commit()
     }
 
+    override fun onSettingsClicked() {
+        val settingsFragment = SettingsFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFrameLayout, settingsFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
 }
