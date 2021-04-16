@@ -10,16 +10,9 @@
             <gradient
                 android:startX="161"
                 android:endY="161"
-                android:tileMode="clamp">
-                <item
-                    android:color="#90C2E7"
-                    android:offset="0" />
-                <item
-                    android:color="#6AFBF2"
-                    android:offset="0.0001" />
-                <item
-                    android:color="#01684B"
-                    android:offset="1" />
+                android:tileMode="clamp"
+                android:endColor="@color/green"
+                android:startColor="@color/teal">
             </gradient>
         </aapt:attr>
     </path>

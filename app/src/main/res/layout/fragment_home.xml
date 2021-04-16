@@ -1,35 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeFragmentScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     tools:context=".views.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="8dp"
-        android:paddingTop="8dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="8dp">
+        android:paddingTop="20dp">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:text="Inicio"
+            android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="36sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -41,13 +48,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Recomendaciones"
-                    android:textSize="24sp" />
+                    android:textAppearance="@style/H2"
+                    android:textColor="?attr/colorOnPrimary" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Mira las recetas que tenemos para ti" />
+                    android:text="Mira las recetas que tenemos para ti"
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
 
             </LinearLayout>
 
@@ -57,21 +67,144 @@
                 android:layout_weight="1" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btnRecomendations"
                 android:layout_width="32dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="0"
-                android:src="@drawable/ic_next_arrow" />
+                android:background="@drawable/ic_next_arrow"
+                android:src="@drawable/ic_next_arrow"
+                android:tint="?attr/colorOnPrimary" />
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecipieCards"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:orientation="horizontal"
+            tools:itemCount="2" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+
+                android:id="@+id/tvCategories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Categorías"
+                android:textAppearance="@style/H2"
+                android:textColor="?attr/colorOnPrimary" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/buttonCategory"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_next_arrow"
+                android:tint="?attr/colorOnPrimary"
+                tools:src="@drawable/ic_next_arrow" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategoryCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:orientation="horizontal"
+            app:spanCount="2"
+            tools:itemCount="2">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recetas pasadas"
+                    android:textAppearance="@style/H2"
+                    android:textColor="?attr/colorOnPrimary" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recuerda tus comidas anteriores"
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnRecentRecipes"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:background="@drawable/ic_next_arrow"
+                android:src="@drawable/ic_next_arrow"
+                android:tint="?attr/colorOnPrimary" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecentRecipies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:itemCount="2">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
-</FrameLayout>
+</ScrollView>

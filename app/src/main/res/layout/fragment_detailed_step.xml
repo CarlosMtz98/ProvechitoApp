@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    tools:context=".views.FragmentDetailedStep">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            tools:src="@color/blue" />
+
+        <TextView
+            android:id="@+id/tvStepName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Nombre Paso"
+            android:textAlignment="center"
+            android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary" />
+
+        <TextView
+            android:id="@+id/tvStepNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="xx/xx"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnPrimary" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins"
+            android:text="Instrucciones"
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
+
+        <TextView
+            android:id="@+id/tvInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel aliquet orci, et suscipit libero. Quisque cursus orci a maximus blandit. Proin et nisl et erat finibus pretium eget sit amet orci. Sed elementum nibh justo, sed pharetra erat sollicitudin vitae. Aenean suscipit placerat lectus."
+            android:textColor="?attr/colorOnPrimary" />
+
+        <Button
+            android:id="@+id/btnBeginStep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/blue"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="Comenzar"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Tiempo"
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
+
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="XX:XX:XX"
+            android:textAlignment="center"
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/ic_skip_previous" />
+
+            <ImageButton
+                android:id="@+id/imageButton11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/ic_pause" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_corner_toggle"
+            android:paddingLeft="40dp"
+            android:paddingTop="8dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="8dp"
+            android:text="Button"
+            android:textAllCaps="false"
+            android:textAppearance="@style/Link"
+            android:textColor="@color/dark_blue"
+            app:backgroundTint="@color/yellow"
+            tools:text="Siguiente paso" />
+    </LinearLayout>
+
+</ScrollView>
