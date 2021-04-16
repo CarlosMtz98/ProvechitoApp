@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.views
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,11 +9,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
+import kotlin.ClassCastException
 
-class RecipeDetailFragment : Fragment(), ClickListener {
-    private lateinit var arrRecipeCard: ArrayList<RecipeCard>
+class RecipeDetailFragment : Fragment(), ClickListener{
+
     private var _binding: FragmentRecipeDetailBinding? = null
     private val binding get() = _binding!!
+    private lateinit var arrRecipeCard: ArrayList<RecipeCard>
+    private lateinit var listener: ClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +35,7 @@ class RecipeDetailFragment : Fragment(), ClickListener {
     private fun setupRecipeCardRV() {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
-
         binding.rvSimilares.layoutManager = layout
-
         arrRecipeCard = getHomeRecipe()
         val adaptador = RecipeCardAdapter(arrRecipeCard)
         binding.rvSimilares.adapter = adaptador
@@ -48,17 +50,22 @@ class RecipeDetailFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun clicked(posicion: Int) {
-        val recipeCard = arrRecipeCard[posicion]
-        println("posicion: ${recipeCard}")
-
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is ClickListener){
+            listener = context
+        }else{
+            throw ClassCastException("${context.toString()} should be recipe detail Clicklistener")
+        }
+    }
 
+    override fun clicked(position: Int) {
+        print("Jajas")
+    }
 
 }

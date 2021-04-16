@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity(), HomeClcikListener, ClickListener {
     }
 
     override fun clicked(posicion: Int) {
+        println("Pico aca")
         val recipeDetailFragment = RecipeDetailFragment()
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrameLayout, recipeDetailFragment)
