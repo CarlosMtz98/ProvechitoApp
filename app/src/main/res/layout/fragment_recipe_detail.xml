@@ -4,17 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeDetail" >
+    tools:context=".views.RecipeDetailFragment" >
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="0dp"
         android:layout_height="108dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@color/yellow" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -40,8 +45,8 @@
             android:backgroundTint="#0001684B"
             android:text="Categoría"
             android:textAlignment="center"
-            android:textColor="@color/green"
             android:textAllCaps="false"
+            android:textColor="@color/green"
             app:iconTint="#FFFFFF" />
 
         <TextView
@@ -308,8 +313,8 @@
             android:layout_marginTop="5dp"
             android:backgroundTint="@color/blue"
             android:fontFamily="@font/poppins_medium"
-            android:textAllCaps="false"
-            android:text="Comenzar" />
+            android:text="Comenzar"
+            android:textAllCaps="false" />
 
         <TextView
             android:id="@+id/textView40"
