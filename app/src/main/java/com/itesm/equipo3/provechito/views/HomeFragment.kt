@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.databinding.FragmentHomeBinding
+import com.itesm.equipo3.provechito.models.CategoryCard
 
 import com.itesm.equipo3.provechito.models.RecipeCard
 
@@ -17,6 +18,7 @@ import com.itesm.equipo3.provechito.models.RecipeCard
 class HomeFragment : Fragment(), ClickListener {
 
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
+    private lateinit var arrCategoryCard: ArrayList<CategoryCard>
     private var _binding: FragmentHomeBinding? = null
 
     private val binding get() = _binding!!
@@ -32,6 +34,7 @@ class HomeFragment : Fragment(), ClickListener {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         configuarRV()
+        configureCategoryCardRV()
         return binding.root
     }
 
@@ -50,6 +53,26 @@ class HomeFragment : Fragment(), ClickListener {
         binding.rvRecipieCards.adapter = adaptador
 
         adaptador.listener = this
+    }
+
+    private fun configureCategoryCardRV(){
+        val layout = LinearLayoutManager(requireContext())
+        layout.orientation = LinearLayoutManager.HORIZONTAL
+        binding.rvCategoryCards.layoutManager = layout
+
+        arrCategoryCard = getHomeCategory()
+        val adaptador = CategoryCardAdapter(arrCategoryCard)
+        binding.rvCategoryCards.adapter = adaptador
+
+        adaptador.listener = this
+    }
+
+    private fun getHomeCategory(): ArrayList<CategoryCard>{
+        return arrayListOf(
+            CategoryCard("Comida Italiana", ""),
+            CategoryCard("Comida Mexicana", ""),
+            CategoryCard("Comida Argentina", "")
+        )
     }
 
     private fun getHomeRecipe(): ArrayList<RecipeCard> {
