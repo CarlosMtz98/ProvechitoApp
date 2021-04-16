@@ -81,10 +81,10 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvIngredients"
+            android:id="@+id/rvProducts"
             android:layout_width="match_parent"
             android:layout_height="543dp"
-            tools:listitem="@layout/ingredient_item_view"
+            tools:listitem="@layout/product_item_view"
             tools:itemCount="13"/>
 
     </LinearLayout>
