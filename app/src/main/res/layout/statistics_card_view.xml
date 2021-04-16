@@ -8,7 +8,7 @@
     android:paddingEnd="16dp">
 
     <ImageButton
-        android:id="@+id/recipeCardFavImgButton"
+        android:id="@+id/statisticsCardShareButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
@@ -17,7 +17,19 @@
         android:tint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        app:srcCompat="@drawable/ic_heart" />
+        app:srcCompat="@drawable/ic_share_outline" />
+
+    <TextView
+        android:id="@+id/tvStadistic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:elevation="1dp"
+        android:text="0.00%"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -30,47 +42,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/recipeCardImage"
+            android:id="@+id/statisticsCardImage"
             android:layout_width="160dp"
-            android:layout_height="192dp"
+            android:layout_height="96dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvRecipeNameCard"
+            android:id="@+id/tvStatisticsNameCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins"
             android:minWidth="128dp"
-            android:text="Recipe Name"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvRecipeDurationCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="Duration" />
-
-            <TextView
-                android:id="@+id/tvRecipeCardCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins"
-                android:text="Category"
-                android:textStyle="bold"
-                android:typeface="normal" />
-        </LinearLayout>
+            android:text="Statistics Name"
+            android:textSize="24sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
