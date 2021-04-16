@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.databinding.FragmentShopBinding
 import com.itesm.equipo3.provechito.models.Ingredient
