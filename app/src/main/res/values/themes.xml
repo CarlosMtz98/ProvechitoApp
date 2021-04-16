@@ -4,11 +4,11 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryVariant">@color/yellow</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/dark_blue</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/blue</item>
         <item name="colorSecondaryVariant">@color/pink</item>
-        <item name="colorOnSecondary">@color/dark_blue</item>
+        <item name="colorOnSecondary">@color/mid_white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/mid_white</item>
         <!-- Customize your theme here. -->
@@ -16,35 +16,37 @@
     <style name="H1" parent= "Widget.AppCompat.TextView" >
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textSize">30sp</item>
-        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
     <style name="H2" parent= "Widget.AppCompat.TextView" >
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textSize">24sp</item>
-        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
     <style name="H3" parent= "Widget.AppCompat.TextView" >
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textSize">22.5sp</item>
-        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
     <style name="H4" parent= "Widget.AppCompat.TextView" >
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textSize">21sp</item>
-        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
     <style name="BodyText" parent= "Widget.AppCompat.TextView" >
         <item name="android:fontFamily">@font/poppins_light</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
     <style name="SmallText" parent= "Widget.AppCompat.TextView" >
         <item name="android:fontFamily">@font/poppins_light</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
     <style name="Link" parent= "Widget.AppCompat.TextView" >
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:text">@color/dark_blue</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
     <style name="Label" parent= "Widget.AppCompat.TextView" >
         <item name="android:fontFamily">@font/poppins_medium</item>

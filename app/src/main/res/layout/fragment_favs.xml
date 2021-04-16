@@ -25,10 +25,11 @@
                 android:id="@+id/tvFavsViewTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Likes"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:textAppearance="@style/H1" />
+                android:text="Likes"
+                android:textAppearance="@style/H1"
+                android:textColor="?attr/colorOnPrimary" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -37,7 +38,8 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:text="Aquí está todo lo que te ha gustado hasta ahora"
-                android:textAppearance="@style/BodyText" />
+                android:textAppearance="@style/BodyText"
+                android:textColor="?attr/colorOnPrimary" />
 
             <Space
                 android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,10 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:paddingLeft="8dp"
+            android:paddingLeft="20dp"
             android:paddingTop="16dp"
             android:text="Registro"
-            android:textAppearance="@style/Theme.Provechito"
+            android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="30sp" />
 
         <TextView
@@ -26,9 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:paddingLeft="16dp"
+            android:paddingLeft="20dp"
             android:text="Te extrañamos toda la vida"
-            android:textAppearance="@style/Theme.Provechito"
+            android:textAppearance="@style/BodyText"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp" />
 
         <Space
@@ -39,9 +42,9 @@
             android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
+            android:paddingLeft="20dp"
             android:text="Correo"
-            android:textAppearance="@style/Theme.Provechito"
+            android:textAppearance="@style/Label"
             android:textSize="18sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -52,10 +55,13 @@
                 android:id="@+id/textInputEmailSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="18dp"
+                android:layout_margin="20dp"
                 android:background="@drawable/round_corner_toggle"
+                android:backgroundTint="@color/white"
                 android:hint="Correo"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:textAppearance="@style/BodyText"
+                android:textColor="?attr/colorOnPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -63,40 +69,46 @@
             android:id="@+id/textView19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
+            android:paddingLeft="20dp"
             android:text="Contraseña"
-            android:textAppearance="@style/Theme.Provechito"
+            android:textAppearance="@style/Label"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/textInputPasssowordSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="18dp"
+            android:layout_margin="20dp"
             android:background="@drawable/round_corner_toggle"
+            android:backgroundTint="@color/white"
             android:ems="10"
             android:hint="Contraseña"
             android:inputType="textPassword"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:textAppearance="@style/BodyText"
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
+            android:paddingLeft="20dp"
             android:text="Confirmar contraseña"
-            android:textAppearance="@style/Theme.Provechito"
+            android:textAppearance="@style/Label"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/textInputPasswordConfirmSignUp"
+            style="@style/BodyText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="18dp"
+            android:layout_margin="20dp"
             android:background="@drawable/round_corner_toggle"
+            android:backgroundTint="@color/white"
             android:ems="10"
             android:hint="Confirmar contraseña"
             android:inputType="textPassword"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:textColor="?attr/colorOnPrimary" />
 
         <Button
 
@@ -104,8 +116,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
-            android:background="@color/yellow"
-            android:text="Registrarse" />
+            android:background="@drawable/round_corner_toggle"
+            android:text="Registrarse"
+            app:backgroundTint="@color/yellow" />
 
         <Button
 
@@ -114,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
             android:background="@color/red"
-            android:backgroundTint="@color/red"
+            app:backgroundTint="@color/red"
             android:text="Registro con Google"
             android:textColor="@color/white" />
 

@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     tools:context=".views.HomeFragment">
 
     <LinearLayout
@@ -19,10 +20,11 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Inicio"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:text="Inicio"
             android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="36sp" />
 
         <Space
@@ -32,9 +34,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:orientation="horizontal">
+            android:paddingRight="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -46,14 +48,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Recomendaciones"
-                    android:textAppearance="@style/H2" />
+                    android:textAppearance="@style/H2"
+                    android:textColor="?attr/colorOnPrimary" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Mira las recetas que tenemos para ti"
-                    android:textAppearance="@style/BodyText" />
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
 
             </LinearLayout>
 
@@ -69,7 +73,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:background="@drawable/ic_next_arrow"
-                android:src="@drawable/ic_next_arrow" />
+                android:src="@drawable/ic_next_arrow"
+                android:tint="?attr/colorOnPrimary" />
 
         </LinearLayout>
 
@@ -91,10 +96,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
             <TextView
 
@@ -102,7 +107,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Categorías"
-                android:textAppearance="@style/H2" />
+                android:textAppearance="@style/H2"
+                android:textColor="?attr/colorOnPrimary" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -113,10 +119,11 @@
                 android:id="@+id/buttonCategory"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|clip_horizontal|center|clip_vertical|start|right|center_horizontal|fill|fill_horizontal|top|left|center_vertical|fill_vertical|end"
+                android:layout_gravity="center"
                 android:layout_weight="0"
                 android:background="#00FFFFFF"
                 android:src="@drawable/ic_next_arrow"
+                android:tint="?attr/colorOnPrimary"
                 tools:src="@drawable/ic_next_arrow" />
 
         </LinearLayout>
@@ -143,9 +150,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:orientation="horizontal">
+            android:paddingRight="20dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -157,14 +164,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Recetas pasadas"
-                    android:textAppearance="@style/H2" />
+                    android:textAppearance="@style/H2"
+                    android:textColor="?attr/colorOnPrimary" />
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Recuerda tus comidas anteriores"
-                    android:textAppearance="@style/BodyText" />
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
 
             </LinearLayout>
 
@@ -180,7 +189,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="0"
                 android:background="@drawable/ic_next_arrow"
-                android:src="@drawable/ic_next_arrow" />
+                android:src="@drawable/ic_next_arrow"
+                android:tint="?attr/colorOnPrimary" />
 
         </LinearLayout>
 
