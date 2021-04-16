@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.views
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.itesm.equipo3.provechito.models.CategoryCard
 
 class SearchFragment : Fragment(), ClickListener {
 
+    private lateinit var listener: HomeClcikListener
     private lateinit var arrCategoryCardShop: ArrayList<CategoryCard>
 
     private var _binding: FragmentSearchBinding? = null
@@ -24,6 +26,15 @@ class SearchFragment : Fragment(), ClickListener {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomeClcikListener) {
+            listener = context
+        } else {
+            throw ClassCastException(context.toString() + " must implement HomeClickListner.")
+        }
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -31,6 +42,12 @@ class SearchFragment : Fragment(), ClickListener {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         configureRVCategoryShop()
+
+        binding.arrowSearchImgButton.setOnClickListener{
+            val categoriesFragment = CategoriesFragment()
+            listener.onCategoryClicked()
+        }
+
         return binding.root
     }
 
