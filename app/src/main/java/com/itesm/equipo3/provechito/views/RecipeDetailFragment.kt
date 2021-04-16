@@ -1,6 +1,5 @@
 package com.itesm.equipo3.provechito.views
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
 import com.itesm.equipo3.provechito.models.IngredientCard
 import com.itesm.equipo3.provechito.models.RecipeCard
-import kotlin.ClassCastException
 
 class RecipeDetailFragment : Fragment(), ClickListener{
 
@@ -78,15 +76,6 @@ class RecipeDetailFragment : Fragment(), ClickListener{
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if(context is ClickListener){
-            listener = context
-        }else{
-            throw ClassCastException("${context.toString()} should be recipe detail Clicklistener")
-        }
     }
 
     override fun clicked(position: Int) {

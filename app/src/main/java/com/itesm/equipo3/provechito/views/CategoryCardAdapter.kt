@@ -1,8 +1,12 @@
 package com.itesm.equipo3.provechito.views
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.error.ANError
+import com.androidnetworking.interfaces.BitmapRequestListener
 import com.itesm.equipo3.provechito.databinding.CategoryCardViewBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 
@@ -11,7 +15,16 @@ class CategoryCardAdapter (val arrCatogoryCard: ArrayList<CategoryCard>) : Recyc
     inner class ViewHolder(val binding: CategoryCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: CategoryCard) {
             binding.tvCategoryCardName.text = cardItem.name
-            //holder.binding.recipeCardImage.setImageResource()
+            AndroidNetworking.get(cardItem.imgUrl)
+                .build()
+                .getAsBitmap(object: BitmapRequestListener {
+                    override fun onResponse(response: Bitmap?) {
+                        binding.categoryCardImage.setImageBitmap(response)
+                    }
+                    override fun onError(anError: ANError?) {
+                        println(anError?.message.toString())
+                    }
+                })
         }
     }
 

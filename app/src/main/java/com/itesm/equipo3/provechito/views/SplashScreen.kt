@@ -1,10 +1,10 @@
-package com.itesm.equipo3.provechito
+package com.itesm.equipo3.provechito.views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import com.itesm.equipo3.provechito.views.MainActivity
+import com.itesm.equipo3.provechito.R
 
 // Autor: Diego Pb
 
@@ -19,7 +19,7 @@ class SplashScreen : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                val i = Intent(baseContext, MainActivity::class.java)
+                val i = Intent(baseContext, Onboarding::class.java)
                 startActivity(i)
                 finish()
             }
