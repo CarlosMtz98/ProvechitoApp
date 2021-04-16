@@ -5,12 +5,11 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:contentPaddingRight="16dp">
+    android:layout_marginRight="20dp">
 
     <LinearLayout
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +20,8 @@
             android:id="@+id/categoryCardImage"
             android:layout_width="160dp"
             android:layout_height="126dp"
+            android:background="@drawable/round_corner_toggle"
+            android:backgroundTint="@color/pink"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -32,6 +33,7 @@
             android:layout_marginTop="16dp"
             android:minWidth="128dp"
             android:text="CategoryName"
+            android:textAppearance="@style/H2"
             android:textSize="18sp" />
 
     </LinearLayout>
