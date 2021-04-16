@@ -5,11 +5,12 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="20dp">
+    android:layout_marginLeft="20dp">
 
     <LinearLayout
         android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +35,7 @@
             android:minWidth="128dp"
             android:text="CategoryName"
             android:textAppearance="@style/H2"
+            android:textColor="@color/dark_blue"
             android:textSize="18sp" />
 
     </LinearLayout>

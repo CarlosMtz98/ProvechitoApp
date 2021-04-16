@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
     android:paddingTop="20dp"
-    android:paddingRight="20dp"
     tools:context=".views.HomeFragment">
 
     <LinearLayout
@@ -22,16 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Inicio"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:textAppearance="@style/H1"
             android:textSize="36sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -85,10 +87,12 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -99,6 +103,11 @@
                 android:layout_height="wrap_content"
                 android:text="Categorías"
                 android:textAppearance="@style/H2" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/buttonCategory"
@@ -129,11 +138,13 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="24dp" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -175,7 +186,7 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="16dp" />
+            android:layout_height="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecentRecipies"
