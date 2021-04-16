@@ -5,7 +5,7 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingEnd="16dp">
+    app:contentPaddingRight="16dp">
 
     <LinearLayout
         android:layout_width="160dp"
@@ -20,7 +20,7 @@
 
             android:id="@+id/categoryCardImage"
             android:layout_width="160dp"
-            android:layout_height="96dp"
+            android:layout_height="126dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_marginTop="16dp"
             android:minWidth="128dp"
             android:text="CategoryName"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
