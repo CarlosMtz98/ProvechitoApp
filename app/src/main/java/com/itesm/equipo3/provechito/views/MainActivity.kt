@@ -1,12 +1,12 @@
-package com.itesm.equipo3.provechito
+package com.itesm.equipo3.provechito.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
-import com.itesm.equipo3.provechito.views.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HomeClcikListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +20,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setDefaultFragment() {
-        setFragmentoOnActivity(HomeFragment())
+        val homeFragment = HomeFragment.newInstance()
+        setFragmentoOnActivity(homeFragment)
     }
 
     private fun setupAppNavigationMenu() {
@@ -56,4 +57,29 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.mainFrameLayout, frag)
             .commit()
     }
+
+    override fun onRecentClicked() {
+        val recentRecipesFragment = RecentRecipesFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrameLayout, recentRecipesFragment)
+                .addToBackStack(null)
+                .commit()
+    }
+
+    override fun onRecommendedClicked() {
+        val recommendedRecipesFragment = RecomendedRecipesFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrameLayout, recommendedRecipesFragment)
+                .addToBackStack(null)
+                .commit()
+    }
+
+    override fun onCategoryClicked() {
+        val categoriesFragment = CategoriesFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrameLayout, categoriesFragment)
+                .addToBackStack(null)
+                .commit()
+    }
+
 }
