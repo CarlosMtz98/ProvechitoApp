@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.views
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -47,7 +48,9 @@ class Onboarding : AppCompatActivity() {
 
         binding.getStartedBtnOb.setOnClickListener {
             println("Go to Login")
-            // TODO: Go to LoginActivity
+            val i = Intent(baseContext, SigninActivity::class.java)
+            startActivity(i)
+            finish()
         }
     }
 
@@ -68,8 +71,8 @@ class Onboarding : AppCompatActivity() {
     private fun getObData(): ArrayList<ScreenItem> {
         return arrayListOf(
             ScreenItem("Te damos la bienvenida a provechito", "No te preocupes más por los platillos, disfruta el proceso y ama la cocina", R.drawable.img_ob_1),
-            ScreenItem("Te damos la bienvenida a provechito", "No te preocupes más por los platillos, disfruta el proceso y ama la cocina", R.drawable.img_ob_1),
-            ScreenItem("Te damos la bienvenida a provechito", "No te preocupes más por los platillos, disfruta el proceso y ama la cocina", R.drawable.img_ob_1)
+            ScreenItem("Encuentra tu siguiente receta favorita", "Contamos con un catalogo con más de 30 mil platillos de todo el mundo", R.drawable.img_ob_2),
+            ScreenItem("No esperes más para sacar el cheff que llevas dentro", "Cualquiera puede cocinar, nosotros te guiaremos paso a paso, te tenemos cubierto", R.drawable.img_ob_3)
         )
     }
 

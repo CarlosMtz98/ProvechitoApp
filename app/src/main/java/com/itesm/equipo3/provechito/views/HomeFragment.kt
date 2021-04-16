@@ -133,15 +133,8 @@ class HomeFragment : Fragment(), ClickListener {
     override fun clicked(posicion: Int) {
         val recipeCard = arrRecipeCard[posicion]
         println("posicion: ${recipeCard}")
-        listener.onRecentClicked()
+        listener.onRecipeCardClicked()
     }
-
-   /* override fun clicked(posicion: Int) {
-        val tarjeta = arrTarjetas[posicion]
-        val url = Uri.parse("https://www.google.com/search?q=${tarjeta.banco}+${tarjeta.banco}")
-        val intBuscar = Intent(Intent.ACTION_VIEW, url)
-        startActivity(intBuscar)
-    }*/
 
     companion object {
         fun newInstance(): HomeFragment {
