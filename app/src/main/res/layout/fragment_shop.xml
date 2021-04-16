@@ -5,6 +5,9 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp"
     tools:context=".views.ShopFragment">
 
     <LinearLayout
@@ -20,34 +23,32 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
             android:text="Lista de compras"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/black"
-            android:textSize="36sp" />
+            android:textAppearance="@style/H1"
+            android:textColor="@color/dark_blue" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
             android:text="Revisa tu lista de compras"
-            android:textColor="@color/black" />
+            android:textAppearance="@style/SmallText"
+            android:textColor="@color/dark_blue" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="93dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="280dp"
+                android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
+                android:layout_marginRight="20dp"
                 android:layout_weight="2"
                 android:shadowColor="#000000"
                 android:shadowDx="1.2"
@@ -57,28 +58,34 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/round_corner_toggle"
-                    android:backgroundTint="#EAE7E7"
-                    android:hint="Buscar..." />
+                    android:backgroundTint="@color/white"
+                    android:hint="Buscar..."
+                    android:textAppearance="@style/BodyText" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
                 android:id="@+id/imageButton3"
-                android:layout_width="16dp"
-                android:layout_height="46dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginRight="2dp"
                 android:layout_weight="1"
-                android:background="@drawable/ic_funnel" />
+                android:background="#00FFFFFF"
+                android:paddingLeft="10dp"
+                android:paddingTop="8dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="8dp"
+                tools:src="@drawable/ic_funnel" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvIngredients"
             android:layout_width="match_parent"
-            android:layout_height="543dp" />
+            android:layout_height="543dp"
+            tools:listitem="@layout/ingredient_item_view"
+            tools:itemCount="13"/>
 
     </LinearLayout>
 

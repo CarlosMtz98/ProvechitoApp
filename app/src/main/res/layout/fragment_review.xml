@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".review">
+    tools:context=".views.ReviewFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -14,6 +14,9 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="¡Ya está!"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/H1" />
 
         <TextView
             android:id="@+id/textView13"
@@ -33,11 +36,12 @@
             android:layout_height="wrap_content"
             android:text="¿Qué te pareció?"
             android:textAlignment="center"
-            android:textSize="16sp" />
+            android:textAppearance="@style/BodyText" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -51,13 +55,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nombre Receta"
-                    android:textSize="16dp" />
+                    android:textAppearance="@style/H2" />
 
                 <TextView
                     android:id="@+id/tvCategorie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Categoría" />
+                    android:text="Categoría"
+                    android:textAppearance="@style/Link" />
 
             </LinearLayout>
 
@@ -65,7 +70,10 @@
                 android:id="@+id/recipeReviewFavImgButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
                 android:layout_weight="1"
+                android:background="@color/cardview_shadow_end_color"
                 android:src="@drawable/ic_heart" />
         </LinearLayout>
 
@@ -76,11 +84,12 @@
             android:layout_marginTop="20dp"
             android:text="Facilidad"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/H2" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageButton
@@ -88,6 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -95,6 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -102,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -109,13 +121,15 @@
             android:id="@+id/textView17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Sabor"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/H2" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageButton
@@ -123,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -130,6 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -137,6 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -144,13 +161,15 @@
             android:id="@+id/textView18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Tiempo"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/H2" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageButton
@@ -158,6 +177,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -165,6 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -172,6 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -181,8 +203,15 @@
         android:id="@+id/sendReviewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/green"
+        android:foregroundTint="@color/green"
+        android:paddingLeft="40dp"
+        android:paddingTop="8dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="8dp"
         android:text="Enviar"
+        android:textAppearance="@style/Link"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />

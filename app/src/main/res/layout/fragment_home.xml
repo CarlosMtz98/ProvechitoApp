@@ -6,32 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingTop="20dp"
     tools:context=".views.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingTop="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp">
+        android:paddingTop="20dp">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
             android:text="Inicio"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textAppearance="@style/H1"
             android:textSize="36sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -43,16 +45,15 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
                     android:text="Recomendaciones"
-                    android:textSize="24sp" />
+                    android:textAppearance="@style/H2" />
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:text="Mira las recetas que tenemos para ti" />
+                    android:text="Mira las recetas que tenemos para ti"
+                    android:textAppearance="@style/BodyText" />
 
             </LinearLayout>
 
@@ -64,15 +65,17 @@
             <ImageButton
                 android:id="@+id/btnRecomendations"
                 android:layout_width="32dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="0"
+                android:background="@drawable/ic_next_arrow"
                 android:src="@drawable/ic_next_arrow" />
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecipieCards"
@@ -84,27 +87,22 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="32dp" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <TextView
+
+                android:id="@+id/tvCategories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-
-                    android:id="@+id/tvCategories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Categorías"
-                    android:textSize="24sp" />
-
-            </LinearLayout>
+                android:text="Categorías"
+                android:textAppearance="@style/H2" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -114,15 +112,18 @@
             <ImageButton
                 android:id="@+id/buttonCategory"
                 android:layout_width="32dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|clip_horizontal|center|clip_vertical|start|right|center_horizontal|fill|fill_horizontal|top|left|center_vertical|fill_vertical|end"
                 android:layout_weight="0"
-                android:src="@drawable/ic_next_arrow" />
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_next_arrow"
+                tools:src="@drawable/ic_next_arrow" />
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategoryCards"
@@ -137,11 +138,13 @@
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="24dp" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -154,13 +157,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Recetas pasadas"
-                    android:textSize="24sp" />
+                    android:textAppearance="@style/H2" />
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Recuerda tus comidas anteriores" />
+                    android:text="Recuerda tus comidas anteriores"
+                    android:textAppearance="@style/BodyText" />
 
             </LinearLayout>
 
@@ -172,15 +176,17 @@
             <ImageButton
                 android:id="@+id/btnRecentRecipes"
                 android:layout_width="32dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="0"
+                android:background="@drawable/ic_next_arrow"
                 android:src="@drawable/ic_next_arrow" />
 
         </LinearLayout>
 
         <Space
             android:layout_width="wrap_content"
-            android:layout_height="16dp" />
+            android:layout_height="20dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecentRecipies"

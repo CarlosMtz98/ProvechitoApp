@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.itesm.equipo3.provechito.R
+import com.itesm.equipo3.provechito.databinding.FragmentHomeBinding
+import com.itesm.equipo3.provechito.databinding.FragmentReviewBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-class CategoriesFragment : Fragment() {
+class ReviewFragment : Fragment() {
+
+    private var _binding: FragmentReviewBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,13 +22,7 @@ class CategoriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_categories, container, false)
-    }
-
-    companion object {
-        fun newInstance() : CategoriesFragment {
-            return CategoriesFragment()
-        }
+        _binding = FragmentReviewBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

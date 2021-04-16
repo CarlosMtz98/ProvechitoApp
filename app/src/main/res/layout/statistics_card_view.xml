@@ -5,7 +5,8 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingEnd="16dp">
+    android:layout_marginLeft="20dp"
+    android:background="#00FFFFFF">
 
     <ImageButton
         android:id="@+id/statisticsCardShareButton"
@@ -13,8 +14,9 @@
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="#00FFFFFF"
         android:elevation="1dp"
-        android:tint="#FFFFFF"
+        android:tint="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
         app:srcCompat="@drawable/ic_share_outline" />
@@ -26,7 +28,8 @@
         android:layout_marginTop="32dp"
         android:elevation="1dp"
         android:text="0.00%"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/BigNumber"
+        android:textColor="@color/mid_white"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
@@ -35,7 +38,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:background="#00FFFFFF"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,17 +48,17 @@
             android:id="@+id/statisticsCardImage"
             android:layout_width="160dp"
             android:layout_height="96dp"
+            android:background="@color/pink"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvStatisticsNameCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:minWidth="128dp"
             android:text="Statistics Name"
-            android:textSize="24sp" />
+            android:textAppearance="@style/H2" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
