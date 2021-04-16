@@ -13,6 +13,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="#00FFFFFF"
         android:elevation="1dp"
         android:tint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -33,6 +34,7 @@
             android:id="@+id/recipeCardImage"
             android:layout_width="160dp"
             android:layout_height="192dp"
+            android:background="@color/pink"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
