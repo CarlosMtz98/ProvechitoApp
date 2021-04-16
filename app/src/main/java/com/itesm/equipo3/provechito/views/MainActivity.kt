@@ -3,15 +3,15 @@ package com.itesm.equipo3.provechito.views
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.androidnetworking.AndroidNetworking
 import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), HomeClcikListener {
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        AndroidNetworking.initialize(getApplicationContext());
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
