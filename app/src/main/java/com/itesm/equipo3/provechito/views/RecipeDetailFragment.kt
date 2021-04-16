@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
+import com.itesm.equipo3.provechito.models.IngredientCard
 import com.itesm.equipo3.provechito.models.RecipeCard
 import kotlin.ClassCastException
 
@@ -16,6 +18,7 @@ class RecipeDetailFragment : Fragment(), ClickListener{
     private var _binding: FragmentRecipeDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
+    private lateinit var arrIngredients: ArrayList<IngredientCard>
     private lateinit var listener: ClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +32,29 @@ class RecipeDetailFragment : Fragment(), ClickListener{
     ): View? {
         _binding = FragmentRecipeDetailBinding.inflate(inflater, container, false)
         setupRecipeCardRV()
+        setupIngredientRV()
         return binding.root
+    }
+
+    private fun setupIngredientRV() {
+        val layout = GridLayoutManager(requireContext(), 2)
+        layout.orientation = LinearLayoutManager.HORIZONTAL
+        binding.rvIngredientsRecipe.layoutManager = layout
+        arrIngredients = getIngredients()
+        val adaptador = IngredientCardAdapter(arrIngredients)
+        binding.rvIngredientsRecipe.adapter = adaptador
+        adaptador.listener = this
+    }
+
+    private fun getIngredients(): ArrayList<IngredientCard> {
+        return arrayListOf(
+                IngredientCard("Queso Parmesano"),
+                IngredientCard("Cilantro"),
+                IngredientCard("Aceite de oliva"),
+                IngredientCard("Queso Cheddar"),
+                IngredientCard("Ajo"),
+                IngredientCard("Pollo")
+        )
     }
 
     private fun setupRecipeCardRV() {

@@ -5,7 +5,6 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF"
     android:layout_marginLeft="20dp">
 
     <ImageButton

@@ -9,12 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.databinding.FragmentShopBinding
-import com.itesm.equipo3.provechito.models.Ingredient
-import java.util.*
+import com.itesm.equipo3.provechito.models.ProductCard
 import kotlin.collections.ArrayList
 
 class ShopFragment : Fragment(), ClickListener, CustomListeners {
-    private lateinit var arrIngredients: ArrayList<Ingredient>
+    private lateinit var arrProducts: ArrayList<ProductCard>
     private var _binding: FragmentShopBinding? = null
     private val binding get() = _binding!!
 
@@ -36,10 +35,10 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
 
     private fun configurarRV() {
         val layout = GridLayoutManager(requireContext(), 1)
-        binding.rvIngredients.layoutManager = layout
-        arrIngredients = createIngredientArr()
-        val adapter = IngredientCardAdapter(arrIngredients)
-        binding.rvIngredients.adapter = adapter
+        binding.rvProducts.layoutManager = layout
+        arrProducts = createProductArr()
+        val adapter = ProductCardAdapter(arrProducts)
+        binding.rvProducts.adapter = adapter
         adapter.listener = this
     }
 
@@ -47,13 +46,13 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         super.onDestroyView()
         _binding = null
     }
-    private fun createIngredientArr(): ArrayList<Ingredient> {
+    private fun createProductArr(): ArrayList<ProductCard> {
         return arrayListOf(
-            Ingredient("Queso", 1, "Lácteo", Calendar.getInstance().time.toString()),
-            Ingredient("Cilantro", 2, "Verdura", Calendar.getInstance().time.toString()),
-            Ingredient("Ajo", 3, "Verdura", Calendar.getInstance().time.toString()),
-            Ingredient("Jitomate", 4, "Verdura", Calendar.getInstance().time.toString()),
-            Ingredient("Cebolla", 5, "Verdura", Calendar.getInstance().time.toString())
+            ProductCard("Queso", 1, "Lácteo", "Viernes 16 de abril"),
+            ProductCard("Cilantro", 2, "Verdura", "Viernes 16 de abril"),
+            ProductCard("Ajo", 3, "Verdura", "Viernes 16 de abril"),
+            ProductCard("Jitomate", 4, "Verdura", "Viernes 16 de abril"),
+            ProductCard("Cebolla", 5, "Verdura", "Viernes 16 de abril")
         )
     }
 
@@ -72,7 +71,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
     }
 
     override fun clicked(posicion: Int) {
-        val ingredient = arrIngredients[posicion]
+        val ingredient = arrProducts[posicion]
         println("posicion: ${ingredient}")
     }
 

@@ -28,7 +28,7 @@ class CustomAdapter : RecyclerView.Adapter<BaseViewHolder> {
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : BaseViewHolder {
         val layoutInflater : LayoutInflater = LayoutInflater.from(parent.getContext())
-        val view : View = layoutInflater.inflate(R.layout.ingredient_item_view, parent, false)
+        val view : View = layoutInflater.inflate(R.layout.product_item_view, parent, false)
         return CustomViewHolder(parent.getContext(), view, customListeners)
     }
 
