@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,9 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:text="•"
-            android:textAlignment="center"
+            android:textAlignment="textStart"
             android:textSize="20dp" />
 
         <TextView
@@ -29,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="5"
+            android:layout_weight="6"
             android:text="TextView"
             android:textAppearance="@style/Link" />
 
@@ -37,8 +39,9 @@
             android:id="@+id/imageButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="1"
             android:background="#00FFFFFF"
+            android:scaleType="fitEnd"
             app:srcCompat="@drawable/ic_shopping_cart" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

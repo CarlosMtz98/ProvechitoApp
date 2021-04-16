@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.itesm.equipo3.provechito.databinding.IngredientCardViewBinding
-import com.itesm.equipo3.provechito.databinding.ProductItemViewBinding
 import com.itesm.equipo3.provechito.models.IngredientCard
 
 class IngredientCardAdapter( val arrIngredients: ArrayList<IngredientCard>): RecyclerView.Adapter<IngredientCardAdapter.ViewHolder>() {

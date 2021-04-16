@@ -19,7 +19,7 @@
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="108dp"
-            tools:src="@color/yellow" />
+            android:background="@color/yellow" />
 
         <TextView
             android:id="@+id/tvRecipe"
