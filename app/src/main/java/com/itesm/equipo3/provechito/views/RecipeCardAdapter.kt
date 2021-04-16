@@ -36,9 +36,9 @@ class RecipeCardAdapter (val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerVie
         val tarjeta = arrRecipeCard[position]
         holder.set(tarjeta)
 
-        holder.binding.root.setOnClickListener {
+        holder.binding.recipeCardImage.setOnClickListener {
             listener?.clicked(position)
-            println("Hizo click ${position}")
+            println("Hizo click en la imagen ${position}")
         }
     }
 }
