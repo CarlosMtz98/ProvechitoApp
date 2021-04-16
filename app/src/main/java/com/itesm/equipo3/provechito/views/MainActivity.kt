@@ -9,6 +9,7 @@ import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), HomeClcikListener {
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidNetworking.initialize(getApplicationContext());
@@ -75,6 +76,14 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
     }
 
     override fun onCategoryClicked() {
+        val categoriesFragment = CategoriesFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrameLayout, categoriesFragment)
+                .addToBackStack(null)
+                .commit()
+    }
+
+    override fun onRecipeCardClicked() {
         val categoriesFragment = CategoriesFragment.newInstance()
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrameLayout, categoriesFragment)

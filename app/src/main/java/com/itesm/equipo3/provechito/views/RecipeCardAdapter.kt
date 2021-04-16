@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.views
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +12,7 @@ import com.itesm.equipo3.provechito.databinding.RecipeCardViewBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 
 class RecipeCardAdapter (val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerView.Adapter<RecipeCardAdapter.ViewHolder>() {
-
+    var listener: ClickListener? = null
 
     inner class ViewHolder(val binding: RecipeCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: RecipeCard) {
@@ -31,7 +32,6 @@ class RecipeCardAdapter (val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerVie
         }
     }
 
-    var listener: ClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             RecipeCardViewBinding.inflate(
@@ -51,9 +51,12 @@ class RecipeCardAdapter (val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerVie
         holder.set(tarjeta)
 
         holder.binding.recipeCardImage.setOnClickListener {
-            listener?.clicked(position)
-            println("Hizo click en la imagen ${position}")
+            if (listener != null) {
+                println("Hellow ")
+                listener?.clicked(position)
+            }
         }
     }
+
 
 }

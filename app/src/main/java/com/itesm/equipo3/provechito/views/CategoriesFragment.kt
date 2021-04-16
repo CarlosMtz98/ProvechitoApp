@@ -10,7 +10,7 @@ import com.itesm.equipo3.provechito.R
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 class CategoriesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -24,7 +24,6 @@ class CategoriesFragment : Fragment() {
     }
 
     companion object {
-        @JvmStatic
         fun newInstance() : CategoriesFragment {
             return CategoriesFragment()
         }

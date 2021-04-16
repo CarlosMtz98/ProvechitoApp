@@ -133,6 +133,7 @@ class HomeFragment : Fragment(), ClickListener {
     override fun clicked(posicion: Int) {
         val recipeCard = arrRecipeCard[posicion]
         println("posicion: ${recipeCard}")
+        listener.onRecentClicked()
     }
 
    /* override fun clicked(posicion: Int) {
