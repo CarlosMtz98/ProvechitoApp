@@ -21,7 +21,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp">
 
                 <ImageView
                     android:id="@+id/imgPortadaPerfil"
@@ -49,9 +50,9 @@
                     android:id="@+id/imgButtonSettings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/ic_settings"
+                    android:background="#00FFFFFF"
                     android:src="@drawable/ic_settings"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -78,6 +79,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:paddingTop="8dp">
 
                     <LinearLayout
@@ -128,6 +131,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
                     android:paddingTop="16dp">
 
                     <LinearLayout
