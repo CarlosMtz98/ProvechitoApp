@@ -5,19 +5,56 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
+import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.R
+import com.itesm.equipo3.provechito.databinding.FragmentSearchBinding
+import com.itesm.equipo3.provechito.models.CategoryCard
 
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), ClickListener {
+
+    private lateinit var arrCategoryCardShop: ArrayList<CategoryCard>
+
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        configureRVCategoryShop()
+        return binding.root
+    }
+
+    private fun configureRVCategoryShop() {
+        val layout = GridLayoutManager(requireContext(), 2)
+        binding.rvCategoryCardsSearch.layoutManager = layout
+
+        arrCategoryCardShop = getCategory()
+        val adaptador = CategoryCardAdapter(arrCategoryCardShop)
+        binding.rvCategoryCardsSearch.adapter = adaptador
+
+        adaptador.listener = this
+    }
+
+    private fun getCategory(): ArrayList<CategoryCard> {
+        return arrayListOf(
+                CategoryCard("Comida Mexicana",""),
+                CategoryCard("Comida Italiana",""),
+                CategoryCard("Comida Rusa",""),
+                CategoryCard("Comida Francesa","")
+        )
+    }
+
+    override fun clicked(posicion: Int) {
+        TODO("Not yet implemented")
     }
 }
