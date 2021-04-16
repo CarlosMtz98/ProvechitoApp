@@ -33,7 +33,7 @@
         android:minWidth="128dp"
         android:text="CategoryName"
         android:textAppearance="@style/H2"
-        android:textColor="@color/dark_blue"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/categoryCardImage"
