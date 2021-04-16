@@ -28,13 +28,11 @@ class HomeFragment : Fragment(), ClickListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
         if (context is HomeClcikListener) {
             listener = context
         } else {
             throw ClassCastException(context.toString() + " must implement HomeClickListner.")
         }
-
     }
 
     override fun onCreateView(
@@ -112,37 +110,31 @@ class HomeFragment : Fragment(), ClickListener {
 
     private fun getHomeCategory(): ArrayList<CategoryCard>{
         return arrayListOf(
-            CategoryCard("Comida Italiana", ""),
-            CategoryCard("Comida Mexicana", ""),
-            CategoryCard("Comida Argentina", "")
+            CategoryCard("Comida Italiana", "https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
+            CategoryCard("Comida Mexicana", "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
+            CategoryCard("Comida Argentina", "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80")
         )
     }
 
     private fun getHomeRecipe(): ArrayList<RecipeCard> {
         return arrayListOf(
-            RecipeCard("Pasta arrabiata", "italiana", "https://shorturl.at/oFLOX", "15min"),
-            RecipeCard("Pizza napolitana", "italiana", "https://shorturl.at/jyU27", "35min"),
-            RecipeCard("Gelato", "italiana", "https://shorturl.at/uFKNO", "45min")
+            RecipeCard("Pasta arrabiata", "italiana", "https://images.unsplash.com/photo-1607375658859-39f31567ce13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80", "15min"),
+            RecipeCard("Pizza napolitana", "italiana", "https://images.unsplash.com/photo-1589187151053-5ec8818e661b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "35min"),
+            RecipeCard("Gelato", "italiana", "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "45min")
         )
     }
 
     private fun getRecentRecipes() : ArrayList<RecipeCard> {
         return arrayListOf(
-                RecipeCard("Pastel de chocolate", "Repostería", "https://shorturl.at/oFLOX", "1h 15min")
+                RecipeCard("Pastel de chocolate", "Repostería", "https://images.unsplash.com/photo-1614786482494-7fc57abd0074?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "1h 15min")
         )
     }
 
     override fun clicked(posicion: Int) {
         val recipeCard = arrRecipeCard[posicion]
         println("posicion: ${recipeCard}")
+        listener.onRecipeCardClicked()
     }
-
-   /* override fun clicked(posicion: Int) {
-        val tarjeta = arrTarjetas[posicion]
-        val url = Uri.parse("https://www.google.com/search?q=${tarjeta.banco}+${tarjeta.banco}")
-        val intBuscar = Intent(Intent.ACTION_VIEW, url)
-        startActivity(intBuscar)
-    }*/
 
     companion object {
         fun newInstance(): HomeFragment {

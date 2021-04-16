@@ -8,7 +8,7 @@
     android:layout_marginTop="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    tools:context=".FragmentDetailedStep">
+    tools:context=".views.FragmentDetailedStep">
 
     <ImageView
         android:id="@+id/imageView2"
