@@ -5,4 +5,5 @@ interface HomeClcikListener {
     fun onRecommendedClicked()
     fun onCategoryClicked()
     fun onRecipeCardClicked()
+    fun onBeginClicked()
 }
