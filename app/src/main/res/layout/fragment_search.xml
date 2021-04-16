@@ -37,6 +37,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:background="@color/white"
                         android:hint="Search"
                         android:paddingLeft="10dp"
@@ -48,12 +49,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
                 <ImageButton
                     android:id="@+id/imageButton2"
-                    android:layout_width="10dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:background="#00FFFFFF"
                     android:src="@drawable/ic_vector" />
             </LinearLayout>
@@ -100,10 +105,9 @@
 
                 <ImageButton
                     android:id="@+id/arrowSearchImgButton"
-                    android:layout_width="32dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:background="#00FFFFFF"
                     android:src="@drawable/ic_next_arrow" />
 
