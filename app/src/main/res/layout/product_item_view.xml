@@ -7,13 +7,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/constraint_layout_Main">
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:0.25"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
     <!--region Guide lines-->
     <!--region Vertical Guide lines-->
     <androidx.constraintlayout.widget.Guideline
@@ -21,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="@dimen/leading"/>
+        app:layout_constraintGuide_percent="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/constraint_guideline_vertical_leading_rubber"
@@ -56,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="@dimen/trailing"/>
+        app:layout_constraintGuide_percent="1.0" />
     <!--endregion-->
     <!--region Horizontal Guidlines-->
     <androidx.constraintlayout.widget.Guideline
@@ -64,14 +57,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.10"/>
+        app:layout_constraintGuide_percent="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/constraint_guideline_horizontal_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90"/>
+        app:layout_constraintGuide_percent="1.0" />
     <!--endregion-->
     <!--endregion-->
     <androidx.cardview.widget.CardView
@@ -112,32 +105,38 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:cardUseCompatPadding="false"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="8dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="8dp"
+        app:cardBackgroundColor="?attr/colorOnSecondary"
         app:cardCornerRadius="@dimen/card_radius"
         app:cardElevation="@dimen/card_elevation"
         app:cardMaxElevation="@dimen/card_elevation_maximum"
-        app:layout_constraintTop_toTopOf="@id/constraint_guideline_horizontal_top"
-        app:layout_constraintStart_toStartOf="@id/constraint_guideline_vertical_leading"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintBottom_toBottomOf="@id/constraint_guideline_horizontal_bottom"
         app:layout_constraintEnd_toEndOf="@id/constraint_guideline_vertical_trailing"
-        app:layout_constraintBottom_toBottomOf="@id/constraint_guideline_horizontal_bottom">
+        app:layout_constraintStart_toStartOf="@id/constraint_guideline_vertical_leading"
+        app:layout_constraintTop_toTopOf="@id/constraint_guideline_horizontal_top">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:padding="10dp"
             android:weightSum="1">
 
             <TextView
                 android:id="@+id/tvProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="TextView"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="?attr/colorOnPrimary" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
