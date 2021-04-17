@@ -47,23 +47,23 @@
             android:textAppearance="@style/Label"
             android:textSize="18sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <EditText
+            android:id="@+id/editTextTextEmailAddress2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEmailSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/round_corner_toggle"
-                android:backgroundTint="@color/white"
-                android:hint="Correo"
-                android:padding="8dp"
-                android:textAppearance="@style/BodyText"
-                android:textColor="?attr/colorOnPrimary" />
-        </com.google.android.material.textfield.TextInputLayout>
-
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/round_corner_toggle"
+            android:backgroundTint="@color/mid_white"
+            android:ems="10"
+            android:hint="email@example.com"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:textAppearance="@style/BodyText"
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/textView19"
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/mid_white"
             android:ems="10"
             android:hint="Contraseña"
             android:inputType="textPassword"
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/mid_white"
             android:ems="10"
             android:hint="Confirmar contraseña"
             android:inputType="textPassword"
@@ -115,10 +115,13 @@
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginRight="18dp"
             android:background="@drawable/round_corner_toggle"
             android:text="Registrarse"
-            app:backgroundTint="@color/yellow" />
+            android:textColor="@color/white"
+            app:backgroundTint="@color/green" />
 
         <Button
 

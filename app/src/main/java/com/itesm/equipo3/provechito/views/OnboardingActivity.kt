@@ -11,7 +11,7 @@ import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ActivityOnboardingBinding
 import com.itesm.equipo3.provechito.models.ScreenItem
 
-class Onboarding : AppCompatActivity() {
+class OnboardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnboardingBinding
     private lateinit var screenPager: ViewPager2
     private lateinit var screensArrayList: ArrayList<ScreenItem>

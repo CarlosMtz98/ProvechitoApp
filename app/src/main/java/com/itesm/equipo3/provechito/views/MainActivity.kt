@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
     }
 
     override fun onRecommendedClicked() {
-        val recommendedRecipesFragment = RecomendedRecipesFragment.newInstance()
+        val recommendedRecipesFragment = RecommendedRecipesFragment.newInstance()
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrameLayout, recommendedRecipesFragment)
                 .addToBackStack(null)
