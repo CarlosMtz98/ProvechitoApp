@@ -121,7 +121,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnNextStep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -131,12 +131,11 @@
             android:paddingTop="8dp"
             android:paddingRight="40dp"
             android:paddingBottom="8dp"
-            android:text="Button"
+            android:text="Siguiente paso"
             android:textAllCaps="false"
             android:textAppearance="@style/Link"
             android:textColor="@color/dark_blue"
-            app:backgroundTint="@color/yellow"
-            tools:text="Siguiente paso" />
+            app:backgroundTint="@color/yellow" />
     </LinearLayout>
 
 </ScrollView>
