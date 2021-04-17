@@ -64,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel aliquet orci, et suscipit libero. Quisque cursus orci a maximus blandit. Proin et nisl et erat finibus pretium eget sit amet orci. Sed elementum nibh justo, sed pharetra erat sollicitudin vitae. Aenean suscipit placerat lectus."
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            app:lineHeight="24dp" />
 
         <Button
             android:id="@+id/btnBeginStep"
