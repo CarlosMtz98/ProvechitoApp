@@ -46,7 +46,7 @@ class HomeFragment : Fragment(), ClickListener {
         configureCategoryCardRV()
 
         binding.btnRecomendations.setOnClickListener {
-            val recommendedRecipesFragment = RecomendedRecipesFragment()
+            val recommendedRecipesFragment = RecommendedRecipesFragment()
             println("Go to recommended")
             listener.onRecommendedClicked()
         }
@@ -68,7 +68,6 @@ class HomeFragment : Fragment(), ClickListener {
         super.onDestroyView()
         _binding = null
     }
-
 
     private fun setupRecipeCardRV() {
         val layout = LinearLayoutManager(requireContext())
