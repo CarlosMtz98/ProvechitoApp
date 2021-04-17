@@ -28,7 +28,7 @@
             android:layout_height="108dp"
             android:layout_marginLeft="-20dp"
             android:layout_marginRight="-20dp"
-            tools:src="@color/blue" />
+            android:background="@color/blue" />
 
         <TextView
             android:id="@+id/tvStepName"
