@@ -5,15 +5,15 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="20dp"
     android:paddingTop="20dp"
-    android:paddingRight="20dp"
     tools:context=".views.ShopFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +86,8 @@
             android:id="@+id/rvProducts"
             android:layout_width="match_parent"
             android:layout_height="543dp"
-            tools:listitem="@layout/product_item_view"
-            tools:itemCount="13"/>
+            tools:itemCount="13"
+            tools:listitem="@layout/product_item_view" />
 
     </LinearLayout>
 

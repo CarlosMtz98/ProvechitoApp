@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Provechito">
-        <activity android:name=".views.Onboarding"></activity>
+        <activity android:name=".views.OnboardingActivity"></activity>
         <activity android:name=".views.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

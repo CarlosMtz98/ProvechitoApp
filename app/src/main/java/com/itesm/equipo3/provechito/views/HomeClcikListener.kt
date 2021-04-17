@@ -7,4 +7,5 @@ interface HomeClcikListener {
     fun onRecipeCardClicked()
     fun onSettingsClicked()
     fun onBeginClicked()
+    fun onNextClicked()
 }

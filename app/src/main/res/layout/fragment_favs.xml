@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Likes"
+                android:text="Favoritos"
                 android:textAppearance="@style/H1"
                 android:textColor="?attr/colorOnPrimary" />
 

@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
     }
 
     override fun onRecommendedClicked() {
-        val recommendedRecipesFragment = RecomendedRecipesFragment.newInstance()
+        val recommendedRecipesFragment = RecommendedRecipesFragment.newInstance()
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrameLayout, recommendedRecipesFragment)
                 .addToBackStack(null)
@@ -95,6 +95,14 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
         val detailedStep = FragmentDetailedStep()
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrameLayout, detailedStep)
+                .addToBackStack(null)
+                .commit()
+    }
+
+    override fun onNextClicked() {
+        val reviewFragment = ReviewFragment()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrameLayout, reviewFragment)
                 .addToBackStack(null)
                 .commit()
     }

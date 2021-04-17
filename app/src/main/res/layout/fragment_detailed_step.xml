@@ -28,7 +28,7 @@
             android:layout_height="108dp"
             android:layout_marginLeft="-20dp"
             android:layout_marginRight="-20dp"
-            tools:src="@color/blue" />
+            android:background="@color/blue" />
 
         <TextView
             android:id="@+id/tvStepName"
@@ -64,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel aliquet orci, et suscipit libero. Quisque cursus orci a maximus blandit. Proin et nisl et erat finibus pretium eget sit amet orci. Sed elementum nibh justo, sed pharetra erat sollicitudin vitae. Aenean suscipit placerat lectus."
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            app:lineHeight="24dp" />
 
         <Button
             android:id="@+id/btnBeginStep"
@@ -124,7 +125,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnNextStep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -134,12 +135,11 @@
             android:paddingTop="8dp"
             android:paddingRight="40dp"
             android:paddingBottom="8dp"
-            android:text="Button"
+            android:text="Siguiente paso"
             android:textAllCaps="false"
             android:textAppearance="@style/Link"
             android:textColor="@color/dark_blue"
-            app:backgroundTint="@color/yellow"
-            tools:text="Siguiente paso" />
+            app:backgroundTint="@color/yellow" />
     </LinearLayout>
 
 </ScrollView>
