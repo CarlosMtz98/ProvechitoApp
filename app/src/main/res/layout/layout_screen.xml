@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -20,7 +19,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textAppearance="@style/H2"
+        android:textColor="?attr/colorOnPrimary"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,6 +35,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:text="TextView"
+        android:textAppearance="@style/BodyText"
+        android:textColor="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/intro_title" />

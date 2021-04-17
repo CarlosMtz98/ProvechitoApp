@@ -27,6 +27,7 @@
             android:paddingRight="20dp"
             android:text="Recomendaciones"
             android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary" />
             android:textSize="36sp" />
 
     </LinearLayout>

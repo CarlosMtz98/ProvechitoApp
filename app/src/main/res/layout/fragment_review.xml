@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
@@ -15,12 +15,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:background="@color/pink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView12"
@@ -28,7 +36,8 @@
             android:layout_height="wrap_content"
             android:text="¡Ya está!"
             android:textAlignment="center"
-            android:textAppearance="@style/H1" />
+            android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/textView13"
@@ -36,7 +45,8 @@
             android:layout_height="wrap_content"
             android:text="¿Qué te pareció?"
             android:textAlignment="center"
-            android:textAppearance="@style/BodyText" />
+            android:textAppearance="@style/BodyText"
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,14 +65,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nombre Receta"
-                    android:textAppearance="@style/H2" />
+                    android:textAppearance="@style/H2"
+                    android:textColor="?attr/colorOnPrimary" />
 
                 <TextView
                     android:id="@+id/tvCategorie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Categoría"
-                    android:textAppearance="@style/Link" />
+                    android:textAppearance="@style/Link"
+                    android:textColor="?attr/colorOnPrimary" />
 
             </LinearLayout>
 
@@ -74,7 +86,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:background="@color/cardview_shadow_end_color"
-                android:src="@drawable/ic_heart" />
+                android:src="@drawable/ic_heart"
+                android:tint="?attr/colorOnPrimary" />
         </LinearLayout>
 
         <TextView
@@ -84,7 +97,8 @@
             android:layout_marginTop="20dp"
             android:text="Facilidad"
             android:textAlignment="center"
-            android:textAppearance="@style/H2" />
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -124,7 +138,8 @@
             android:layout_marginTop="20dp"
             android:text="Sabor"
             android:textAlignment="center"
-            android:textAppearance="@style/H2" />
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -164,7 +179,8 @@
             android:layout_marginTop="20dp"
             android:text="Tiempo"
             android:textAlignment="center"
-            android:textAppearance="@style/H2" />
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -197,33 +213,23 @@
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/sendReviewButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/green"
+            android:foregroundTint="@color/green"
+            android:paddingLeft="40dp"
+            android:paddingTop="8dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="8dp"
+            android:text="Enviar"
+            android:textAppearance="@style/Link"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/sendReviewButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/green"
-        android:foregroundTint="@color/green"
-        android:paddingLeft="40dp"
-        android:paddingTop="8dp"
-        android:paddingRight="40dp"
-        android:paddingBottom="8dp"
-        android:text="Enviar"
-        android:textAppearance="@style/Link"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="108dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@color/pink" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

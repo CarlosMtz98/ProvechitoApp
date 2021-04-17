@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import com.androidnetworking.AndroidNetworking
 import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
-import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
 
 class MainActivity : AppCompatActivity(), HomeClcikListener {
     private lateinit var binding: ActivityMainBinding
@@ -90,6 +89,30 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
                 .replace(R.id.mainFrameLayout, recipieDetailFragment)
                 .addToBackStack(null)
                 .commit()
+    }
+
+    override fun onBeginClicked() {
+        val detailedStep = FragmentDetailedStep()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrameLayout, detailedStep)
+                .addToBackStack(null)
+                .commit()
+    }
+
+    override fun onNextClicked() {
+        val reviewFragment = ReviewFragment()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrameLayout, reviewFragment)
+                .addToBackStack(null)
+                .commit()
+    }
+
+    override fun onSettingsClicked() {
+        val settingsFragment = SettingsFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFrameLayout, settingsFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 }

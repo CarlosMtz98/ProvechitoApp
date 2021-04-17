@@ -26,7 +26,7 @@
             android:paddingRight="20dp"
             android:text="Recientes"
             android:textAppearance="@style/H1"
-            android:textSize="36sp" />
+            android:textColor="?attr/colorOnPrimary" />
     </LinearLayout>
 
 

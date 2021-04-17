@@ -54,6 +54,7 @@
                     android:layout_marginTop="12dp"
                     android:background="#00FFFFFF"
                     android:src="@drawable/ic_settings"
+                    android:tint="?attr/colorOnPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:text="Profile Name"
                     android:textAppearance="@style/H1"
+                    android:textColor="?attr/colorOnPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imgFotoPerfil" />
@@ -93,14 +95,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Estadísticas"
-                            android:textAppearance="@style/H2" />
+                            android:textAppearance="@style/H2"
+                            android:textColor="?attr/colorOnPrimary" />
 
                         <TextView
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="¡Mira todo lo que has logrado!"
-                            android:textAppearance="@style/BodyText" />
+                            android:textAppearance="@style/BodyText"
+                            android:textColor="?attr/colorOnPrimary" />
 
                     </LinearLayout>
 
@@ -115,7 +119,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@drawable/ic_next_arrow"
-                        android:src="@drawable/ic_next_arrow" />
+                        android:src="@drawable/ic_next_arrow"
+                        android:tint="?attr/colorOnPrimary" />
 
                 </LinearLayout>
 
@@ -123,7 +128,7 @@
                     android:id="@+id/rvStatisticsCards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8dp">
+                    android:paddingTop="20dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
@@ -132,8 +137,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="16dp">
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -145,14 +150,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Últimas Recetas"
-                            android:textAppearance="@style/H1" />
+                            android:textAppearance="@style/H1"
+                            android:textColor="?attr/colorOnPrimary" />
 
                         <TextView
                             android:id="@+id/textView10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Estas son las últimas recetas que hiciste :)"
-                            android:textAppearance="@style/BodyText" />
+                            android:textAppearance="@style/BodyText"
+                            android:textColor="?attr/colorOnPrimary" />
                     </LinearLayout>
 
                     <Space
@@ -166,14 +173,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@drawable/ic_next_arrow"
-                        android:src="@drawable/ic_next_arrow" />
+                        android:src="@drawable/ic_next_arrow"
+                        android:tint="?attr/colorOnPrimary" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvLastRecipesCards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8dp" />
+                    android:paddingTop="20dp" />
 
             </LinearLayout>
 

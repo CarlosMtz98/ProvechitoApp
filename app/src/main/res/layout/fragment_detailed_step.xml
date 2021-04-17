@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout5"
@@ -10,33 +10,35 @@
     android:paddingRight="0dp"
     tools:context=".views.FragmentDetailedStep">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="108dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@color/blue" />
-
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_marginRight="-20dp"
+            tools:src="@color/blue" />
 
         <TextView
             android:id="@+id/tvStepName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
+            android:layout_marginTop="20dp"
             android:text="Nombre Paso"
             android:textAlignment="center"
             android:textAppearance="@style/H1"
-            android:textColor="@color/dark_blue" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/tvStepNumber"
@@ -44,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="xx/xx"
             android:textAlignment="center"
-            android:textColor="@color/dark_blue" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/textView21"
@@ -53,21 +55,23 @@
             android:layout_marginTop="15dp"
             android:fontFamily="@font/poppins"
             android:text="Instrucciones"
-            android:textAppearance="@style/H2" />
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/tvInstructions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel aliquet orci, et suscipit libero. Quisque cursus orci a maximus blandit. Proin et nisl et erat finibus pretium eget sit amet orci. Sed elementum nibh justo, sed pharetra erat sollicitudin vitae. Aenean suscipit placerat lectus." />
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel aliquet orci, et suscipit libero. Quisque cursus orci a maximus blandit. Proin et nisl et erat finibus pretium eget sit amet orci. Sed elementum nibh justo, sed pharetra erat sollicitudin vitae. Aenean suscipit placerat lectus."
+            android:textColor="?attr/colorOnPrimary" />
 
         <Button
             android:id="@+id/btnBeginStep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/blue"
             android:fontFamily="@font/poppins_medium"
             android:paddingLeft="25dp"
@@ -82,7 +86,7 @@
             android:layout_marginTop="25dp"
             android:text="Tiempo"
             android:textAppearance="@style/H2"
-            android:textColor="@color/dark_blue" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/tvTimer"
@@ -90,7 +94,8 @@
             android:layout_height="wrap_content"
             android:text="XX:XX:XX"
             android:textAlignment="center"
-            android:textAppearance="@style/H2" />
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -102,6 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:scaleX="1"
                 android:scaleY="1"
                 android:src="@drawable/ic_skip_previous" />
@@ -111,25 +117,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="#00FFFFFF"
                 android:scaleX="1"
                 android:scaleY="1"
                 android:src="@drawable/ic_pause" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnNextStep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/yellow"
-            android:paddingLeft="35dp"
-            android:paddingRight="35dp"
-            android:text="Button"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_corner_toggle"
+            android:paddingLeft="40dp"
+            android:paddingTop="8dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="8dp"
+            android:text="Siguiente paso"
             android:textAllCaps="false"
+            android:textAppearance="@style/Link"
             android:textColor="@color/dark_blue"
-            app:cornerRadius="8dp"
-            tools:text="Siguiente paso" />
+            app:backgroundTint="@color/yellow" />
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

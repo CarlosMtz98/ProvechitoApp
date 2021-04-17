@@ -5,8 +5,7 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
-    android:background="#00FFFFFF">
+    android:layout_marginLeft="20dp">
 
     <ImageButton
         android:id="@+id/statisticsCardShareButton"
@@ -48,7 +47,8 @@
             android:id="@+id/statisticsCardImage"
             android:layout_width="160dp"
             android:layout_height="96dp"
-            android:background="@color/pink"
+            android:background="@drawable/round_corner_toggle"
+            android:backgroundTint="@color/pink"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -58,7 +58,8 @@
             android:layout_marginTop="15dp"
             android:minWidth="128dp"
             android:text="Statistics Name"
-            android:textAppearance="@style/H2" />
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="Lista de compras"
             android:textAppearance="@style/H1"
-            android:textColor="@color/dark_blue" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/textView6"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="Revisa tu lista de compras"
             android:textAppearance="@style/SmallText"
-            android:textColor="@color/dark_blue" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +62,8 @@
                     android:background="@drawable/round_corner_toggle"
                     android:backgroundTint="@color/white"
                     android:hint="Buscar..."
-                    android:textAppearance="@style/BodyText" />
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
@@ -76,15 +77,16 @@
                 android:paddingTop="8dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="8dp"
+                android:tint="?attr/colorOnPrimary"
                 tools:src="@drawable/ic_funnel" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvIngredients"
+            android:id="@+id/rvProducts"
             android:layout_width="match_parent"
             android:layout_height="543dp"
-            tools:listitem="@layout/ingredient_item_view"
+            tools:listitem="@layout/product_item_view"
             tools:itemCount="13"/>
 
     </LinearLayout>
