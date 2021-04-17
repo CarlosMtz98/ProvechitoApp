@@ -99,6 +99,14 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
                 .commit()
     }
 
+    override fun onNextClicked() {
+        val reviewFragment = ReviewFragment()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrameLayout, reviewFragment)
+                .addToBackStack(null)
+                .commit()
+    }
+
     override fun onSettingsClicked() {
         val settingsFragment = SettingsFragment.newInstance()
         supportFragmentManager.beginTransaction()
