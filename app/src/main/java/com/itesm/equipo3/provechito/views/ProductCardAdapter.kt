@@ -41,4 +41,6 @@ class ProductCardAdapter(val arrProducts: ArrayList<ProductCard>) : RecyclerView
     override fun getItemCount(): Int {
         return arrProducts.size
     }
+
+
 }
