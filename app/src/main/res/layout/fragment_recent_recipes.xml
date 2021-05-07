@@ -11,8 +11,8 @@
 
     <LinearLayout
         android:id="@+id/lyrecentRecipes"
-        android:layout_width="415dp"
-        android:layout_height="724dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,21 +21,23 @@
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recent Recipes"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/recetas_pasadas"
             android:textAppearance="@style/H1" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRecentRecipes"
             android:layout_width="match_parent"
-            android:layout_height="678dp"
+            android:layout_height="wrap_content"
             tools:itemCount="3" />
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="@string/recientes"
-            android:textAppearance="@style/H1"
-            android:textColor="?attr/colorOnPrimary" />
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/recientes"
+        android:textAppearance="@style/H1"
+        android:textColor="?attr/colorOnPrimary" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
