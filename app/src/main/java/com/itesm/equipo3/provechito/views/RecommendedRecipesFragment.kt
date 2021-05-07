@@ -56,7 +56,11 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
         }
     }
 
-    override fun clicked(position: Int) {
+    override fun recipeClicked(position: Int) {
+        println("Clicked $position")
+    }
+
+    override fun categoryClicked(position: Int) {
         println("Clicked $position")
     }
 }

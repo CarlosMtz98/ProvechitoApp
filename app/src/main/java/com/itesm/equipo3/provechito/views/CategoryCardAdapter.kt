@@ -48,8 +48,8 @@ class CategoryCardAdapter (val arrCatogoryCard: ArrayList<CategoryCard>) : Recyc
         holder.set(category)
 
         holder.binding.root.setOnClickListener {
-            listener?.clicked(position)
-            println("Hizo click ${position}")
+            listener?.categoryClicked(position)
+            println("Hizo click $position")
         }
     }
 }

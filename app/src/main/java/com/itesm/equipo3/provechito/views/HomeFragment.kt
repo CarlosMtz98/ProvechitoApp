@@ -1,6 +1,5 @@
 package com.itesm.equipo3.provechito.views
 
-import android.R
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +13,7 @@ import com.itesm.equipo3.provechito.models.RecipeCard
 
 
 class HomeFragment : Fragment(), ClickListener {
-    private lateinit var listener: HomeClcikListener
+    private lateinit var listener: HomeClickListener
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
     private lateinit var arrCategoryCard: ArrayList<CategoryCard>
     private lateinit var arrRecentRecipes: ArrayList<RecipeCard>
@@ -28,10 +27,10 @@ class HomeFragment : Fragment(), ClickListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is HomeClcikListener) {
+        if (context is HomeClickListener) {
             listener = context
         } else {
-            throw ClassCastException(context.toString() + " must implement HomeClickListner.")
+            throw ClassCastException("$context must implement HomeClickListner.")
         }
     }
 
@@ -39,7 +38,7 @@ class HomeFragment : Fragment(), ClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setupRecipeCardRV()
         setupRecentRecipesRV()
@@ -58,7 +57,7 @@ class HomeFragment : Fragment(), ClickListener {
 
         binding.buttonCategory.setOnClickListener {
             val categoriesFragment = CategoriesFragment()
-            listener.onCategoryClicked()
+            listener.onCategoryCardClicked()
         }
 
         return binding.root
@@ -129,10 +128,17 @@ class HomeFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun clicked(posicion: Int) {
-        val recipeCard = arrRecipeCard[posicion]
-        println("posicion: ${recipeCard}")
+
+    override fun recipeClicked(position: Int) {
+        val recipeCard = arrRecipeCard[position]
+        println("posicion: $recipeCard")
         listener.onRecipeCardClicked()
+    }
+
+    override fun categoryClicked(position: Int) {
+        val categoryCard = arrCategoryCard[position]
+        println("posicion: $categoryCard")
+        listener.onCategoryCardClicked()
     }
 
     companion object {

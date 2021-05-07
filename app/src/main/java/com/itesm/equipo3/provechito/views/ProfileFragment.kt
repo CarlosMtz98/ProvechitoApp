@@ -15,7 +15,7 @@ import com.itesm.equipo3.provechito.models.StatisticsCard
     Autor: Zoe Caballero
  */
 class ProfileFragment : Fragment(), ClickListener {
-    private lateinit var listener: HomeClcikListener
+    private lateinit var listener: HomeClickListener
     private lateinit var arrStatisticsCard: ArrayList<StatisticsCard>
     private lateinit var arrLastRecipesCard: ArrayList<RecipeCard>
     private var _binding: FragmentProfileBinding? = null
@@ -51,7 +51,7 @@ class ProfileFragment : Fragment(), ClickListener {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        if (context is HomeClcikListener) {
+        if (context is HomeClickListener) {
             listener = context
         } else {
             throw ClassCastException(context.toString() + " must implement SignUpListener.")
@@ -98,9 +98,13 @@ class ProfileFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun clicked(posicion: Int) {
+    override fun recipeClicked(posicion: Int) {
         val stadisticsCard = arrStatisticsCard[posicion]
-        println("posicion: ${stadisticsCard}")
+        println("posicion: $stadisticsCard")
+    }
+
+    override fun categoryClicked(position: Int) {
+        println("Clicked $position")
     }
 
 

@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ShopFragment : Fragment(), ClickListener, CustomListeners {
+class ShopFragment : Fragment(),ClickListener, CustomListeners {
     private lateinit var arrProducts: ArrayList<ProductCard>
     private var _binding: FragmentShopBinding? = null
     private val binding get() = _binding!!
@@ -63,10 +63,6 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         _binding = null
         _bindingIngredient = null
 
-        /*if (_binding != null) {
-            val parentViewGroup = view!!.parent as ViewGroup
-            parentViewGroup?.removeAllViews()
-        }*/
     }
     private fun createProductArr(): ArrayList<ProductCard> {
         return arrayListOf(
@@ -128,7 +124,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         super.onStart()
     }
 
-    override fun clicked(position: Int) {
+    override fun recipeClicked(position: Int) {
         val ingredient = arrProducts[position]
         println("position: ${ingredient}")
         val popup = PopupMenu(this.context, binding.rvProducts[position], END)
@@ -185,9 +181,6 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
                             .show()
                     true
                 }
-
-                //R.id.action_hockey ->
-                //Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
             }
             true
         })
@@ -195,7 +188,9 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         popup.show()
     }
 
-
+    override fun categoryClicked(position: Int) {
+        println("Clicked $position")
+    }
 
     override fun onClickLeft(item: CustomViewModel, position: Int) {
         println("Pico a la izquierda $position")
