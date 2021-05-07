@@ -7,21 +7,26 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="20dp">
 
-    <CheckBox
-        android:button="@null"
-        android:id="@+id/recipeCardFavImgButton"
+    <com.like.LikeButton
+        android:id="@+id/star_button"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:checked="false"
-        android:background="@drawable/image_btn_src"
+        app:icon_type="heart"
+        app:icon_size="25dp"
+        app:liked="false"
+        app:like_drawable="@drawable/ic_heart_fill"
+        app:unlike_drawable="@drawable/ic_heart"
+        app:circle_start_color="@color/red"
+        app:circle_end_color="@color/yellow"
+        app:dots_primary_color="@color/red"
+        app:dots_secondary_color="@color/red"
         android:contentDescription="@string/like"
         android:elevation="1dp"
         android:tint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        android:stateListAnimator="@animator/scale"/>
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
