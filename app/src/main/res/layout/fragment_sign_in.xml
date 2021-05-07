@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/yellow"
+    android:background="@color/mid_white"
     android:orientation="vertical"
     tools:context=".views.SignInFragment">
 
@@ -78,6 +78,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="18dp"
+        android:autofillHints=""
         android:background="@drawable/round_corner_toggle"
         android:backgroundTint="@color/white"
         android:ems="10"
@@ -85,8 +86,7 @@
         android:inputType="textPassword"
         android:padding="8dp"
         android:textAppearance="@style/BodyText"
-        android:textColor="?attr/colorOnPrimary"
-        android:autofillHints="" />
+        android:textColor="?attr/colorOnPrimary" />
 
     <Button
         android:id="@+id/btnSignIn"
@@ -114,11 +114,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:focusable="true"
         android:text="@string/registrarse"
         android:textAlignment="center"
         android:textAppearance="@style/Link"
         android:textColor="@color/blue"
-        android:textSize="18sp"
-        android:focusable="true" />
+        android:textSize="18sp" />
 
 </LinearLayout>
