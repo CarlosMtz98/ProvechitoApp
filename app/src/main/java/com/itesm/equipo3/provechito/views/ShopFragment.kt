@@ -1,26 +1,37 @@
 package com.itesm.equipo3.provechito.views
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.service.autofill.UserData
 import android.view.Gravity.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.core.view.get
 import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.R
+import com.itesm.equipo3.provechito.databinding.AddItemBinding
 import com.itesm.equipo3.provechito.databinding.FragmentShopBinding
 import com.itesm.equipo3.provechito.models.ProductCard
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.collections.ArrayList
 
 class ShopFragment : Fragment(), ClickListener, CustomListeners {
     private lateinit var arrProducts: ArrayList<ProductCard>
     private var _binding: FragmentShopBinding? = null
     private val binding get() = _binding!!
+    private var _bindingIngredient:AddItemBinding? = null
+    private val bindingAddItem get() = _bindingIngredient!!
     private lateinit var adapter : CustomAdapter
     private lateinit var itemList : MutableList<CustomViewModel>
 
@@ -68,8 +79,48 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentShopBinding.inflate(layoutInflater, container, false)
+        _bindingIngredient = AddItemBinding.inflate(layoutInflater,container, false)
         configurarRV()
+        binding.btnAddItem.setOnClickListener {
+            addItem()
+        }
         return binding.root
+    }
+
+    private fun addItem() {
+        val inflater = LayoutInflater.from(this.context)
+        val v = inflater.inflate(R.layout.add_item,null)
+        val addDialog = AlertDialog.Builder(this.context)
+
+        val ingredientName = v.findViewById<EditText>(R.id.tvIngredientName)
+        val ingredientDescription = v.findViewById<EditText>(R.id.tvIngredientDescription)
+        val date = Calendar.getInstance().time
+        val formatter = SimpleDateFormat.getDateTimeInstance()
+        val formatedDate = formatter.format(date)
+
+
+        addDialog.setView(v)
+        addDialog.setPositiveButton("Agregar"){
+            dialog, which ->
+            val name = ingredientName.text.toString()
+
+            val description = ingredientDescription.text.toString()
+            arrProducts.add(ProductCard(name, arrProducts.lastIndex +1, description,formatedDate.toString()))//
+            Toast.makeText(this.context, "Ingrediente agregado", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+
+
+
+        }
+        addDialog.setNegativeButton("Cancelar"){
+            dialog, which ->
+            dialog.dismiss()
+            Toast.makeText(this.context, "Cancel", Toast.LENGTH_SHORT).show()
+
+        }
+        addDialog.create()
+        addDialog.show()
+
     }
 
     override fun onStart() {
@@ -82,8 +133,23 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         val popup = PopupMenu(this.context, binding.rvProducts[position], END)
         val inflater: MenuInflater = popup.menuInflater
         inflater.inflate(R.menu.popup_shopping, popup.menu)
+
+        popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+            when(item.itemId) {
+                R.id.item_edit ->
+                   println("ITEM EDIT ")
+                R.id.item_delete ->
+                    println("DELETE EDIT ")
+                //R.id.action_hockey ->
+                    //Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+            }
+            true
+        })
+
         popup.show()
     }
+
+
 
     override fun onClickLeft(item: CustomViewModel, position: Int) {
         println("Pico a la izquierda $position")

@@ -45,7 +45,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
@@ -68,7 +68,7 @@
 
             <ImageButton
                 android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginRight="20dp"
@@ -81,6 +81,14 @@
                 android:tint="?attr/colorOnPrimary"
                 tools:src="@drawable/ic_funnel" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAddItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@android:drawable/ic_input_add"
+                app:backgroundTint="@color/blue" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -88,7 +96,9 @@
             android:layout_width="match_parent"
             android:layout_height="543dp"
             tools:itemCount="13"
-            tools:listitem="@layout/product_item_view" />
+            tools:listitem="@layout/product_item_view" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
