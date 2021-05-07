@@ -67,19 +67,6 @@
             android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_vel_aliquet_orci_et_suscipit_libero_quisque_cursus_orci_a_maximus_blandit_proin_et_nisl_et_erat_finibus_pretium_eget_sit_amet_orci_sed_elementum_nibh_justo_sed_pharetra_erat_sollicitudin_vitae_aenean_suscipit_placerat_lectus"
             android:textColor="?attr/colorOnPrimary" />
 
-        <Button
-            android:id="@+id/btnBeginStep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/poppins_medium"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:text="@string/comenzar"
-            android:textAllCaps="false" />
-
         <TextView
             android:id="@+id/textView23"
             android:layout_width="match_parent"
@@ -106,14 +93,6 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imgButtonStart"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#00FFFFFF"
-                android:src="@drawable/ic_play_circle_outline" />
-
-            <ImageButton
                 android:id="@+id/imgButtonReset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,6 +113,14 @@
                 android:scaleX="1"
                 android:scaleY="1"
                 android:src="@drawable/ic_pause" />
+
+            <ImageButton
+                android:id="@+id/imgButtonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_play_circle_outline" />
         </LinearLayout>
 
         <Button
