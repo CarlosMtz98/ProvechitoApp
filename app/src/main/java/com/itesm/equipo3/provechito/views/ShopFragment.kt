@@ -76,13 +76,17 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         super.onStart()
     }
 
-    override fun clicked(position: Int) {
+    override fun recipeClicked(position: Int) {
         val ingredient = arrProducts[position]
         println("position: ${ingredient}")
         val popup = PopupMenu(this.context, binding.rvProducts[position], END)
         val inflater: MenuInflater = popup.menuInflater
         inflater.inflate(R.menu.popup_shopping, popup.menu)
         popup.show()
+    }
+
+    override fun categoryClicked(position: Int) {
+        println("Clicked $position")
     }
 
     override fun onClickLeft(item: CustomViewModel, position: Int) {

@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.views
 
 interface ClickListener {
-    fun clicked(position: Int)
+    fun recipeClicked(position: Int)
+    fun categoryClicked(position: Int)
 }

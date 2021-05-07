@@ -6,12 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.itesm.equipo3.provechito.R
-import com.itesm.equipo3.provechito.databinding.FragmentHomeBinding
 import com.itesm.equipo3.provechito.databinding.FragmentRecentRecipesBinding
 import com.itesm.equipo3.provechito.models.RecentRecipeCard
 
@@ -27,7 +22,7 @@ class RecentRecipesFragment : Fragment(), ClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRecentRecipesBinding.inflate(inflater, container, false)
         setupRVRecentRecipes()
@@ -39,13 +34,12 @@ class RecentRecipesFragment : Fragment(), ClickListener {
         _binding = null
     }
 
-    private fun setupRVRecentRecipes(){
-
+    private fun setupRVRecentRecipes() {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.VERTICAL
         binding.rvRecentRecipes.layoutManager = layout
 
-        arrRecentRecipeCard = getRecentRecipes();
+        arrRecentRecipeCard = getRecentRecipes()
         val adaptador = RecentRecipeCardAdapter(arrRecentRecipeCard)
         binding.rvRecentRecipes.adapter = adaptador
 
@@ -60,14 +54,17 @@ class RecentRecipesFragment : Fragment(), ClickListener {
         )
     }
 
-    //por que esta esto?
     companion object {
         fun newInstance() : RecentRecipesFragment {
             return RecentRecipesFragment()
         }
     }
 
-    override fun clicked(posicion: Int) {
-        println("Clicked $posicion")
+    override fun recipeClicked(position: Int) {
+        println("Clicked $position")
+    }
+
+    override fun categoryClicked(position: Int) {
+        println("Clicked $position")
     }
 }

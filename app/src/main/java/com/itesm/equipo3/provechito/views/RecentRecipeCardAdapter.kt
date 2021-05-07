@@ -51,7 +51,7 @@ class RecentRecipeCardAdapter (val arrRecentRecipeCard: ArrayList<RecentRecipeCa
         val tarjeta = arrRecentRecipeCard[position]
                 holder.set(tarjeta)
         holder.binding.recentRecipeCardImage.setOnClickListener{
-            listener?.clicked(position)
+            listener?.recipeClicked(position)
         }
     }
 }
