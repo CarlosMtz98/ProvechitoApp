@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@color/mid_white"
+        android:background="@color/design_default_color_background"
         android:orientation="vertical">
 
         <EditText
@@ -20,12 +20,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="5dp"
-            android:hint="Ingrediente"
+            android:hint="Nombre"
             android:padding="15dp"
             android:textColor="@color/black"
             android:textColorHint="@color/grey"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/tvIngredientDescription"
@@ -40,8 +39,7 @@
             android:padding="15dp"
             android:textColor="@color/black"
             android:textColorHint="@color/grey"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
 
 
     </LinearLayout>

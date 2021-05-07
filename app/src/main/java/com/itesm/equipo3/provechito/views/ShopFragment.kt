@@ -2,6 +2,7 @@ package com.itesm.equipo3.provechito.views
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity.END
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.PopupMenu
 import android.widget.Toast
@@ -21,6 +23,7 @@ import com.itesm.equipo3.provechito.databinding.FragmentShopBinding
 import com.itesm.equipo3.provechito.models.ProductCard
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class ShopFragment : Fragment(), ClickListener, CustomListeners {
     private lateinit var arrProducts: ArrayList<ProductCard>
@@ -101,6 +104,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         val formatedDate = formatter.format(date)
 
         addDialog.setView(v)
+        addDialog.setTitle("Ingrediente")
         addDialog.setPositiveButton("Agregar"){ dialog, _->
             val name = ingredientName.text.toString()
             val description = ingredientDescription.text.toString()
@@ -116,6 +120,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         }
         addDialog.create()
         addDialog.show()
+
 
     }
 
@@ -142,6 +147,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
                     name.setText(ingredient.name)
                     description.setText(ingredient.description)
                     AlertDialog.Builder(this.context)
+                            .setTitle("Ingrediente")
                             .setView(v)
                             .setPositiveButton("Aceptar") { dialog, _ ->
                                 ingredient.name = name.text.toString()

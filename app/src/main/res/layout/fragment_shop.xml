@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingTop="20dp"
     tools:context=".views.ShopFragment">
 
@@ -42,6 +42,22 @@
             android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="0dp"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:paddingLeft="0dp"
+                android:paddingTop="8dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="8dp"
+                android:src="@drawable/ic_funnel"
+                android:tint="?attr/colorOnPrimary"
+                tools:src="@drawable/ic_funnel" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -66,28 +82,15 @@
                     android:textColor="?attr/colorOnPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:background="#00FFFFFF"
-                android:paddingLeft="10dp"
-                android:paddingTop="8dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="8dp"
-                android:tint="?attr/colorOnPrimary"
-                tools:src="@drawable/ic_funnel" />
-
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/btnAddItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:elevation="0dp"
                 android:src="@android:drawable/ic_input_add"
-                app:backgroundTint="@color/blue" />
+                app:backgroundTint="@color/blue"
+                app:elevation="0dp" />
 
         </LinearLayout>
 
@@ -96,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="543dp"
             tools:itemCount="13"
-            tools:listitem="@layout/product_item_view" >
+            tools:listitem="@layout/product_item_view">
 
         </androidx.recyclerview.widget.RecyclerView>
 
