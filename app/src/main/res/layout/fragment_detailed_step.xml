@@ -98,7 +98,7 @@
             android:text="@string/xx_xx_xx"
             android:textAlignment="center"
             android:textAppearance="@style/H2"
-            android:textColor="?attr/colorOnPrimary" /
+            android:textColor="?attr/colorOnPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
