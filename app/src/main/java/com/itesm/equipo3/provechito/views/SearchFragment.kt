@@ -69,7 +69,6 @@ class SearchFragment : Fragment(), ClickListener {
         )
     }
 
-
     override fun recipeClicked(position: Int) {
         println("Clicked $position")
     }

@@ -128,7 +128,6 @@ class HomeFragment : Fragment(), ClickListener {
         )
     }
 
-
     override fun recipeClicked(position: Int) {
         val recipeCard = arrRecipeCard[position]
         println("posicion: $recipeCard")

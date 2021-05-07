@@ -3,6 +3,7 @@ package com.itesm.equipo3.provechito.views
 import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
@@ -47,6 +48,7 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tarjeta = arrRecipeCard[position]
+
         holder.set(tarjeta)
 
         holder.binding.recipeCardImage.setOnClickListener {
