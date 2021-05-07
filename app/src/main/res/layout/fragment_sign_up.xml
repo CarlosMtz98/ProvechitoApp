@@ -39,6 +39,32 @@
             android:layout_height="64dp" />
 
         <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="Nombre"
+            android:textAppearance="@style/Label"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/round_corner_toggle"
+            android:backgroundTint="@color/mid_white"
+            android:ems="10"
+            android:hint="Roberto Martínez"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:textAppearance="@style/BodyText"
+            android:textColor="?attr/colorOnPrimary"  />
+
+        <TextView
             android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,28 +112,6 @@
             android:inputType="textPassword"
             android:padding="8dp"
             android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Confirmar contraseña"
-            android:textAppearance="@style/Label"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/textInputPasswordConfirmSignUp"
-            style="@style/BodyText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/mid_white"
-            android:ems="10"
-            android:hint="Confirmar contraseña"
-            android:inputType="textPassword"
-            android:padding="8dp"
             android:textColor="?attr/colorOnPrimary" />
 
         <Button

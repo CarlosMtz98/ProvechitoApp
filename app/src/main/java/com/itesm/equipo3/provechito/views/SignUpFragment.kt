@@ -45,9 +45,12 @@ class SignUpFragment : Fragment(){
             clickListener.onSignInFragClicked()
         }
         binding.btnSignUp.setOnClickListener{
-            clickListener.onSignInButtonClicked()
+            val name: String = binding.userName.text.toString()
+            val email: String = binding.editTextTextEmailAddress2.text.toString()
+            val pass: String = binding.textInputPasssowordSignUp.text.toString()
+            if (!name.isNullOrEmpty() && !email.isNullOrEmpty() && !pass.isNullOrEmpty())
+                clickListener.onSignUpButtonClicked(name, email, pass);
         }
-
         return binding.root
     }
 
