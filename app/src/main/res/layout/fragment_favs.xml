@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Likes"
+                android:text="@string/likes"
                 android:textAppearance="@style/H1"
                 android:textColor="?attr/colorOnPrimary" />
 
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Aquí está todo lo que te ha gustado hasta ahora"
+                android:text="@string/aqu_est_todo_lo_que_te_ha_gustado_hasta_ahora"
                 android:textAppearance="@style/BodyText"
                 android:textColor="?attr/colorOnPrimary" />
 

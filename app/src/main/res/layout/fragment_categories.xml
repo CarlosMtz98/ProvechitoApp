@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="Categorías"
+            android:text="@string/categor_as"
             android:textAppearance="@style/H1"
             android:textColor="?attr/colorOnPrimary" />
     </LinearLayout>

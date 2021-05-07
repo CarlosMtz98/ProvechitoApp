@@ -55,7 +55,7 @@
         android:paddingTop="8dp"
         android:paddingRight="40dp"
         android:paddingBottom="8dp"
-        android:text="Comenzar"
+        android:text="@string/comenzar"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
