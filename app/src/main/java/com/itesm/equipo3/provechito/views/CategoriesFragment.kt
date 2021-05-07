@@ -1,15 +1,12 @@
 package com.itesm.equipo3.provechito.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.FragmentCategoriesBinding
-import com.itesm.equipo3.provechito.databinding.FragmentRecentRecipesBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 
 
@@ -25,7 +22,7 @@ class CategoriesFragment : Fragment(), ClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         setupRVCategories()
@@ -40,11 +37,11 @@ class CategoriesFragment : Fragment(), ClickListener {
     private fun setupRVCategories() {
         val layout = GridLayoutManager(requireContext(),2)
         layout.orientation = GridLayoutManager.VERTICAL
-        binding.rvCategoriesFragment.layoutManager = layout
+        binding.rvCategoryCards.layoutManager = layout
 
         arrCategories = getCategories()
         val adaptador = CategoryCardAdapter(arrCategories)
-        binding.rvCategoriesFragment.adapter = adaptador
+        binding.rvCategoryCards.adapter = adaptador
 
         adaptador.listener = this
     }
