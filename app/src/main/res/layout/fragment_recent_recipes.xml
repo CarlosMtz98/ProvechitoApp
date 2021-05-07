@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="Recientes"
+            android:text="@string/recientes"
             android:textAppearance="@style/H1"
             android:textColor="?attr/colorOnPrimary" />
     </LinearLayout>

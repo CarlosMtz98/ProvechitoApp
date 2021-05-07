@@ -24,9 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.5"
-            android:text="•"
+            android:text="@string/mamana"
             android:textAlignment="textStart"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvIngredientName"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="6"
-            android:text="TextView"
+            android:text="@string/textview"
             android:textAppearance="@style/Link" />
 
         <ImageButton
@@ -44,6 +44,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="#00FFFFFF"
+            android:contentDescription="@string/add_to_cart"
             android:scaleType="fitEnd"
             app:srcCompat="@drawable/ic_shopping_cart" />
     </LinearLayout>
