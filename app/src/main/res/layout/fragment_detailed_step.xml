@@ -89,14 +89,16 @@
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary" />
 
-        <TextView
-            android:id="@+id/tvTimer"
-            android:layout_width="match_parent"
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="30sp"
             android:text="@string/xx_xx_xx"
             android:textAlignment="center"
             android:textAppearance="@style/H2"
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary" /
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,7 +106,15 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButton10"
+                android:id="@+id/imgButtonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_play_circle_outline" />
+
+            <ImageButton
+                android:id="@+id/imgButtonReset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -115,7 +125,7 @@
                 android:src="@drawable/ic_skip_previous" />
 
             <ImageButton
-                android:id="@+id/imageButton11"
+                android:id="@+id/imgButtonPause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
