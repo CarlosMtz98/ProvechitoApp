@@ -64,10 +64,10 @@ class SearchFragment : Fragment(), ClickListener {
 
     private fun getCategory(): ArrayList<CategoryCard> {
         return arrayListOf(
-                CategoryCard("Comida Mexicana",""),
-                CategoryCard("Comida Italiana",""),
-                CategoryCard("Comida Rusa",""),
-                CategoryCard("Comida Francesa","")
+            CategoryCard("Italiana", "https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
+            CategoryCard("Mexicana", "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
+            CategoryCard("Argentina", "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80"),
+            CategoryCard("Tailandesa", "https://images.unsplash.com/photo-1569562211093-4ed0d0758f12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80")
         )
     }
 
