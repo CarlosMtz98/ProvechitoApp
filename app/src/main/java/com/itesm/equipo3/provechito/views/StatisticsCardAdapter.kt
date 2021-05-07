@@ -36,7 +36,7 @@ class StatisticsCardAdapter (val arrStatisticsCard: ArrayList<StatisticsCard>) :
         holder.set(tarjeta)
 
         holder.binding.root.setOnClickListener {
-            listener?.clicked(position)
+            listener?.recipeClicked(position)
             println("Hizo click ${position}")
         }
     }

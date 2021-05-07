@@ -54,8 +54,12 @@ class FavsFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun clicked(posicion: Int) {
+    override fun recipeClicked(posicion: Int) {
         println("Clicked $posicion")
+    }
+
+    override fun categoryClicked(position: Int) {
+        println("Clicked $position")
     }
 
 }

@@ -75,13 +75,14 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
                 .commit()
     }
 
-    override fun onCategoryClicked() {
-        val categoriesFragment = CategoriesFragment.newInstance()
+    override fun onCategoryCardClicked() {
+        val categoriesFragment = CategoryFocusFragment()
         supportFragmentManager.beginTransaction()
-                .replace(R.id.mainFrameLayout, categoriesFragment)
-                .addToBackStack(null)
-                .commit()
+            .replace(R.id.mainFrameLayout, categoriesFragment)
+            .addToBackStack(null)
+            .commit()
     }
+
 
     override fun onRecipeCardClicked() {
         val recipieDetailFragment = RecipeDetailFragment()

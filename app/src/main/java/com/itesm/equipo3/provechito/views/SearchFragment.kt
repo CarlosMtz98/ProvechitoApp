@@ -45,7 +45,7 @@ class SearchFragment : Fragment(), ClickListener {
 
         binding.arrowSearchImgButton.setOnClickListener{
             val categoriesFragment = CategoriesFragment()
-            listener.onCategoryClicked()
+            listener.onCategoryCardClicked()
         }
 
         return binding.root
@@ -71,7 +71,11 @@ class SearchFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun clicked(posicion: Int) {
-        TODO("Not yet implemented")
+    override fun recipeClicked(position: Int) {
+        println("Clicked $position")
+    }
+
+    override fun categoryClicked(position: Int) {
+        println("Clicked $position")
     }
 }

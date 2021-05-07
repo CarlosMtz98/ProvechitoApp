@@ -17,6 +17,7 @@ class CategoriesFragment : Fragment(), ClickListener {
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
     private lateinit var arrCategories: ArrayList<CategoryCard>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -62,7 +63,11 @@ class CategoriesFragment : Fragment(), ClickListener {
         }
     }
 
-    override fun clicked(position: Int) {
+    override fun recipeClicked(position: Int) {
+        println("Clicked $position")
+    }
+
+    override fun categoryClicked(position: Int) {
         println("Clicked $position")
     }
 }

@@ -98,9 +98,13 @@ class ProfileFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun clicked(posicion: Int) {
+    override fun recipeClicked(posicion: Int) {
         val stadisticsCard = arrStatisticsCard[posicion]
-        println("posicion: ${stadisticsCard}")
+        println("posicion: $stadisticsCard")
+    }
+
+    override fun categoryClicked(position: Int) {
+        println("Clicked $position")
     }
 
 
