@@ -84,23 +84,25 @@
         android:id="@+id/button_left"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/edit_button"
         android:elevation="@dimen/card_elevation"
-        app:srcCompat="@drawable/ic_pencil"
-        app:layout_constraintTop_toTopOf="@id/constraint_guideline_horizontal_top"
-        app:layout_constraintStart_toStartOf="@id/constraint_guideline_vertical_leading"
+        app:layout_constraintBottom_toBottomOf="@id/constraint_guideline_horizontal_bottom"
         app:layout_constraintEnd_toEndOf="@id/constraint_guideline_vertical_leading_rubber"
-        app:layout_constraintBottom_toBottomOf="@id/constraint_guideline_horizontal_bottom" />
+        app:layout_constraintStart_toStartOf="@id/constraint_guideline_vertical_leading"
+        app:layout_constraintTop_toTopOf="@id/constraint_guideline_horizontal_top"
+        app:srcCompat="@drawable/ic_pencil" />
 
     <ImageView
         android:id="@+id/button_right"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/delete_button"
         android:elevation="@dimen/card_elevation"
-        app:srcCompat="@drawable/ic_trashcan"
-        app:layout_constraintTop_toTopOf="@id/constraint_guideline_horizontal_top"
-        app:layout_constraintStart_toStartOf="@id/constraint_guideline_vertical_trailing_rubber"
+        app:layout_constraintBottom_toBottomOf="@id/constraint_guideline_horizontal_bottom"
         app:layout_constraintEnd_toEndOf="@id/constraint_guideline_vertical_trailing"
-        app:layout_constraintBottom_toBottomOf="@id/constraint_guideline_horizontal_bottom" />
+        app:layout_constraintStart_toStartOf="@id/constraint_guideline_vertical_trailing_rubber"
+        app:layout_constraintTop_toTopOf="@id/constraint_guideline_horizontal_top"
+        app:srcCompat="@drawable/ic_trashcan" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -132,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
-                android:text="TextView"
+                android:text="@string/textview"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="?attr/colorOnPrimary" />
@@ -146,30 +148,22 @@
                     android:id="@+id/tvDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="TextView"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/textview"
                     android:textAlignment="textStart"
                     android:textAppearance="@style/Label"
                     android:textColor="@color/greyed_out" />
 
                 <TextView
                     android:id="@+id/tvDateAdded"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="@string/textview"
                     android:textAlignment="textStart"
                     android:textAppearance="@style/Link"
                     android:textColor="@color/green" />
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:gravity="center">
-
-            </RelativeLayout>
 
         </LinearLayout>
 

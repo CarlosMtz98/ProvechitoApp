@@ -5,7 +5,7 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp">
+    android:layout_marginStart="20dp">
 
     <ImageButton
         android:id="@+id/statisticsCardShareButton"
@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="#00FFFFFF"
+        android:contentDescription="@string/share"
         android:elevation="1dp"
         android:tint="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:elevation="1dp"
-        android:text="0.00%"
+        android:text="@string/_0_00"
         android:textAppearance="@style/BigNumber"
         android:textColor="@color/mid_white"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -48,7 +49,8 @@
             android:layout_width="160dp"
             android:layout_height="96dp"
             android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/dark_blue"
+            android:backgroundTint="@color/pink"
+            android:contentDescription="@string/databackground"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -57,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:minWidth="128dp"
-            android:text="Statistics Name"
+            android:text="@string/statistics_name"
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary" />
 

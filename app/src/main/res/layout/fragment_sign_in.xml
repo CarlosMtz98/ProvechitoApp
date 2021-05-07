@@ -1,128 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/textInputEmailSignIn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/yellow"
+    android:orientation="vertical"
     tools:context=".views.SignInFragment">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="16dp"
+        android:paddingRight="8dp"
+        android:text="@string/inicia_sesi_n"
+        android:textAppearance="@style/H1"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:paddingLeft="8dp"
-            android:paddingTop="16dp"
-            android:text=" Inicia Sesión"
-            android:textAppearance="@style/H1"
-            android:textColor="?attr/colorOnPrimary"
-            android:textSize="30dp" />
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/te_extra_amos"
+        android:textAppearance="@style/BodyText"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingLeft="16dp"
-            android:text="Te extrañamos"
-            android:textAppearance="@style/BodyText"
-            android:textSize="18sp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="64dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="64dp" />
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/correo"
+        android:textAppearance="@style/Label"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="Correo"
-            android:textAppearance="@style/Label"
-            android:textSize="18sp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/correo">
 
-        <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="18dp"
-            android:layout_marginBottom="18dp"
-            android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/mid_white"
-            android:ems="10"
-            android:hint="email@example.com"
-            android:inputType="textEmailAddress"
-            android:padding="8dp" />
-
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="Contraseña"
-            android:textAppearance="@style/Label"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/textInputPasswordSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/mid_white"
-            android:ems="10"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary" />
-
-        <Button
-            android:id="@+id/btnSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/round_corner_toggle"
-            android:text="Iniciar Sesión"
-            android:textAppearance="@style/Link"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/green" />
-
-        <Button
-            android:id="@+id/btnSignInGoogle"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEmailSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
             android:background="@drawable/round_corner_toggle"
-            android:text="Iniciar Sesión con Google"
-            android:textAppearance="@style/Link"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="@color/red" />
+            android:backgroundTint="@color/white"
+            android:padding="8dp"
+            android:textAppearance="@style/BodyText"
+            android:textColor="?attr/colorOnPrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tvSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:text="Registrarse "
-            android:textAlignment="center"
-            android:textAppearance="@style/Link"
-            android:textColor="@color/blue"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/contrase_a"
+        android:textAppearance="@style/Label"
+        android:textSize="18sp" />
 
+    <EditText
+        android:id="@+id/textInputPasswordSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:background="@drawable/round_corner_toggle"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/contrase_a"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textAppearance="@style/BodyText"
+        android:textColor="?attr/colorOnPrimary"
+        android:autofillHints="" />
 
-    </LinearLayout>
-</FrameLayout>
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:background="@drawable/round_corner_toggle"
+        android:text="@string/iniciar_sesi_n"
+        android:textAppearance="@style/Link"
+        app:backgroundTint="@color/yellow" />
+
+    <Button
+        android:id="@+id/btnSignInGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:background="@drawable/round_corner_toggle"
+        android:text="@string/iniciar_sesi_n_con_google"
+        android:textAppearance="@style/Link"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/red" />
+
+    <TextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="@string/registrarse"
+        android:textAlignment="center"
+        android:textAppearance="@style/Link"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:focusable="true" />
+
+</LinearLayout>
