@@ -29,7 +29,7 @@ class IngredientCardAdapter( val arrIngredients: ArrayList<IngredientCard>): Rec
         holder.set(tarjeta)
 
         holder.binding.root.setOnClickListener {
-            listener?.clicked(position)
+            listener?.recipeClicked(position)
             println("Hizo click ${position}")
         }
     }

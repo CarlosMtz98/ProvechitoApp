@@ -5,29 +5,39 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="20dp"
     tools:context=".views.RecentRecipesFragment">
 
+    <!-- TODO: Update blank fragment layout -->
+
     <LinearLayout
+        android:id="@+id/lyrecentRecipes"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:paddingTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text="Recientes"
-            android:textAppearance="@style/H1"
-            android:textColor="?attr/colorOnPrimary" />
-    </LinearLayout>
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/recetas_pasadas"
+            android:textAppearance="@style/H1" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecentRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="3" />
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/recientes"
+        android:textAppearance="@style/H1"
+        android:textColor="?attr/colorOnPrimary" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

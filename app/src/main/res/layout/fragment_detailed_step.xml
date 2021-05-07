@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:paddingLeft="20dp"
@@ -28,14 +28,15 @@
             android:layout_height="108dp"
             android:layout_marginLeft="-20dp"
             android:layout_marginRight="-20dp"
-            android:background="@color/blue" />
+            android:background="@color/blue"
+            android:contentDescription="@string/decorative" />
 
         <TextView
             android:id="@+id/tvStepName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Nombre Paso"
+            android:text="@string/nombre_paso"
             android:textAlignment="center"
             android:textAppearance="@style/H1"
             android:textColor="?attr/colorOnPrimary" />
@@ -44,7 +45,7 @@
             android:id="@+id/tvStepNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="xx/xx"
+            android:text="@string/xx_xx"
             android:textAlignment="center"
             android:textColor="?attr/colorOnPrimary" />
 
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/poppins"
-            android:text="Instrucciones"
+            android:text="@string/instrucciones"
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary" />
 
@@ -63,37 +64,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel aliquet orci, et suscipit libero. Quisque cursus orci a maximus blandit. Proin et nisl et erat finibus pretium eget sit amet orci. Sed elementum nibh justo, sed pharetra erat sollicitudin vitae. Aenean suscipit placerat lectus."
-            android:textColor="?attr/colorOnPrimary"
-            app:lineHeight="24dp" />
-
-        <Button
-            android:id="@+id/btnBeginStep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/poppins_medium"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:text="Comenzar"
-            android:textAllCaps="false" />
+            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_sed_vel_aliquet_orci_et_suscipit_libero_quisque_cursus_orci_a_maximus_blandit_proin_et_nisl_et_erat_finibus_pretium_eget_sit_amet_orci_sed_elementum_nibh_justo_sed_pharetra_erat_sollicitudin_vitae_aenean_suscipit_placerat_lectus"
+            android:textColor="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Tiempo"
+            android:text="@string/tiempo"
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary" />
 
-        <TextView
-            android:id="@+id/tvTimer"
-            android:layout_width="match_parent"
+        <Chronometer
+            android:id="@+id/chronometer"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="XX:XX:XX"
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:text="@string/xx_xx_xx"
             android:textAlignment="center"
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary" />
@@ -104,24 +93,34 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imageButton10"
+                android:id="@+id/imgButtonReset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/reset"
                 android:scaleX="1"
                 android:scaleY="1"
                 android:src="@drawable/ic_skip_previous" />
 
             <ImageButton
-                android:id="@+id/imageButton11"
+                android:id="@+id/imgButtonPause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/pausa"
                 android:scaleX="1"
                 android:scaleY="1"
                 android:src="@drawable/ic_pause" />
+
+            <ImageButton
+                android:id="@+id/imgButtonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_play_circle_outline" />
         </LinearLayout>
 
         <Button
@@ -135,7 +134,7 @@
             android:paddingTop="8dp"
             android:paddingRight="40dp"
             android:paddingBottom="8dp"
-            android:text="Siguiente paso"
+            android:text="@string/siguiente_paso"
             android:textAllCaps="false"
             android:textAppearance="@style/Link"
             android:textColor="@color/dark_blue"

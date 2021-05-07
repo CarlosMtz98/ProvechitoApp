@@ -6,10 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.FragmentFavsBinding
-import com.itesm.equipo3.provechito.databinding.FragmentHomeBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 
 class FavsFragment : Fragment(), ClickListener {
@@ -57,8 +54,12 @@ class FavsFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun clicked(posicion: Int) {
+    override fun recipeClicked(posicion: Int) {
         println("Clicked $posicion")
+    }
+
+    override fun categoryClicked(position: Int) {
+        println("Clicked $position")
     }
 
 }

@@ -22,7 +22,7 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About"
+            android:text="@string/about"
             android:textAppearance="@style/H1"
             android:textColor="?attr/colorOnPrimary" />
 
@@ -30,7 +30,7 @@
             android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Meet the team behind Provechito!"
+            android:text="@string/meet_the_team_behind_provechito"
             android:textAppearance="@style/SmallText"
             android:textColor="?attr/colorOnPrimary" />
 
@@ -44,40 +44,34 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/carlos_martinez"
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView19"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Carlos Martinez"
-                        android:textAppearance="@style/BodyText"
-                        android:textColor="?attr/colorOnPrimary" />
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/a01375577_itesm_mx"
+                    android:textAppearance="@style/Link"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView21"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="a01375577@itesm.mx"
-                        android:textAppearance="@style/Link"
-                        android:textColor="?attr/colorOnPrimary" />
-
-                    <TextView
-                        android:id="@+id/textView23"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Desarrollador de Backend y DevOps  "
-                        android:textAppearance="@style/SmallText"
-                        android:textColor="?attr/colorOnPrimary" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/desarrollador_de_backend_y_devops"
+                    android:textAppearance="@style/SmallText"
+                    android:textColor="?attr/colorOnPrimary" />
 
             </TableRow>
 
@@ -86,40 +80,34 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/zoe_caballero_dom_nguez"
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView20"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Zoe Caballero Domínguez"
-                        android:textAppearance="@style/BodyText"
-                        android:textColor="?attr/colorOnPrimary" />
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/a01747247_itesm_mx"
+                    android:textAppearance="@style/Link"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView24"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="a01747247@itesm.mx"
-                        android:textAppearance="@style/Link"
-                        android:textColor="?attr/colorOnPrimary" />
-
-                    <TextView
-                        android:id="@+id/textView25"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Desarrollador y Customer Success"
-                        android:textAppearance="@style/SmallText"
-                        android:textColor="?attr/colorOnPrimary" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/desarrollador_y_customer_success"
+                    android:textAppearance="@style/SmallText"
+                    android:textColor="?attr/colorOnPrimary" />
 
             </TableRow>
 
@@ -128,40 +116,35 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/diego_palmer_n_bonada"
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView27"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text=" Diego Palmerín Bonada"
-                        android:textAppearance="@style/BodyText"
-                        android:textColor="?attr/colorOnPrimary" />
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/a01747290_itesm_mx"
+                    android:textAppearance="@style/Link"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView28"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="a01747290@itesm.mx"
-                        android:textAppearance="@style/Link"
-                        android:textColor="?attr/colorOnPrimary" />
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/desarrollador_y_dise_ador_ui_ux"
+                    android:textAppearance="@style/SmallText"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView29"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Desarrollador y Diseñador UI/UX"
-                        android:textAppearance="@style/SmallText"
-                        android:textColor="?attr/colorOnPrimary" />
-                </LinearLayout>
             </TableRow>
 
             <TableRow
@@ -169,40 +152,34 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="20dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sebasti_n_garc_a_olivares"
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView30"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Sebastián García Olivares"
-                        android:textAppearance="@style/BodyText"
-                        android:textColor="?attr/colorOnPrimary" />
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/a01066812_itesm_mx"
+                    android:textAppearance="@style/Link"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView31"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="a01066812@itesm.mx"
-                        android:textAppearance="@style/Link"
-                        android:textColor="?attr/colorOnPrimary" />
-
-                    <TextView
-                        android:id="@+id/textView32"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Desarrollador y QA"
-                        android:textAppearance="@style/SmallText"
-                        android:textColor="?attr/colorOnPrimary" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/desarrollador_y_qa"
+                    android:textAppearance="@style/SmallText"
+                    android:textColor="?attr/colorOnPrimary" />
 
             </TableRow>
 
@@ -210,40 +187,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/javier_alexandro_vargas_s_nchez"
+                    android:textAppearance="@style/BodyText"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView33"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Javier Alexandro Vargas Sánchez"
-                        android:textAppearance="@style/BodyText"
-                        android:textColor="?attr/colorOnPrimary" />
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/a01377718_itesm_mx"
+                    android:textAppearance="@style/Link"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView34"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:text="a01377718@itesm.mx"
-                        android:textAppearance="@style/Link"
-                        android:textColor="?attr/colorOnPrimary" />
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/desarrollador_y_project_manager"
+                    android:textAppearance="@style/SmallText"
+                    android:textColor="?attr/colorOnPrimary" />
 
-                    <TextView
-                        android:id="@+id/textView35"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Desarrollador y Project Manager"
-                        android:textAppearance="@style/SmallText"
-                        android:textColor="?attr/colorOnPrimary" />
-                </LinearLayout>
             </TableRow>
 
         </TableLayout>
