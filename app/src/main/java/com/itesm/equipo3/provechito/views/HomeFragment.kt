@@ -13,7 +13,7 @@ import com.itesm.equipo3.provechito.models.RecipeCard
 
 
 class HomeFragment : Fragment(), ClickListener {
-    private lateinit var listener: HomeClcikListener
+    private lateinit var listener: HomeClickListener
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
     private lateinit var arrCategoryCard: ArrayList<CategoryCard>
     private lateinit var arrRecentRecipes: ArrayList<RecipeCard>
@@ -27,7 +27,7 @@ class HomeFragment : Fragment(), ClickListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is HomeClcikListener) {
+        if (context is HomeClickListener) {
             listener = context
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")

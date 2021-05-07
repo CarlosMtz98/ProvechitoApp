@@ -7,7 +7,7 @@ import com.androidnetworking.AndroidNetworking
 import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), HomeClcikListener {
+class MainActivity : AppCompatActivity(), HomeClickListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

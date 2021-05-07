@@ -18,7 +18,7 @@ class RecipeDetailFragment : Fragment(), ClickListener{
     private val binding get() = _binding!!
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
     private lateinit var arrIngredients: ArrayList<IngredientCard>
-    private lateinit var listener: HomeClcikListener
+    private lateinit var listener: HomeClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ class RecipeDetailFragment : Fragment(), ClickListener{
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is HomeClcikListener) {
+        if (context is HomeClickListener) {
             listener = context
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")
