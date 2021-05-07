@@ -14,7 +14,7 @@ import kotlin.properties.Delegates
 class FragmentDetailedStep : Fragment() {
     private var _binding: FragmentDetailedStepBinding? =  null
     private val binding get() = _binding!!
-    private lateinit var listener: HomeClcikListener
+    private lateinit var listener: HomeClickListener
     private lateinit var chronometer: Chronometer
     private var running = false
     private var pauseOffSet by Delegates.notNull<Long>()
@@ -26,7 +26,7 @@ class FragmentDetailedStep : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is HomeClcikListener) {
+        if (context is HomeClickListener) {
             listener = context
         } else {
             throw ClassCastException(context.toString() + " must implement HomeClickListner.")
