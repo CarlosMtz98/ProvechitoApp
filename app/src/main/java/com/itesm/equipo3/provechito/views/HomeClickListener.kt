@@ -8,4 +8,5 @@ interface HomeClickListener {
     fun onSettingsClicked()
     fun onBeginClicked()
     fun onNextClicked()
+    fun onSendClicked()
 }

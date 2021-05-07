@@ -34,8 +34,7 @@
             android:textAlignment="textStart"
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +52,7 @@
                 android:textAlignment="textStart"
                 android:textAppearance="@style/H2"
                 android:textColor="?attr/colorOnPrimary"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -63,7 +62,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:text="Difficulty: "
-                android:textAlignment="textStart"
+                android:textAlignment="center"
                 android:textAppearance="@style/Label"
                 android:textColor="@color/greyed_out"
                 android:textSize="18sp"

@@ -116,4 +116,12 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .commit()
     }
 
+    override fun onSendClicked() {
+        val homeFragment = HomeFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFrameLayout, homeFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
 }

@@ -49,8 +49,8 @@ class RecentRecipesFragment : Fragment(), ClickListener {
     private fun getRecentRecipes(): ArrayList<RecentRecipeCard> {
         return arrayListOf(
                 RecentRecipeCard("Pastel de chocolate", "Repostería", "https://images.unsplash.com/photo-1614786482494-7fc57abd0074?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "Fácil"),
-                RecentRecipeCard("Enchiladas verdes", "mexicana", "https://cdn.kiwilimon.com/recetaimagen/26245/38984.jpg", "Medio"),
-                RecentRecipeCard("Pizza napolitana", "italiana", "https://images.unsplash.com/photo-1589187151053-5ec8818e661b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "Difícil")
+                RecentRecipeCard("Enchiladas verdes", "Mexicana", "https://cdn.kiwilimon.com/recetaimagen/26245/38984.jpg", "Medio"),
+                RecentRecipeCard("Pizza napolitana", "Italiana", "https://images.unsplash.com/photo-1589187151053-5ec8818e661b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "Difícil")
         )
     }
 

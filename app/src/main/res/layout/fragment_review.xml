@@ -14,9 +14,10 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:clipToPadding="false"
         android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,6 +26,8 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="108dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_marginRight="-20dp"
             android:background="@color/pink"
             android:contentDescription="@string/recipe_picture"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +61,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
+                android:layout_weight="15"
                 android:orientation="vertical">
 
                 <TextView
@@ -73,23 +76,37 @@
                     android:id="@+id/tvCategorie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/category"
+                    android:text="Categoría"
                     android:textAppearance="@style/Link"
                     android:textColor="?attr/colorOnPrimary" />
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/recipeReviewFavImgButton"
+            <com.like.LikeButton
+                android:id="@+id/star_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:background="@color/cardview_shadow_end_color"
                 android:contentDescription="@string/like"
+                android:elevation="1dp"
+                android:foregroundGravity="center"
                 android:src="@drawable/ic_heart"
-                android:tint="?attr/colorOnPrimary" />
+                android:tint="#FFFFFF"
+                app:circle_end_color="@color/yellow"
+                app:circle_start_color="@color/red"
+                app:dots_primary_color="@color/red"
+                app:dots_secondary_color="@color/red"
+                app:icon_size="30dp"
+                app:icon_type="heart"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout"
+                app:like_drawable="@drawable/ic_heart_fill"
+                app:liked="false"
+                app:unlike_drawable="@drawable/ic_heart" />
+
         </LinearLayout>
 
         <TextView
