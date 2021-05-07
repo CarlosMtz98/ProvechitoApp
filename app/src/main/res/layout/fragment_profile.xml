@@ -33,18 +33,24 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
-                <ImageView
-                    android:id="@+id/imgFotoPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_marginTop="32dp"
+                    app:cardCornerRadius="250dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imgPortadaPerfil"
-                    app:srcCompat="@drawable/ic_profile_picture"
-                    tools:src="@drawable/ic_profile_picture"
-                    tools:srcCompat="@drawable/ic_profile_picture" />
+                    app:layout_constraintTop_toTopOf="@+id/imgPortadaPerfil">
+
+                    <ImageButton
+                        android:id="@+id/imgProfileImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:scaleType="centerCrop"
+                        tools:src="@tools:sample/avatars" />
+                </androidx.cardview.widget.CardView>
 
                 <ImageButton
                     android:id="@+id/imgButtonSettings"
@@ -58,23 +64,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvProfileName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profile Name"
-                    android:textAppearance="@style/H1"
-                    android:textColor="?attr/colorOnPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imgFotoPerfil" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Profile Name"
+                    android:textAppearance="@style/H1"
+                    android:textColor="?attr/colorOnPrimary" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
@@ -95,7 +99,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Estadísticas"
-                            android:textAppearance="@style/H2"
+                            android:textAppearance="@style/H1"
                             android:textColor="?attr/colorOnPrimary" />
 
                         <TextView
