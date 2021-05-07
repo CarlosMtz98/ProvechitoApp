@@ -24,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
             android:text="@string/recetas_pasadas"
             android:textAppearance="@style/H1" />
 

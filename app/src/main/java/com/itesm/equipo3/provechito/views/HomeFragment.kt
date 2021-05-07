@@ -57,7 +57,7 @@ class HomeFragment : Fragment(), ClickListener {
 
         binding.buttonCategory.setOnClickListener {
             val categoriesFragment = CategoriesFragment()
-            listener.onCategoryCardClicked()
+            listener.onCategoriesLinkClicked()
         }
 
         return binding.root

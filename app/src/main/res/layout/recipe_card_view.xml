@@ -5,7 +5,8 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="20dp">
+    android:layout_marginStart="20dp"
+    android:layout_marginBottom="20dp">
 
     <com.like.LikeButton
         android:id="@+id/star_button"
@@ -13,20 +14,20 @@
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        app:icon_type="heart"
-        app:icon_size="25dp"
-        app:liked="false"
-        app:like_drawable="@drawable/ic_heart_fill"
-        app:unlike_drawable="@drawable/ic_heart"
-        app:circle_start_color="@color/red"
-        app:circle_end_color="@color/yellow"
-        app:dots_primary_color="@color/red"
-        app:dots_secondary_color="@color/red"
         android:contentDescription="@string/like"
         android:elevation="1dp"
         android:tint="#FFFFFF"
+        app:circle_end_color="@color/yellow"
+        app:circle_start_color="@color/red"
+        app:dots_primary_color="@color/red"
+        app:dots_secondary_color="@color/red"
+        app:icon_size="25dp"
+        app:icon_type="heart"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:like_drawable="@drawable/ic_heart_fill"
+        app:liked="false"
+        app:unlike_drawable="@drawable/ic_heart" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
