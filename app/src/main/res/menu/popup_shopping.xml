@@ -4,9 +4,9 @@
     <item
         android:id="@+id/item_edit"
         android:icon="@drawable/ic_pencil"
-        android:title="@string/edit" />
+        android:title="Editar" />
     <item
         android:id="@+id/item_delete"
         android:icon="@drawable/ic_trashcan"
-        android:title="@string/delete" />
+        android:title="Borrar" />
 </menu>

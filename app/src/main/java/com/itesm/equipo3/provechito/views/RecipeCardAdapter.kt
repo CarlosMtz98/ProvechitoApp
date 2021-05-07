@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
@@ -48,6 +49,7 @@ class RecipeCardAdapter (val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerVie
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tarjeta = arrRecipeCard[position]
+
         holder.set(tarjeta)
 
         holder.binding.recipeCardImage.setOnClickListener {
