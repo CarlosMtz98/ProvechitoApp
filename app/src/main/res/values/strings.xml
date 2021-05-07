@@ -95,4 +95,6 @@
     <string name="statistics_name">Statistics Name</string>
     <string name="databackground">DataBackground</string>
     <string name="share">Share</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
