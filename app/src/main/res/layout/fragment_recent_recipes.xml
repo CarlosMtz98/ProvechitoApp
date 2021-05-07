@@ -31,6 +31,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:itemCount="3" />
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/recientes"
+            android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

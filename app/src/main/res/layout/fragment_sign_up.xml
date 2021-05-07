@@ -1,148 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.SignUpFragment">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="16dp"
+        android:paddingRight="20dp"
+        android:text="@string/registro"
+        android:textAppearance="@style/H1"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="16dp"
-            android:text="Registro"
-            android:textAppearance="@style/H1"
-            android:textColor="?attr/colorOnPrimary"
-            android:textSize="30sp" />
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/te_extra_amos_toda_la_vida"
+        android:textAppearance="@style/BodyText"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingLeft="20dp"
-            android:text="Te extrañamos toda la vida"
-            android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary"
-            android:textSize="18sp" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="64dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="64dp" />
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/correo"
+        android:textAppearance="@style/Label"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Correo"
-            android:textAppearance="@style/Label"
-            android:textSize="18sp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-
-        <EditText
-            android:id="@+id/editTextTextEmailAddress2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="18dp"
-            android:layout_marginBottom="18dp"
-            android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/mid_white"
-            android:ems="10"
-            android:hint="email@example.com"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary" />
-
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Contraseña"
-            android:textAppearance="@style/Label"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/textInputPasssowordSignUp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEmailSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/mid_white"
-            android:ems="10"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
+            android:backgroundTint="@color/white"
+            android:hint="@string/correo"
             android:padding="8dp"
             android:textAppearance="@style/BodyText"
             android:textColor="?attr/colorOnPrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Confirmar contraseña"
-            android:textAppearance="@style/Label"
-            android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/textInputPasswordConfirmSignUp"
-            style="@style/BodyText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/mid_white"
-            android:ems="10"
-            android:hint="Confirmar contraseña"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColor="?attr/colorOnPrimary" />
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/contrase_a"
+        android:textAppearance="@style/Label"
+        android:textSize="18sp" />
 
-        <Button
+    <EditText
+        android:id="@+id/textInputPasssowordSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:autofillHints=""
+        android:background="@drawable/round_corner_toggle"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/contrase_a"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textAppearance="@style/BodyText"
+        android:textColor="?attr/colorOnPrimary" />
 
-            android:id="@+id/btnSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/round_corner_toggle"
-            android:text="Registrarse"
-            android:textColor="@color/white"
-            app:backgroundTint="@color/green" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/cambiar_contrase_a"
+        android:textAppearance="@style/Label"
+        android:textSize="18sp" />
 
-        <Button
+    <EditText
+        android:id="@+id/textInputPasswordConfirmSignUp"
+        style="@style/BodyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/round_corner_toggle"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/confirmar_contrase_a"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:textColor="?attr/colorOnPrimary"
+        android:autofillHints="" />
 
-            android:id="@+id/btnSignUpGoogle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="18dp"
-            android:background="@color/red"
-            app:backgroundTint="@color/red"
-            android:text="Registro con Google"
-            android:textColor="@color/white" />
+    <Button
 
-        <TextView
-            android:id="@+id/tvSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Iniciar Sesión"
-            android:textAlignment="center"
-            android:textColor="@color/blue"
-            android:textSize="18sp" />
+        android:id="@+id/btnSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:background="@drawable/round_corner_toggle"
+        android:text="@string/registrarse"
+        app:backgroundTint="@color/yellow" />
 
-    </LinearLayout>
+    <Button
 
-</FrameLayout>
+        android:id="@+id/btnSignUpGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:background="@color/red"
+        android:text="@string/registro_con_google"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/red" />
+
+    <TextView
+        android:id="@+id/tvSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/iniciar_sesi_n"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="18sp" />
+</LinearLayout>

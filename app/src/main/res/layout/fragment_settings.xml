@@ -23,7 +23,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
@@ -32,7 +32,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ajustes"
+                    android:text="@string/ajustes"
                     android:textAppearance="@style/Theme.Provechito"
                     android:textSize="30sp" />
 
@@ -42,9 +42,9 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
-                android:text="Cuenta"
+                android:text="@string/cuenta"
                 android:textAppearance="@style/Theme.Provechito"
                 android:textSize="24sp" />
 
@@ -57,7 +57,8 @@
                 android:layout_marginRight="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Correo" />
+                android:text="@string/correo"
+                android:autofillHints="" />
 
             <EditText
 
@@ -66,15 +67,15 @@
                 android:layout_margin="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Nombre" />
+                android:text="@string/nombre"
+                android:autofillHints="" />
 
             <Button
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Cambiar contraseña"
-                android:textColor="@color/white" />
+                android:text="@string/cambiar_contrase_a" />
 
             <View
                 android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Notificaciones"
+                android:text="@string/notificaciones"
                 android:textAppearance="@style/Theme.Provechito"
                 android:textSize="24sp" />
 
@@ -97,12 +98,12 @@
                 android:layout_margin="16dp"
                 android:orientation="horizontal">
 
-                <Switch
+                <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Temporizador"
+                    android:text="@string/temporizador"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -112,11 +113,11 @@
                 android:layout_margin="16dp"
                 android:orientation="horizontal">
 
-                <Switch
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:text="Nuevas Recetas"
+                    android:text="@string/nuevas_recetas"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -132,8 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Cerrar Sesión"
-                android:textColor="@color/white" />
+                android:text="@string/cerrar_sesi_n" />
 
         </LinearLayout>
     </ScrollView>
