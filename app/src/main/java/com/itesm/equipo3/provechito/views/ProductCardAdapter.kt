@@ -1,8 +1,12 @@
 package com.itesm.equipo3.provechito.views
 
 import android.view.LayoutInflater
+import android.view.MenuInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ProductItemViewBinding
 import com.itesm.equipo3.provechito.models.ProductCard
 
@@ -32,6 +36,9 @@ class ProductCardAdapter(val arrProducts: ArrayList<ProductCard>) : RecyclerView
         holder.binding.root.setOnClickListener {
             listener?.clicked(position)
             println("Hizo click ${position}")
+        }
+        holder.binding.btnOptions.setOnClickListener {
+            listener?.clicked(position)
         }
     }
 
