@@ -4,9 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.service.autofill.UserData
-import android.view.Gravity.*
-import androidx.fragment.app.Fragment
+import android.view.Gravity.END
 import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.View
@@ -15,16 +13,14 @@ import android.widget.EditText
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.AddItemBinding
 import com.itesm.equipo3.provechito.databinding.FragmentShopBinding
 import com.itesm.equipo3.provechito.models.ProductCard
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ShopFragment : Fragment(), ClickListener, CustomListeners {
     private lateinit var arrProducts: ArrayList<ProductCard>
@@ -38,7 +34,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
 
     companion object {
         private val TAG : String = ShopFragment::class.java.getSimpleName()
-        fun newIntent(context : Context) : Intent {
+        fun newIntent(context: Context) : Intent {
             val intent : Intent = Intent(context, ShopFragment::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             return intent
@@ -62,6 +58,12 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        _bindingIngredient = null
+
+        /*if (_binding != null) {
+            val parentViewGroup = view!!.parent as ViewGroup
+            parentViewGroup?.removeAllViews()
+        }*/
     }
     private fun createProductArr(): ArrayList<ProductCard> {
         return arrayListOf(
@@ -79,7 +81,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentShopBinding.inflate(layoutInflater, container, false)
-        _bindingIngredient = AddItemBinding.inflate(layoutInflater,container, false)
+        _bindingIngredient = AddItemBinding.inflate(layoutInflater, container, false)
         configurarRV()
         binding.btnAddItem.setOnClickListener {
             addItem()
@@ -89,7 +91,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
 
     private fun addItem() {
         val inflater = LayoutInflater.from(this.context)
-        val v = inflater.inflate(R.layout.add_item,null)
+        val v = inflater.inflate(R.layout.add_item, null, false)
         val addDialog = AlertDialog.Builder(this.context)
 
         val ingredientName = v.findViewById<EditText>(R.id.tvIngredientName)
@@ -98,22 +100,16 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         val formatter = SimpleDateFormat.getDateTimeInstance()
         val formatedDate = formatter.format(date)
 
-
         addDialog.setView(v)
-        addDialog.setPositiveButton("Agregar"){
-            dialog, which ->
+        addDialog.setPositiveButton("Agregar"){ dialog, _->
             val name = ingredientName.text.toString()
-
             val description = ingredientDescription.text.toString()
-            arrProducts.add(ProductCard(name, arrProducts.lastIndex +1, description,formatedDate.toString()))//
+            arrProducts.add(ProductCard(name, arrProducts.lastIndex + 1, description, formatedDate.toString()))//
             Toast.makeText(this.context, "Ingrediente agregado", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
 
-
-
         }
-        addDialog.setNegativeButton("Cancelar"){
-            dialog, which ->
+        addDialog.setNegativeButton("Cancelar"){ dialog, _ ->
             dialog.dismiss()
             Toast.makeText(this.context, "Cancel", Toast.LENGTH_SHORT).show()
 
@@ -133,15 +129,59 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         val popup = PopupMenu(this.context, binding.rvProducts[position], END)
         val inflater: MenuInflater = popup.menuInflater
         inflater.inflate(R.menu.popup_shopping, popup.menu)
+        val date = Calendar.getInstance().time
+        val formatter = SimpleDateFormat.getDateTimeInstance()
+        val formatedDate = formatter.format(date)
 
         popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
-            when(item.itemId) {
-                R.id.item_edit ->
-                   println("ITEM EDIT ")
-                R.id.item_delete ->
-                    println("DELETE EDIT ")
+            when (item.itemId) {
+                R.id.item_edit -> {
+                    val v = LayoutInflater.from(this.context).inflate(R.layout.add_item, null, false)
+                    val name = v.findViewById<EditText>(R.id.tvIngredientName)
+                    val description = v.findViewById<EditText>(R.id.tvIngredientDescription)
+                    name.setText(ingredient.name)
+                    description.setText(ingredient.description)
+                    AlertDialog.Builder(this.context)
+                            .setView(v)
+                            .setPositiveButton("Aceptar") { dialog, _ ->
+                                ingredient.name = name.text.toString()
+                                ingredient.description = description.text.toString()
+                                ingredient.dateAdded = formatedDate.toString()
+                                val adapter = ProductCardAdapter(arrProducts)
+                                binding.rvProducts.adapter = adapter
+                                adapter.listener = this
+                                Toast.makeText(this.context, "Ingrediente Actualizado", Toast.LENGTH_SHORT).show()
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("Cancelar") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .create()
+                            .show()
+                    true
+                }
+                R.id.item_delete -> {
+                    AlertDialog.Builder(this.context)
+                            .setTitle("Borrar")
+                            .setMessage("¿Quieres borrar este ingrediente?")
+                            .setPositiveButton("Aceptar") { dialog, _ ->
+                                arrProducts.removeAt(position)
+                                val adapter = ProductCardAdapter(arrProducts)
+                                binding.rvProducts.adapter = adapter
+                                adapter.listener = this
+                                Toast.makeText(this.context, "Ingrediente eliminado", Toast.LENGTH_SHORT).show()
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("Cancelar") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .create()
+                            .show()
+                    true
+                }
+
                 //R.id.action_hockey ->
-                    //Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "You Clicked : " + item.title, Toast.LENGTH_SHORT).show()
             }
             true
         })

@@ -2,4 +2,4 @@ package com.itesm.equipo3.provechito.models
 
 import java.util.*
 
-data class ProductCard(val name: String, val id : Int, val description : String, val dateAdded : String)
+data class ProductCard(var name: String, val id : Int, var description : String, var dateAdded : String)
