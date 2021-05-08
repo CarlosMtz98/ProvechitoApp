@@ -67,7 +67,7 @@ class HomeFragment : Fragment(), ClickListener {
 
         binding.buttonCategory.setOnClickListener {
             val categoriesFragment = CategoriesFragment()
-            listener.onCategoryCardClicked()
+            listener.onCategoriesLinkClicked()
         }
 
         return binding.root
@@ -189,13 +189,13 @@ class HomeFragment : Fragment(), ClickListener {
     override fun recipeClicked(position: Int) {
         val recipeCard = arrRecipeCard[position]
         println("posicion: $recipeCard")
-        listener.onRecipeCardClicked()
+        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
     }
 
     override fun categoryClicked(position: Int) {
         val categoryCard = arrCategoryCard[position]
         println("posicion: $categoryCard")
-        listener.onCategoryCardClicked()
+        listener.onCategoryCardClicked(categoryCard.name)
     }
 
     companion object {

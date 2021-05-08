@@ -36,14 +36,14 @@ class SearchFragment : Fragment(), ClickListener {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         configureRVCategoryShop()
 
         binding.arrowSearchImgButton.setOnClickListener{
             val categoriesFragment = CategoriesFragment()
-            listener.onCategoryCardClicked()
+            listener.onCategoriesLinkClicked()
         }
 
         return binding.root
@@ -74,6 +74,8 @@ class SearchFragment : Fragment(), ClickListener {
     }
 
     override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+        val recipeCard = arrCategoryCardShop[position]
+        println("posicion: $recipeCard")
+        listener.onCategoryCardClicked(arrCategoryCardShop[position].name)
     }
 }

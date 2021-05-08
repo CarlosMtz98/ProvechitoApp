@@ -24,6 +24,8 @@ class CategoryFocusFragment : Fragment(), ClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCategoryFocusBinding.inflate(inflater, container, false)
+        val name = arguments!!.getString("NAME")
+        binding.etCategoryName.text = name
         setupRecipeCardRV()
         return binding.root
     }
@@ -64,10 +66,12 @@ class CategoryFocusFragment : Fragment(), ClickListener {
     }
 
     override fun recipeClicked(position: Int) {
-        print("Jajas")
+        val recipeCard = arrRecipeCard[position]
+        println("posicion: $recipeCard")
+        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
     }
 
     override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+        println("jajas")
     }
 }
