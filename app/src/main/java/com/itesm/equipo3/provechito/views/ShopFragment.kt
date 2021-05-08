@@ -104,7 +104,10 @@ class ShopFragment : Fragment(),ClickListener, CustomListeners {
         addDialog.setPositiveButton("Agregar"){ dialog, _->
             val name = ingredientName.text.toString()
             val description = ingredientDescription.text.toString()
-            arrProducts.add(ProductCard(name, arrProducts.lastIndex + 1, description, formatedDate.toString()))//
+            arrProducts.add(ProductCard(name, arrProducts.lastIndex + 1, description, formatedDate.toString()))
+            val adapter = ProductCardAdapter(arrProducts)
+            binding.rvProducts.adapter = adapter
+            adapter.listener = this
             Toast.makeText(this.context, "Ingrediente agregado", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
 
@@ -116,7 +119,6 @@ class ShopFragment : Fragment(),ClickListener, CustomListeners {
         }
         addDialog.create()
         addDialog.show()
-
 
     }
 

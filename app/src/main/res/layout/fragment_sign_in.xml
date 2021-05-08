@@ -46,22 +46,23 @@
         android:textAppearance="@style/Label"
         android:textSize="18sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/correo">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEmailSignIn"
+    <EditText
+            android:id="@+id/editTextTextEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="18dp"
             android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/mid_white"
+            android:ems="10"
+            android:hint="email@example.com"
+            android:inputType="textEmailAddress"
             android:padding="8dp"
             android:textAppearance="@style/BodyText"
             android:textColor="?attr/colorOnPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/textView19"
@@ -96,7 +97,8 @@
         android:background="@drawable/round_corner_toggle"
         android:text="@string/iniciar_sesi_n"
         android:textAppearance="@style/Link"
-        app:backgroundTint="@color/yellow" />
+        android:textColor="@color/white"
+        app:backgroundTint="@color/green" />
 
     <Button
         android:id="@+id/btnSignInGoogle"

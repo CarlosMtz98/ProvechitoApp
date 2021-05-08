@@ -63,7 +63,7 @@ class SigninActivity() : AppCompatActivity(), SignInClickListener{
     }
 
     override fun onSignInButtonClicked(email: String, password: String){
-        apiClient.getApiService().authUserLogin(LoginRequest(email, password))
+        apiClient.getApiService(this).authUserLogin(LoginRequest(email, password))
             .enqueue(object : Callback<AuthResponse> {
                 override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                     // @TODO add alert that the request did not work
@@ -85,7 +85,7 @@ class SigninActivity() : AppCompatActivity(), SignInClickListener{
     }
 
     override fun onSignUpButtonClicked(name: String, email: String, password: String) {
-        apiClient.getApiService().autUserSignUp(SignupRequest(name, email, password))
+        apiClient.getApiService(this).autUserSignUp(SignupRequest(name, email, password))
             .enqueue(object : Callback<AuthResponse> {
                 override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
                     // @TODO add alert that the request did not work
