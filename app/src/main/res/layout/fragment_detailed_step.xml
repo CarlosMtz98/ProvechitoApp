@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="0dp"
+    android:background="@color/mid_white"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     tools:context=".views.FragmentDetailedStep">
@@ -81,11 +82,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="30sp"
             android:text="@string/xx_xx_xx"
             android:textAlignment="center"
             android:textAppearance="@style/H2"
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="30sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

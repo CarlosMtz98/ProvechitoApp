@@ -5,6 +5,7 @@
     android:id="@+id/homeFragmentScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mid_white"
     android:orientation="vertical"
     android:paddingTop="20dp"
     android:paddingBottom="20dp"

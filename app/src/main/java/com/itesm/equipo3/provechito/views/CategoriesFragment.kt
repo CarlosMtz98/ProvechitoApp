@@ -1,15 +1,13 @@
 package com.itesm.equipo3.provechito.views
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.FragmentCategoriesBinding
-import com.itesm.equipo3.provechito.databinding.FragmentRecentRecipesBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 
 
@@ -17,15 +15,25 @@ class CategoriesFragment : Fragment(), ClickListener {
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
     private lateinit var arrCategories: ArrayList<CategoryCard>
+    private lateinit var listener: HomeClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomeClickListener) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement HomeClickListner.")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         setupRVCategories()
@@ -40,11 +48,11 @@ class CategoriesFragment : Fragment(), ClickListener {
     private fun setupRVCategories() {
         val layout = GridLayoutManager(requireContext(),2)
         layout.orientation = GridLayoutManager.VERTICAL
-        binding.rvCategoriesFragment.layoutManager = layout
+        binding.rvCategoryCards.layoutManager = layout
 
         arrCategories = getCategories()
         val adaptador = CategoryCardAdapter(arrCategories)
-        binding.rvCategoriesFragment.adapter = adaptador
+        binding.rvCategoryCards.adapter = adaptador
 
         adaptador.listener = this
     }
@@ -68,6 +76,8 @@ class CategoriesFragment : Fragment(), ClickListener {
     }
 
     override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+        val recipeCard = arrCategories[position]
+        println("posicion: $recipeCard")
+        listener.onCategoryCardClicked(arrCategories[position].name)
     }
 }

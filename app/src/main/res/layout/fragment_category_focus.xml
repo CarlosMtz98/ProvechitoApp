@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mid_white"
     tools:context=".views.CategoryFocusFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,7 +16,8 @@
         android:paddingTop="20dp"
         android:paddingEnd="20dp"
         android:text="@string/categoryname"
-        android:textAppearance="@style/H1" />
+        android:textAppearance="@style/H1"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRecetas"
