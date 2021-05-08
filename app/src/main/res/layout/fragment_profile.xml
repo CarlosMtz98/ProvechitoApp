@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="2"
+    android:background="@color/mid_white"
     tools:context=".views.ProfileFragment">
 
     <ScrollView
@@ -27,47 +28,42 @@
                 <ImageView
                     android:id="@+id/imgPortadaPerfil"
                     android:layout_width="0dp"
-                    android:layout_height="110dp"
+                    android:layout_height="128dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/backgrounds/scenic" />
+                    app:srcCompat="@color/blue" />
 
-                <ImageView
-                    android:id="@+id/imgFotoPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="164dp"
+                    android:layout_height="164dp"
+                    android:layout_marginTop="32dp"
+                    app:cardCornerRadius="250dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imgPortadaPerfil"
-                    app:srcCompat="@drawable/ic_profile_picture"
-                    tools:src="@drawable/ic_profile_picture"
-                    tools:srcCompat="@drawable/ic_profile_picture" />
+                    app:layout_constraintTop_toTopOf="@+id/imgPortadaPerfil">
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_profile_gordon" />
+                </androidx.cardview.widget.CardView>
 
                 <ImageButton
                     android:id="@+id/imgButtonSettings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
                     android:background="#00FFFFFF"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/ic_settings"
                     android:tint="?attr/colorOnPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvProfileName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profile Name"
-                    android:textAppearance="@style/H1"
-                    android:textColor="?attr/colorOnPrimary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imgFotoPerfil" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -76,14 +72,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tvProfileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Profile Name"
+                    android:textAppearance="@style/H1"
+                    android:textColor="?attr/colorOnPrimary" />
+
                 <LinearLayout
                     android:id="@+id/linearLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="8dp">
+                    android:paddingTop="8dp"
+                    android:paddingRight="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -95,7 +100,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Estadísticas"
-                            android:textAppearance="@style/H2"
+                            android:textAppearance="@style/H1"
                             android:textColor="?attr/colorOnPrimary" />
 
                         <TextView

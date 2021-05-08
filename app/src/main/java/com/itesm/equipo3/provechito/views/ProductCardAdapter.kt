@@ -30,12 +30,17 @@ class ProductCardAdapter(val arrProducts: ArrayList<ProductCard>) : RecyclerView
         holder.set(tarjeta)
 
         holder.binding.root.setOnClickListener {
-            listener?.clicked(position)
+            listener?.recipeClicked(position)
             println("Hizo click ${position}")
+        }
+        holder.binding.btnOptions.setOnClickListener {
+            listener?.recipeClicked(position)
         }
     }
 
     override fun getItemCount(): Int {
         return arrProducts.size
     }
+
+
 }

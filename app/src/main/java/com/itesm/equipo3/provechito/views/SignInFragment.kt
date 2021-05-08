@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.itesm.equipo3.provechito.databinding.FragmentSignInBinding
+
 /*
 * Autor: Zoe CD
  */
@@ -17,10 +18,6 @@ class SignInFragment : Fragment(){
     private  val binding get() = _binding!!
     private lateinit var clickListener: SignInClickListener
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -30,8 +27,12 @@ class SignInFragment : Fragment(){
         } else {
             throw ClassCastException(context.toString() + " must implement SignInListener.")
         }
-
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,7 +45,11 @@ class SignInFragment : Fragment(){
             clickListener.onSignUpFragClicked()
         }
         binding.btnSignIn.setOnClickListener{
-            clickListener.onSignInButtonClicked()
+            val email: String = binding.editTextTextEmailAddress.text.toString()
+            val pass: String = binding.textInputPasswordSignIn.text.toString()
+            if (!email.isNullOrEmpty() && !pass.isNullOrEmpty())
+                clickListener.onSignInButtonClicked(email, pass)
+            // @TODO Alert that one of the two inputs is empty
         }
 
         return binding.root
@@ -54,13 +59,10 @@ class SignInFragment : Fragment(){
         _binding = null
     }
 
-
-
     companion object {
         fun newInstance(): SignInFragment {
             return SignInFragment()
         }
     }
-
 
 }

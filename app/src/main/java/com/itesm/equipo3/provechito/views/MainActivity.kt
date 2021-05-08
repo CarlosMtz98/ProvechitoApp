@@ -1,13 +1,15 @@
 package com.itesm.equipo3.provechito.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.androidnetworking.AndroidNetworking
 import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
+import com.itesm.equipo3.provechito.models.RecipeCard
 
-class MainActivity : AppCompatActivity(), HomeClcikListener {
+
+class MainActivity : AppCompatActivity(), HomeClickListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,16 +77,32 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
                 .commit()
     }
 
-    override fun onCategoryClicked() {
+    override fun onCategoriesLinkClicked() {
         val categoriesFragment = CategoriesFragment.newInstance()
         supportFragmentManager.beginTransaction()
-                .replace(R.id.mainFrameLayout, categoriesFragment)
-                .addToBackStack(null)
-                .commit()
+            .replace(R.id.mainFrameLayout, categoriesFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
-    override fun onRecipeCardClicked() {
+    override fun onCategoryCardClicked(name: String) {
+        val categoriesFragment = CategoryFocusFragment()
+        val arguments = Bundle()
+        arguments.putString("NAME", name)
+        categoriesFragment.setArguments(arguments)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFrameLayout, categoriesFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onRecipeCardClicked(name: String, category: String, imgUri: String) {
         val recipieDetailFragment = RecipeDetailFragment()
+        val arguments = Bundle()
+        arguments.putString("NAME", name)
+        arguments.putString("CAT", category)
+        arguments.putString("IMG", imgUri)
+        recipieDetailFragment.setArguments(arguments)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrameLayout, recipieDetailFragment)
                 .addToBackStack(null)
@@ -111,6 +129,14 @@ class MainActivity : AppCompatActivity(), HomeClcikListener {
         val settingsFragment = SettingsFragment.newInstance()
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrameLayout, settingsFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onSendClicked() {
+        val homeFragment = HomeFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFrameLayout, homeFragment)
             .addToBackStack(null)
             .commit()
     }

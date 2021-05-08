@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mid_white"
     tools:context=".views.ReviewFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -26,10 +27,10 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="108dp"
-            android:layout_marginStart="-20dp"
-            android:layout_marginEnd="-20dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_marginRight="-20dp"
             android:background="@color/pink"
-            android:scaleType="center"
+            android:contentDescription="@string/recipe_picture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,8 +39,7 @@
             android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="¡Ya está!"
+            android:text="@string/ya_est"
             android:textAlignment="center"
             android:textAppearance="@style/H1"
             android:textColor="?attr/colorOnPrimary" />
@@ -48,7 +48,7 @@
             android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¿Qué te pareció?"
+            android:text="@string/qu_te_pareci"
             android:textAlignment="center"
             android:textAppearance="@style/BodyText"
             android:textColor="?attr/colorOnPrimary" />
@@ -62,14 +62,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="10"
+                android:layout_weight="15"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvRecipeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre Receta"
+                    android:text="@string/nombre_receta"
                     android:textAppearance="@style/H2"
                     android:textColor="?attr/colorOnPrimary" />
 
@@ -83,16 +83,31 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/recipeReviewFavImgButton"
+            <com.like.LikeButton
+                android:id="@+id/star_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:background="@color/cardview_shadow_end_color"
+                android:contentDescription="@string/like"
+                android:elevation="1dp"
+                android:foregroundGravity="center"
                 android:src="@drawable/ic_heart"
-                android:tint="?attr/colorOnPrimary" />
+                android:tint="#FFFFFF"
+                app:circle_end_color="@color/yellow"
+                app:circle_start_color="@color/red"
+                app:dots_primary_color="@color/red"
+                app:dots_secondary_color="@color/red"
+                app:icon_size="30dp"
+                app:icon_type="heart"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout"
+                app:like_drawable="@drawable/ic_heart_fill"
+                app:liked="false"
+                app:unlike_drawable="@drawable/ic_heart" />
+
         </LinearLayout>
 
         <TextView
@@ -100,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Facilidad"
+            android:text="@string/facilidad"
             android:textAlignment="center"
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary" />
@@ -117,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/happy"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -125,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/neutral"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -133,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/sad"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -141,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Sabor"
+            android:text="@string/sabor"
             android:textAlignment="center"
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary" />
@@ -158,6 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/happy"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -166,6 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/neutral"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -174,6 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/sad"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -182,7 +203,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Tiempo"
+            android:text="@string/tiempo"
             android:textAlignment="center"
             android:textAppearance="@style/H2"
             android:textColor="?attr/colorOnPrimary" />
@@ -199,6 +220,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/happy"
                 android:src="@drawable/ic_happy" />
 
             <ImageButton
@@ -207,6 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/neutral"
                 android:src="@drawable/ic_confused" />
 
             <ImageButton
@@ -215,6 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
+                android:contentDescription="@string/sad"
                 android:src="@drawable/ic_sad" />
         </LinearLayout>
 
@@ -230,7 +254,7 @@
             android:paddingTop="8dp"
             android:paddingRight="40dp"
             android:paddingBottom="8dp"
-            android:text="Enviar"
+            android:text="@string/enviar"
             android:textAppearance="@style/Link"
             android:textColor="@color/white" />
 

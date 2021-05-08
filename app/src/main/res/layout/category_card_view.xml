@@ -5,7 +5,8 @@
     android:id="@+id/cardView2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginBottom="20dp"
     app:cardBackgroundColor="#00FFFFFF"
     app:cardElevation="0dp">
 
@@ -17,6 +18,7 @@
         android:layout_height="96dp"
         android:background="@drawable/round_corner_toggle"
         android:backgroundTint="@color/pink"
+        android:contentDescription="@string/categoryname"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/tvCategoryCardName"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:minWidth="128dp"
-        android:text="CategoryName"
+        android:text="@string/categoryname"
         android:textAppearance="@style/H2"
         android:textColor="?attr/colorOnPrimary"
         android:textSize="18sp"

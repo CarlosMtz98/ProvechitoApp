@@ -5,6 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mid_white"
     android:paddingTop="20dp"
     tools:context=".views.RecommendedRecipesFragment">
 
@@ -22,13 +23,18 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="Recomendaciones"
             android:textAppearance="@style/H1"
             android:textColor="?attr/colorOnPrimary" />
-            android:textSize="36sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecommendedRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        android:textSize="36sp" />
 
     </LinearLayout>
 

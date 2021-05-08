@@ -6,16 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
 import androidx.recyclerview.widget.GridLayoutManager
-import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.FragmentSearchBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 
 
 class SearchFragment : Fragment(), ClickListener {
 
-    private lateinit var listener: HomeClcikListener
+    private lateinit var listener: HomeClickListener
     private lateinit var arrCategoryCardShop: ArrayList<CategoryCard>
 
     private var _binding: FragmentSearchBinding? = null
@@ -28,7 +26,7 @@ class SearchFragment : Fragment(), ClickListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is HomeClcikListener) {
+        if (context is HomeClickListener) {
             listener = context
         } else {
             throw ClassCastException(context.toString() + " must implement HomeClickListner.")
@@ -38,14 +36,14 @@ class SearchFragment : Fragment(), ClickListener {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         configureRVCategoryShop()
 
         binding.arrowSearchImgButton.setOnClickListener{
             val categoriesFragment = CategoriesFragment()
-            listener.onCategoryClicked()
+            listener.onCategoriesLinkClicked()
         }
 
         return binding.root
@@ -71,7 +69,13 @@ class SearchFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun clicked(posicion: Int) {
-        TODO("Not yet implemented")
+    override fun recipeClicked(position: Int) {
+        println("Clicked $position")
+    }
+
+    override fun categoryClicked(position: Int) {
+        val recipeCard = arrCategoryCardShop[position]
+        println("posicion: $recipeCard")
+        listener.onCategoryCardClicked(arrCategoryCardShop[position].name)
     }
 }
