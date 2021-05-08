@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.views
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,15 +14,21 @@ class FavsFragment : Fragment(), ClickListener {
     private var _binding: FragmentFavsBinding? = null
     private val binding get() = _binding!!
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
+    private lateinit var listener: HomeClickListener
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomeClickListener) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement HomeClickListner.")
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFavsBinding.inflate(inflater, container, false)
         setupRvFavsRecipe()
         return binding.root
@@ -54,8 +61,10 @@ class FavsFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun recipeClicked(posicion: Int) {
-        println("Clicked $posicion")
+    override fun recipeClicked(position: Int) {
+        val recipeCard = arrRecipeCard[position]
+        println("posicion: $recipeCard")
+        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
     }
 
     override fun categoryClicked(position: Int) {

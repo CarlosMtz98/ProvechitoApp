@@ -1,37 +1,45 @@
 package com.itesm.equipo3.provechito.views
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.databinding.FragmentRecommendedRecipesBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 
 
 class RecommendedRecipesFragment : Fragment(), ClickListener {
+    private lateinit var listener: HomeClickListener
 
     private var _binding: FragmentRecommendedRecipesBinding? = null
     private val binding get() = _binding!!
     private lateinit var arrRecommendedRecipes: ArrayList<RecipeCard>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomeClickListener) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement SignUpListener.")
+        }
     }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRecommendedRecipesBinding.inflate(inflater, container, false)
         setupRVRecommendedRecipes()
         return binding.root
     }
 
     private fun setupRVRecommendedRecipes() {
-        val layout = LinearLayoutManager(requireContext())
-        layout.orientation = LinearLayoutManager.VERTICAL
+        val layout = GridLayoutManager(requireContext(), 2)
+        layout.orientation = GridLayoutManager.VERTICAL
         binding.rvRecommendedRecipes.layoutManager = layout
 
         arrRecommendedRecipes = getRecommendedRecipes()
@@ -55,7 +63,9 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
     }
 
     override fun recipeClicked(position: Int) {
-        println("Clicked $position")
+        val recipeCard = arrRecommendedRecipes[position]
+        println("posicion: $recipeCard")
+        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
     }
 
     override fun categoryClicked(position: Int) {

@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.views
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +15,19 @@ class CategoriesFragment : Fragment(), ClickListener {
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
     private lateinit var arrCategories: ArrayList<CategoryCard>
+    private lateinit var listener: HomeClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomeClickListener) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement HomeClickListner.")
+        }
     }
 
     override fun onCreateView(
@@ -65,6 +76,8 @@ class CategoriesFragment : Fragment(), ClickListener {
     }
 
     override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+        val recipeCard = arrCategories[position]
+        println("posicion: $recipeCard")
+        listener.onCategoryCardClicked(arrCategories[position].name)
     }
 }

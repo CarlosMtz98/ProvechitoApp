@@ -1,11 +1,13 @@
 package com.itesm.equipo3.provechito.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.androidnetworking.AndroidNetworking
 import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
+import com.itesm.equipo3.provechito.models.RecipeCard
+
 
 class MainActivity : AppCompatActivity(), HomeClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -83,16 +85,24 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .commit()
     }
 
-    override fun onCategoryCardClicked() {
+    override fun onCategoryCardClicked(name: String) {
         val categoriesFragment = CategoryFocusFragment()
+        val arguments = Bundle()
+        arguments.putString("NAME", name)
+        categoriesFragment.setArguments(arguments)
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrameLayout, categoriesFragment)
             .addToBackStack(null)
             .commit()
     }
 
-    override fun onRecipeCardClicked() {
+    override fun onRecipeCardClicked(name: String, category: String, imgUri: String) {
         val recipieDetailFragment = RecipeDetailFragment()
+        val arguments = Bundle()
+        arguments.putString("NAME", name)
+        arguments.putString("CAT", category)
+        arguments.putString("IMG", imgUri)
+        recipieDetailFragment.setArguments(arguments)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrameLayout, recipieDetailFragment)
                 .addToBackStack(null)
