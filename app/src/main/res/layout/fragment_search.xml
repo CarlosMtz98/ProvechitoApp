@@ -33,7 +33,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:background="@drawable/round_corner_toggle"
-                    android:backgroundTint="@color/white">
+                    android:backgroundTint="@color/white"
+                    app:hintEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
