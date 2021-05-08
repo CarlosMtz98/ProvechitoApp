@@ -6,5 +6,6 @@ package com.itesm.equipo3.provechito.views
 interface SignInClickListener {
     fun onSignUpFragClicked()
     fun onSignInFragClicked()
-    fun onSignInButtonClicked()
+    fun onSignInButtonClicked(email: String, password: String)
+    fun onSignUpButtonClicked(name: String, email: String, password: String)
 }

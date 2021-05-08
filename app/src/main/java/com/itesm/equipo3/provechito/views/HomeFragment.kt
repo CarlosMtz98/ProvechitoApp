@@ -7,9 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.itesm.equipo3.provechito.api.ApiClient
+import com.itesm.equipo3.provechito.api.ResponseObjects.CategoryListResponse
+import com.itesm.equipo3.provechito.api.ResponseObjects.RecipeListResponse
 import com.itesm.equipo3.provechito.databinding.FragmentHomeBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.models.SessionManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.await
 
 
 class HomeFragment : Fragment(), ClickListener {
@@ -17,18 +25,21 @@ class HomeFragment : Fragment(), ClickListener {
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
     private lateinit var arrCategoryCard: ArrayList<CategoryCard>
     private lateinit var arrRecentRecipes: ArrayList<RecipeCard>
+    private lateinit var apiClient: ApiClient
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is HomeClickListener) {
             listener = context
+            apiClient = ApiClient()
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")
         }
@@ -40,10 +51,9 @@ class HomeFragment : Fragment(), ClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        setupRecipeCardRV()
-        setupRecentRecipesRV()
-        configureCategoryCardRV()
-
+        getHomeRecipe()
+        getRecentRecipes()
+        getHomeCategory()
         binding.btnRecomendations.setOnClickListener {
             val recommendedRecipesFragment = RecommendedRecipesFragment()
             println("Go to recommended")
@@ -68,64 +78,112 @@ class HomeFragment : Fragment(), ClickListener {
         _binding = null
     }
 
-    private fun setupRecipeCardRV() {
+    private fun setupRecipeCardRV(arr: ArrayList<RecipeCard>) {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
 
         binding.rvRecipieCards.layoutManager = layout
-
-        arrRecipeCard = getHomeRecipe()
-        val adaptador = RecipeCardAdapter(arrRecipeCard)
+        val adaptador = RecipeCardAdapter(arr)
         binding.rvRecipieCards.adapter = adaptador
 
         adaptador.listener = this
     }
 
-    private fun setupRecentRecipesRV() {
+    private fun setupRecentRecipesRV(arr: ArrayList<RecipeCard>) {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
 
         binding.rvRecentRecipies.layoutManager = layout
-
-        arrRecentRecipes = getRecentRecipes()
-        val adaptador = RecipeCardAdapter(arrRecentRecipes)
+        val adaptador = RecipeCardAdapter(arr)
         binding.rvRecentRecipies.adapter = adaptador
 
         adaptador.listener = this
     }
 
-    private fun configureCategoryCardRV(){
+    private fun configureCategoryCardRV(arr: ArrayList<CategoryCard>){
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvCategoryCards.layoutManager = layout
 
-        arrCategoryCard = getHomeCategory()
-        val adaptador = CategoryCardAdapter(arrCategoryCard)
+        val adaptador = CategoryCardAdapter(arr)
         binding.rvCategoryCards.adapter = adaptador
 
         adaptador.listener = this
     }
 
-    private fun getHomeCategory(): ArrayList<CategoryCard>{
-        return arrayListOf(
-            CategoryCard("Comida Italiana", "https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
-            CategoryCard("Comida Mexicana", "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
-            CategoryCard("Comida Argentina", "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80")
-        )
+    private fun getHomeCategory() {
+        val results = ArrayList<CategoryCard>()
+        apiClient.getApiService(this.context!!).getCategories()
+            .enqueue(object : Callback<CategoryListResponse> {
+                override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
+                    // Error fetching posts
+                    //@TODO throw message that it could not fetch the data
+                }
+
+                override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
+                    val categorytResponse = response.body()
+                    if (response.isSuccessful && categorytResponse?.categories != null) {
+                        for (category in categorytResponse.categories)
+                        {
+                            results.add(CategoryCard(category.name!!, category.thumbnailUrl!!))
+                        }
+                    } else {
+                        // @TODO add alert that the request did not work
+                    }
+                    arrCategoryCard = results
+                    configureCategoryCardRV(results)
+                }
+            })
     }
 
-    private fun getHomeRecipe(): ArrayList<RecipeCard> {
-        return arrayListOf(
-            RecipeCard("Pasta arrabiata", "italiana", "https://images.unsplash.com/photo-1607375658859-39f31567ce13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80", "15min"),
-            RecipeCard("Pizza napolitana", "italiana", "https://images.unsplash.com/photo-1589187151053-5ec8818e661b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "35min"),
-            RecipeCard("Gelato", "italiana", "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "45min")
-        )
+    private fun getHomeRecipe() {
+        val results = ArrayList<RecipeCard>()
+        apiClient.getApiService(this.context!!).getRecipes()
+                .enqueue(object : Callback<RecipeListResponse> {
+                    override fun onFailure(call: Call<RecipeListResponse>, t: Throwable) {
+                        // Error fetching posts
+                        //@TODO throw message that it could not fetch the data
+                    }
+
+                    override fun onResponse(call: Call<RecipeListResponse>, response: Response<RecipeListResponse>) {
+                        val recipeListResponse = response.body()
+                        if (response.isSuccessful && recipeListResponse?.recipes != null) {
+                            for (recipe in recipeListResponse.recipes){
+                                val recipeItem = RecipeCard(recipe.name!!, "Comida internacional", recipe.thumbnailUrl!!, "${recipe.duration.toString()} minutos")
+                                results.add(recipeItem)
+                            }
+                        } else {
+                            // @TODO add alert that the request did not work
+                        }
+                        arrRecipeCard = results
+                        setupRecipeCardRV(arrRecipeCard)
+                    }
+                })
     }
 
-    private fun getRecentRecipes() : ArrayList<RecipeCard> {
-        return arrayListOf(
-                RecipeCard("Pastel de chocolate", "Repostería", "https://images.unsplash.com/photo-1614786482494-7fc57abd0074?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "1h 15min")
-        )
+    private fun getRecentRecipes() {
+        val results = ArrayList<RecipeCard>()
+        apiClient.getApiService(this.context!!).getRecentRecipes()
+                .enqueue(object : Callback<RecipeListResponse> {
+                    override fun onFailure(call: Call<RecipeListResponse>, t: Throwable) {
+                        // Error fetching posts
+                        //@TODO throw message that it could not fetch the data
+                    }
+
+                    override fun onResponse(call: Call<RecipeListResponse>, response: Response<RecipeListResponse>) {
+                        val recipeListResponse = response.body()
+                        if (response.isSuccessful && recipeListResponse?.recipes != null) {
+                            for (recipe in recipeListResponse.recipes){
+                                val recipeItem = RecipeCard(recipe.name!!, "Comida internacional", recipe.thumbnailUrl!!, "${recipe.duration.toString()} minutos")
+                                results.add(recipeItem)
+                            }
+                        } else {
+                            // @TODO add alert that the request did not work
+                        }
+                        arrRecentRecipes = results
+                        setupRecentRecipesRV(arrRecentRecipes)
+                    }
+                })
     }
 
     override fun recipeClicked(position: Int) {
