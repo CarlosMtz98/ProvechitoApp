@@ -1,13 +1,17 @@
 package com.itesm.equipo3.provechito.views
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.error.ANError
+import com.androidnetworking.interfaces.BitmapRequestListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
 import com.itesm.equipo3.provechito.models.IngredientCard
 import com.itesm.equipo3.provechito.models.RecipeCard
@@ -34,9 +38,32 @@ class RecipeDetailFragment : Fragment(), ClickListener{
             val detailedStep = FragmentDetailedStep()
             listener.onBeginClicked()
         }
+        val name = arguments!!.getString("NAME")
+        val category = arguments!!.getString("CAT")
+        val imgUri = arguments!!.getString("IMG")
+        val duration = arguments!!.getString("DUR")
+        val liked = arguments!!.getBoolean("LIK")
+        binding.tvRecipe.text = name
+        binding.btnCategory.text = category
+        if (imgUri != null) {
+            setImage(imgUri)
+        }
         setupRecipeCardRV()
         setupIngredientRV()
         return binding.root
+    }
+
+    fun setImage(imgUri: String) {
+        AndroidNetworking.get(imgUri)
+            .build()
+            .getAsBitmap(object: BitmapRequestListener {
+                override fun onResponse(response: Bitmap?) {
+                    binding.tvBgImg.setImageBitmap(response)
+                }
+                override fun onError(anError: ANError?) {
+                    println(anError?.message.toString())
+                }
+            })
     }
 
     override fun onAttach(context: Context) {
@@ -81,9 +108,24 @@ class RecipeDetailFragment : Fragment(), ClickListener{
 
     private fun getHomeRecipe(): ArrayList<RecipeCard> {
         return arrayListOf(
-            RecipeCard("Pasta arrabiata", "italiana", "https://images.unsplash.com/photo-1607375658859-39f31567ce13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80", "15min"),
-            RecipeCard("Pizza napolitana", "italiana", "https://images.unsplash.com/photo-1589187151053-5ec8818e661b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "35min"),
-            RecipeCard("Gelato", "italiana", "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "45min")
+            RecipeCard(
+                "Pasta arrabiata",
+                "italiana",
+                "https://images.unsplash.com/photo-1607375658859-39f31567ce13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80",
+                "15min"
+            ),
+            RecipeCard(
+                "Pizza napolitana",
+                "italiana",
+                "https://images.unsplash.com/photo-1589187151053-5ec8818e661b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80",
+                "35min"
+            ),
+            RecipeCard(
+                "Gelato",
+                "italiana",
+                "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80",
+                "45min"
+            )
         )
     }
 
@@ -93,7 +135,9 @@ class RecipeDetailFragment : Fragment(), ClickListener{
     }
 
     override fun recipeClicked(position: Int) {
-        print("Jajas")
+        val recipeCard = arrRecipeCard[position]
+        println("posicion: $recipeCard")
+        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
     }
 
     override fun categoryClicked(position: Int) {

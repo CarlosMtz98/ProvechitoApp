@@ -22,21 +22,16 @@ class ProfileFragment : Fragment(), ClickListener {
 
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         configureStadisticsRV()
         configureLastRecipesRV()
 
         binding.imgButtonSettings.setOnClickListener {
-            val recommendedRecipesFragment = SettingsFragment()
             println("Go to recommended")
             listener.onSettingsClicked()
         }
@@ -50,14 +45,13 @@ class ProfileFragment : Fragment(), ClickListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
         if (context is HomeClickListener) {
             listener = context
         } else {
-            throw ClassCastException(context.toString() + " must implement SignUpListener.")
+            throw ClassCastException("$context must implement SignUpListener.")
         }
-
     }
+
     private fun configureLastRecipesRV() {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
@@ -98,9 +92,10 @@ class ProfileFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun recipeClicked(posicion: Int) {
-        val stadisticsCard = arrStatisticsCard[posicion]
-        println("posicion: $stadisticsCard")
+    override fun recipeClicked(position: Int) {
+        val recipeCard = arrLastRecipesCard[position]
+        println("posicion: $recipeCard")
+        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
     }
 
     override fun categoryClicked(position: Int) {

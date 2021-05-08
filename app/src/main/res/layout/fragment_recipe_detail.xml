@@ -20,13 +20,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/tvBgImg"
             android:layout_width="match_parent"
             android:layout_height="108dp"
             android:layout_marginLeft="-20dp"
             android:layout_marginRight="-20dp"
             android:background="@color/yellow"
-            android:contentDescription="@string/recipe_picture" />
+            android:contentDescription="@string/recipe_picture"
+            android:scaleType="center"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/tvRecipe"
