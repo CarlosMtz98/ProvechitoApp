@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:paddingTop="20dp"
     android:paddingBottom="20dp"
-    tools:context=".views.HomeFragment">
+    tools:context=".controllers.fragments.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

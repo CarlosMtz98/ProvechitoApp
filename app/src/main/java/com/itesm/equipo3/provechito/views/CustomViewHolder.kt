@@ -4,9 +4,9 @@ import android.content.Context
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.itesm.equipo3.provechito.R
+import com.itesm.equipo3.provechito.controllers.listeners.CustomListeners
 
 class CustomViewHolder : BaseViewHolder {
 

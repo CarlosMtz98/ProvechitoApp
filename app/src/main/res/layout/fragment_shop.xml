@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/mid_white"
     android:paddingTop="20dp"
-    tools:context=".views.ShopFragment">
+    tools:context=".controllers.fragments.ShopFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

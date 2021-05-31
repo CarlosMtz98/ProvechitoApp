@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/mid_white"
     android:orientation="vertical"
-    tools:context=".views.SignInFragment">
+    tools:context=".controllers.fragments.SignInFragment">
 
     <TextView
         android:id="@+id/textView11"
