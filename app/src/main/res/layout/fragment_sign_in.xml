@@ -47,21 +47,21 @@
         android:textSize="18sp" />
 
     <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="18dp"
-            android:layout_marginBottom="18dp"
-            android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/mid_white"
-            android:ems="10"
-            android:hint="email@example.com"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary" />
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/round_corner_toggle"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="email@example.com"
+        android:inputType="textEmailAddress"
+        android:padding="8dp"
+        android:textAppearance="@style/BodyText"
+        android:textColor="?attr/colorOnPrimary" />
 
 
     <TextView
