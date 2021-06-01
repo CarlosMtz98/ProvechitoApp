@@ -11,15 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Provechito">
-        <activity android:name=".views.OnboardingActivity"></activity>
-        <activity android:name=".views.SplashScreen">
+        <activity android:name=".controllers.activities.OnboardingActivity"></activity>
+        <activity android:name=".controllers.activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.MainActivity">
+        <activity android:name=".controllers.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".views.SigninActivity">
+        <activity android:name=".controllers.activities.SigninActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

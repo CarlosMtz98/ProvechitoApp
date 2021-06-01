@@ -9,7 +9,7 @@
     android:background="@color/mid_white"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    tools:context=".views.FragmentDetailedStep">
+    tools:context=".controllers.fragments.FragmentDetailedStep">
 
     <LinearLayout
         android:layout_width="match_parent"
