@@ -43,9 +43,9 @@
             android:layout_width="160dp"
             android:layout_height="192dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/round_corner_toggle"
-            android:backgroundTint="@color/pink"
             android:contentDescription="@string/recipe_picture"
+            android:foreground="@drawable/ic_roundedoverlay"
+            android:foregroundTint="?attr/colorOnSecondary"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
