@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorOnSecondary"
         android:orientation="horizontal"
         android:paddingLeft="16dp"
         android:paddingTop="4dp"
@@ -26,6 +27,7 @@
             android:layout_weight="0.5"
             android:text="@string/mamana"
             android:textAlignment="textStart"
+            android:textAppearance="@style/Link"
             android:textSize="20sp" />
 
         <TextView
@@ -46,6 +48,7 @@
             android:background="#00FFFFFF"
             android:contentDescription="@string/add_to_cart"
             android:scaleType="fitEnd"
+            android:tint="?attr/colorOnPrimary"
             app:srcCompat="@drawable/ic_shopping_cart" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
