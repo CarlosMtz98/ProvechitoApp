@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mid_white"
+    android:background="?attr/colorOnSecondary"
     tools:context=".controllers.fragments.ReviewFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -247,7 +247,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="@color/green"
             android:foregroundTint="@color/green"
             android:paddingLeft="40dp"

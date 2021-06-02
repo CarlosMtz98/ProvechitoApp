@@ -133,6 +133,13 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .addToBackStack(null)
             .commit()
     }
+    override fun onAboutClicked() {
+        val aboutFragment = AboutFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFrameLayout, aboutFragment)
+            .addToBackStack(null)
+            .commit()
+    }
 
     override fun onSendClicked() {
         val homeFragment = HomeFragment.newInstance()

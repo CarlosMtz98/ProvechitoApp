@@ -25,6 +25,7 @@ import com.itesm.equipo3.provechito.controllers.adapters.CustomAdapter
 import com.itesm.equipo3.provechito.views.CustomViewModel
 import com.itesm.equipo3.provechito.controllers.adapters.ProductCardAdapter
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -99,7 +100,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         val ingredientName = v.findViewById<EditText>(R.id.tvIngredientName)
         val ingredientDescription = v.findViewById<EditText>(R.id.tvIngredientDescription)
         val date = Calendar.getInstance().time
-        val formatter = SimpleDateFormat.getDateTimeInstance()
+        val formatter = SimpleDateFormat("EEEE  d  MMMM")
         val formatedDate = formatter.format(date)
 
         addDialog.setView(v)
@@ -117,7 +118,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         }
         addDialog.setNegativeButton("Cancelar"){ dialog, _ ->
             dialog.dismiss()
-            Toast.makeText(this.context, "Cancel", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this.context, "Cancel", Toast.LENGTH_SHORT).show()
 
         }
         addDialog.create()
