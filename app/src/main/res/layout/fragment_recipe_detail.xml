@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mid_white"
-    tools:context=".views.RecipeDetailFragment">
+    android:background="?attr/colorOnSecondary"
+    tools:context=".controllers.fragments.RecipeDetailFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,21 +22,24 @@
         <ImageView
             android:id="@+id/tvBgImg"
             android:layout_width="match_parent"
-            android:layout_height="108dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="-20dp"
             android:layout_marginRight="-20dp"
             android:background="@color/yellow"
             android:contentDescription="@string/recipe_picture"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/tvRecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/nombre_del_platillo"
             android:textAlignment="center"
-            android:textAppearance="@style/H1" />
+            android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/btnCategory"
@@ -45,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="#0001684B"
+            android:minHeight="24dp"
             android:text="@string/category"
             android:textAlignment="center"
             android:textAllCaps="false"
@@ -57,12 +61,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/ingredientes"
-            android:textAppearance="@style/H2" />
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvIngredientsRecipe"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
 
         <TextView
             android:id="@+id/textView38"
@@ -71,27 +78,76 @@
             android:layout_marginTop="40dp"
             android:text="@string/preparaci_n"
             android:textAppearance="@style/H2"
-            android:textColor="@color/dark_blue" />
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/textView39"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvStepsRecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/toma_aproximadamente_00_minutos"
-            android:textAppearance="@style/SmallText"
-            android:textColor="@color/dark_blue" />
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"/>
 
-        <Button
-            android:id="@+id/btnBegin"
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/tiempo"
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
+
+        <Chronometer
+            android:id="@+id/chronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_gravity="center"
+            android:text="@string/xx_xx_xx"
+            android:textAlignment="center"
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="40sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/comenzar"
-            android:textAllCaps="false" />
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imgButtonReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:contentDescription="@string/reset"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/ic_skip_previous"
+                android:tint="?attr/colorOnPrimary" />
+
+            <ImageButton
+                android:id="@+id/imgButtonPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:contentDescription="@string/pausa"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/ic_pause"
+                android:tint="?attr/colorOnPrimary" />
+
+            <ImageButton
+                android:id="@+id/imgButtonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_play_circle_outline"
+                android:tint="?attr/colorOnPrimary" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView40"
@@ -99,7 +155,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/recetas_similares"
-            android:textAppearance="@style/H2" />
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView41"
@@ -107,14 +165,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="@string/mira_recetas_parecidas"
-            android:textColor="@color/dark_blue" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSimilares"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="-20dp"
             android:layout_marginRight="-20dp"
             android:paddingTop="5dp" />
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

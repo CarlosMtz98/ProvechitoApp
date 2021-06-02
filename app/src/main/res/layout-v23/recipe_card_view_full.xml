@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp">
+
+    <com.like.LikeButton
+        android:id="@+id/star_button"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="@string/like"
+        android:elevation="1dp"
+        android:tint="#FFFFFF"
+        app:circle_end_color="@color/yellow"
+        app:circle_start_color="@color/red"
+        app:dots_primary_color="@color/red"
+        app:dots_secondary_color="@color/red"
+        app:icon_size="25dp"
+        app:icon_type="heart"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:like_drawable="@drawable/ic_heart_fill"
+        app:liked="false"
+        app:unlike_drawable="@drawable/ic_heart" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/recipeCardImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:background="@color/mid_grey"
+            android:contentDescription="@string/recipe_picture"
+            android:foreground="@drawable/ic_categoryrndoverlay"
+            android:foregroundTint="?attr/colorOnSecondary"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tvRecipeNameCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="-3sp"
+            android:maxLines="2"
+            android:minWidth="128dp"
+            android:text="@string/recipe_name"
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvRecipeCardCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/category"
+            android:textAppearance="@style/Link"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/duration"
+                app:srcCompat="@drawable/ic_icon_tiempo"
+                app:tint="@color/greyed_out" />
+
+            <TextView
+                android:id="@+id/tvRecipeDurationCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:text="@string/duration"
+                android:textAlignment="center"
+                android:textAppearance="@style/Label"
+                android:textColor="@color/greyed_out" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/precio"
+                app:srcCompat="@drawable/ic_icon_precio"
+                app:tint="@color/greyed_out" />
+
+            <TextView
+                android:id="@+id/tvPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:text="@string/precio" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/dificultad"
+                app:srcCompat="@drawable/ic_icon_dificultad"
+                app:tint="@color/greyed_out" />
+
+            <TextView
+                android:id="@+id/tvDificultad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dificultad" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="2"
-    android:background="@color/mid_white"
-    tools:context=".views.ProfileFragment">
+    android:background="?attr/colorOnSecondary"
+    tools:context=".controllers.fragments.ProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -54,15 +54,15 @@
 
                 <ImageButton
                     android:id="@+id/imgButtonSettings"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
                     android:background="#00FFFFFF"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_settings"
-                    android:tint="?attr/colorOnPrimary"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:tint="?android:attr/colorLongPressedHighlight"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -100,7 +100,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Estadísticas"
-                            android:textAppearance="@style/H1"
+                            android:textAppearance="@style/H2"
                             android:textColor="?attr/colorOnPrimary" />
 
                         <TextView
@@ -117,15 +117,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5" />
-
-                    <ImageButton
-                        android:id="@+id/imageButton"
-                        android:layout_width="32dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_next_arrow"
-                        android:src="@drawable/ic_next_arrow"
-                        android:tint="?attr/colorOnPrimary" />
 
                 </LinearLayout>
 
@@ -155,7 +146,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Últimas Recetas"
-                            android:textAppearance="@style/H1"
+                            android:textAppearance="@style/H2"
                             android:textColor="?attr/colorOnPrimary" />
 
                         <TextView

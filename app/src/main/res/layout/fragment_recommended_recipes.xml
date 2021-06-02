@@ -5,9 +5,9 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mid_white"
+    android:background="?attr/colorOnSecondary"
     android:paddingTop="20dp"
-    tools:context=".views.RecommendedRecipesFragment">
+    tools:context=".controllers.fragments.RecommendedRecipesFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -24,9 +24,10 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="Recomendaciones"
+            android:text="@string/recomendaciones"
             android:textAppearance="@style/H1"
             android:textColor="?attr/colorOnPrimary" />
 

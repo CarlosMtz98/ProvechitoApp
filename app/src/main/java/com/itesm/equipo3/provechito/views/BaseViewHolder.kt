@@ -7,6 +7,7 @@ import android.view.Display
 import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.RecyclerView
+import com.itesm.equipo3.provechito.controllers.listeners.CustomListeners
 
 abstract class BaseViewHolder : RecyclerView.ViewHolder {
 

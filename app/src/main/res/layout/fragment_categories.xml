@@ -5,9 +5,9 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mid_white"
+    android:background="?attr/colorOnSecondary"
     android:paddingTop="20dp"
-    tools:context=".views.CategoriesFragment">
+    tools:context=".controllers.fragments.CategoriesFragment">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -33,7 +33,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategoryCards"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
