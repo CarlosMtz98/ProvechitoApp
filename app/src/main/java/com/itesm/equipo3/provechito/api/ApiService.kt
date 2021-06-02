@@ -1,13 +1,9 @@
 package com.itesm.equipo3.provechito.api
 
-import com.itesm.equipo3.provechito.api.RequestObjects.GoogleAuthRequest
-import com.itesm.equipo3.provechito.api.RequestObjects.LoginRequest
-import com.itesm.equipo3.provechito.api.RequestObjects.SignupRequest
-import com.itesm.equipo3.provechito.api.ResponseObjects.AuthResponse
-import com.itesm.equipo3.provechito.api.ResponseObjects.CategoryListResponse
-import com.itesm.equipo3.provechito.api.ResponseObjects.RecipeListResponse
-import com.itesm.equipo3.provechito.models.Category
-import com.itesm.equipo3.provechito.models.Recipe
+import com.itesm.equipo3.provechito.api.RequestObjects.*
+import com.itesm.equipo3.provechito.api.ResponseObjects.DeleteResponse
+import com.itesm.equipo3.provechito.api.ResponseObjects.*
+import com.itesm.equipo3.provechito.models.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -36,6 +32,9 @@ interface ApiService {
     @GET("/api/recipe/{id}")
     fun getRecipe(@Path("id") id: String): Call<Recipe>
 
+    @GET("/api/recipe/random")
+    fun getRandomRecipe(): Call<Recipe>
+
 
     // Categories
     @GET("/api/category/")
@@ -44,11 +43,33 @@ interface ApiService {
     @GET("/api/category/{id}")
     fun getCategory(@Path("id") id: String): Call<Category>
 
+
     // Products
+    @GET("/api/product")
+    fun getProducts(): Call<ProductListResponse>
+
+    @POST("/api/product")
+    fun addProduct(@Body request: ProductRequest): Call<Product>
+
+    @PATCH("/api/product/{id}")
+    fun updateProduct(@Path("id") id: String): Call<Product>
+
+    @DELETE("/api/product/{id}")
+    fun removeProduct(@Path("id") id: String): Call<DeleteResponse>
 
 
     // Likes
+    @GET("/api/like")
+    fun getLikes(): Call<LikesListResponse>
+
+    @POST("/api/like")
+    fun addLike(@Body request: LikeRequest): Call<Like>
+
+    @DELETE("/api/like/{id}")
+    fun removeLike(@Path("id") id: String): Call<DeleteResponse>
 
 
     // Profile
+    @GET("/api/users/me")
+    fun getUserData(): Call<User>
 }

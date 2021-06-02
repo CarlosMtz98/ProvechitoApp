@@ -8,6 +8,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.BitmapRequestListener
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
+import com.itesm.equipo3.provechito.controllers.listeners.LikeClickListener
 import com.itesm.equipo3.provechito.databinding.RecipeCardViewFullBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 import com.like.LikeButton
@@ -19,6 +20,7 @@ import com.like.OnLikeListener
 
 class RecipeCardFullAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerView.Adapter<RecipeCardFullAdapter.ViewHolder>() {
     var listener: ClickListener? = null
+    var likeListener: LikeClickListener? = null
 
     inner class ViewHolder(val binding: RecipeCardViewFullBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: RecipeCard) {
@@ -32,10 +34,10 @@ class RecipeCardFullAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : 
             }
             binding.starButton.setOnLikeListener(object : OnLikeListener {
                 override fun liked(likeButton: LikeButton) {
-
+                    likeListener?.likeOnClick(cardItem.id)
                 }
                 override fun unLiked(likeButton: LikeButton) {
-
+                    likeListener?.unlikeOnClick(cardItem.id)
                 }
             })
             AndroidNetworking.get(cardItem.imgUri)
