@@ -105,4 +105,6 @@
     <string name="registro">Registro</string>
     <string name="nombre">Nombre</string>
     <string name="descripci_n">Descripción</string>
+    <string name="precio">Precio</string>
+    <string name="dificultad">Dificultad</string>
 </resources>
