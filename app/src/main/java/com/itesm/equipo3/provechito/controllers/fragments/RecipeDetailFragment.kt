@@ -12,13 +12,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.BitmapRequestListener
-import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
-import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
-import com.itesm.equipo3.provechito.models.IngredientCard
-import com.itesm.equipo3.provechito.models.RecipeCard
-import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
+import com.google.android.gms.tasks.Tasks.await
+import com.itesm.equipo3.provechito.api.ApiClient
+import com.itesm.equipo3.provechito.api.ResponseObjects.RecipeListResponse
 import com.itesm.equipo3.provechito.controllers.adapters.IngredientCardAdapter
 import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
+import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
+import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
+import com.itesm.equipo3.provechito.models.IngredientCard
+import com.itesm.equipo3.provechito.models.Recipe
+import com.itesm.equipo3.provechito.models.RecipeCard
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RecipeDetailFragment : Fragment(), ClickListener {
 
@@ -27,6 +34,18 @@ class RecipeDetailFragment : Fragment(), ClickListener {
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
     private lateinit var arrIngredients: ArrayList<IngredientCard>
     private lateinit var listener: HomeClickListener
+    private lateinit var recipe: Recipe
+    private lateinit var apiClient: ApiClient
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomeClickListener) {
+            listener = context
+            apiClient = ApiClient()
+        } else {
+            throw ClassCastException("$context must implement HomeClickListner.")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,19 +61,59 @@ class RecipeDetailFragment : Fragment(), ClickListener {
             val detailedStep = FragmentDetailedStep()
             listener.onBeginClicked()
         }
-        val name = arguments!!.getString("NAME")
-        val category = arguments!!.getString("CAT")
-        val imgUri = arguments!!.getString("IMG")
-        val duration = arguments!!.getString("DUR")
-        val liked = arguments!!.getBoolean("LIK")
-        binding.tvRecipe.text = name
-        binding.btnCategory.text = category
-        if (imgUri != null) {
-            setImage(imgUri)
+
+        val bundle = this.arguments
+        if (bundle != null) {
+            val recipeCard = bundle.getSerializable("recipeData") as RecipeCard
+            arrIngredients = ArrayList<IngredientCard>()
+            if (recipeCard.id.isNotEmpty()) {
+                println(recipeCard.id)
+                apiClient.getApiService(this.context!!).getRecipe(recipeCard.id)
+                        .enqueue(object : Callback<Recipe> {
+                            override fun onFailure(call: Call<Recipe>, t: Throwable) {
+                                //@TODO throw message that it could not fetch the data
+                                println("Fail")
+                            }
+
+                            override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
+                                val recipeData = response.body()
+                                println(recipeData.toString())
+                                if (!response.isSuccessful || recipeData == null) {
+                                    // @TODO add alert that the request did not work
+                                    println("Empty recipe details")
+                                } else {
+                                    recipe = recipeData!!
+                                    for (ingredient: String? in recipe.ingredients) {
+                                        if (!ingredient.isNullOrEmpty()) {
+                                            arrIngredients.add(IngredientCard(ingredient))
+                                        }
+                                    }
+                                    setupRecipeDetails()
+                                    setupIngredientRV(arrIngredients)
+                                }
+                            }
+                        })
+            }
         }
+
         setupRecipeCardRV()
-        setupIngredientRV()
+
         return binding.root
+    }
+
+    private fun setupRecipeDetails() {
+        binding.tvRecipe.text = recipe.name
+        binding.btnCategory.text = recipe.categories.firstOrNull()?.name ?: "Sin categoría"
+        AndroidNetworking.get(recipe.imageUrls.firstOrNull() ?: "" )
+                .build()
+                .getAsBitmap(object: BitmapRequestListener {
+                    override fun onResponse(response: Bitmap?) {
+                        binding.tvBgImg.setImageBitmap(response)
+                    }
+                    override fun onError(anError: ANError?) {
+                        println(anError?.message.toString())
+                    }
+                })
     }
 
     fun setImage(imgUri: String) {
@@ -70,34 +129,14 @@ class RecipeDetailFragment : Fragment(), ClickListener {
             })
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is HomeClickListener) {
-            listener = context
-        } else {
-            throw ClassCastException("$context must implement HomeClickListner.")
-        }
-    }
-
-    private fun setupIngredientRV() {
+    private fun setupIngredientRV(recipeCardList: ArrayList<IngredientCard>) {
         val layout = GridLayoutManager(requireContext(), 1)
         layout.orientation = GridLayoutManager.VERTICAL
         binding.rvIngredientsRecipe.layoutManager = layout
-        arrIngredients = getIngredients()
-        val adaptador = IngredientCardAdapter(arrIngredients)
-        binding.rvIngredientsRecipe.adapter = adaptador
-        adaptador.listener = this
-    }
 
-    private fun getIngredients(): ArrayList<IngredientCard> {
-        return arrayListOf(
-            IngredientCard("Queso Parmesano"),
-            IngredientCard("Cilantro"),
-            IngredientCard("Aceite de oliva"),
-            IngredientCard("Queso Cheddar"),
-            IngredientCard("Ajo"),
-            IngredientCard("Pollo")
-        )
+        val ingredientCardAdapter = IngredientCardAdapter(recipeCardList)
+        binding.rvIngredientsRecipe.adapter = ingredientCardAdapter
+        ingredientCardAdapter.listener = this
     }
 
     private fun setupRecipeCardRV() {
@@ -141,11 +180,15 @@ class RecipeDetailFragment : Fragment(), ClickListener {
     override fun recipeClicked(position: Int) {
         val recipeCard = arrRecipeCard[position]
         println("posicion: $recipeCard")
-        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
+        //listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
     }
 
     override fun categoryClicked(position: Int) {
         println("Clicked $position")
+    }
+
+    private fun fetchRecipeDetails(id: String) {
+
     }
 
 }

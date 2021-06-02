@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mid_white"
+    android:background="?attr/colorOnSecondary"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,9 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
             android:paddingTop="16dp"
-            android:text="Registro"
+            android:text="@string/registro"
             android:textAppearance="@style/H1"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="30sp" />
@@ -29,8 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:paddingLeft="20dp"
-            android:text="Te extrañamos toda la vida"
+            android:paddingStart="20dp"
+            android:text="@string/te_extra_amos_toda_la_vida"
             android:textAppearance="@style/BodyText"
             android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp" />
@@ -40,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:paddingLeft="20dp"
-            android:text="Nombre"
+            android:paddingStart="20dp"
+            android:text="@string/nombre"
             android:textAppearance="@style/Label"
             android:textSize="18sp" />
 
@@ -54,18 +54,19 @@
             android:backgroundTint="@color/white"
             android:ems="10"
             android:hapticFeedbackEnabled="false"
-            android:hint="Roberto Martínez"
+            android:hint="@string/roberto_mart_nez"
             android:inputType="textEmailAddress"
             android:padding="8dp"
             android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Correo"
+            android:paddingStart="20dp"
+            android:text="@string/correo"
             android:textAppearance="@style/Label"
             android:textSize="18sp" />
 
@@ -81,18 +82,19 @@
             android:background="@drawable/round_corner_toggle"
             android:backgroundTint="@color/white"
             android:ems="10"
-            android:hint="email@example.com"
+            android:hint="@string/email_example_com"
             android:inputType="textEmailAddress"
             android:padding="8dp"
             android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/textView19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:text="Contraseña"
+            android:paddingStart="20dp"
+            android:text="@string/contrase_a"
             android:textAppearance="@style/Label"
             android:textSize="18sp" />
 
@@ -104,11 +106,12 @@
             android:background="@drawable/round_corner_toggle"
             android:backgroundTint="@color/white"
             android:ems="10"
-            android:hint="Contraseña"
+            android:hint="@string/contrase_a"
             android:inputType="textPassword"
             android:padding="8dp"
             android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            android:autofillHints="" />
 
         <Button
 
@@ -119,26 +122,25 @@
             android:layout_marginTop="36dp"
             android:layout_marginRight="18dp"
             android:background="@drawable/round_corner_toggle"
-            android:text="Registrarse"
+            android:text="@string/registrarse"
             android:textColor="@color/white"
             app:backgroundTint="@color/green" />
 
         <Button
-
             android:id="@+id/btnSignUpGoogle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
             android:background="@color/red"
-            app:backgroundTint="@color/red"
-            android:text="Registro con Google"
-            android:textColor="@color/white" />
+            android:text="@string/registro_con_google"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/red" />
 
         <TextView
             android:id="@+id/tvSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Iniciar Sesión"
+            android:text="@string/iniciar_sesi_n"
             android:textAlignment="center"
             android:textColor="@color/blue"
             android:textSize="18sp" />

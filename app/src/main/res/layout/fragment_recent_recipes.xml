@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mid_white"
+    android:background="?attr/colorOnSecondary"
     tools:context=".controllers.fragments.RecentRecipesFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -24,7 +24,7 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="20dp"
             android:text="@string/recetas_pasadas"

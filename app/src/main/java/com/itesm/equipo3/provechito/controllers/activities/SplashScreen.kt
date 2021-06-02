@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import com.itesm.equipo3.provechito.R
-import com.itesm.equipo3.provechito.models.SessionManager
+import com.itesm.equipo3.provechito.api.Auth.SessionManager
 
 // Autor: Diego Pb
 
@@ -14,8 +14,7 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-         sessionManager = SessionManager(this)
-
+        sessionManager = SessionManager(this)
 
         val timer = object: CountDownTimer(1000, 50) {
             override fun onTick(millisUntilFinished: Long) {

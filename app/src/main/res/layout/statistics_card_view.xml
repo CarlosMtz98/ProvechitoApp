@@ -51,8 +51,7 @@
             android:layout_height="96dp"
             android:background="@drawable/round_corner_toggle"
             android:backgroundTint="@color/pink"
-            android:contentDescription="@string/databackground"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:contentDescription="@string/databackground" />
 
         <TextView
             android:id="@+id/tvStatisticsNameCard"
