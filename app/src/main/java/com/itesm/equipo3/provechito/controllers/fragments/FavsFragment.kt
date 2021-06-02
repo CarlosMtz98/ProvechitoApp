@@ -71,7 +71,7 @@ class FavsFragment : Fragment(), ClickListener {
     override fun recipeClicked(position: Int) {
         val recipeCard = arrRecipeCard[position]
         println("posicion: $recipeCard")
-        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
+        listener.onRecipeCardClicked(recipeCard)
     }
 
     override fun categoryClicked(position: Int) {

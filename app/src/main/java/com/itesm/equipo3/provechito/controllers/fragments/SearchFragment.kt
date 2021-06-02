@@ -12,6 +12,7 @@ import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentSearchBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 import com.itesm.equipo3.provechito.controllers.adapters.CategoryCardAdapter
+import com.itesm.equipo3.provechito.controllers.adapters.CategorySectionCardAdapter
 
 
 class SearchFragment : Fragment(), ClickListener {
@@ -44,11 +45,6 @@ class SearchFragment : Fragment(), ClickListener {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         configureRVCategoryShop()
 
-        binding.arrowSearchImgButton.setOnClickListener{
-            val categoriesFragment = CategoriesFragment()
-            listener.onCategoriesLinkClicked()
-        }
-
         return binding.root
     }
 
@@ -57,7 +53,7 @@ class SearchFragment : Fragment(), ClickListener {
         binding.rvCategoryCardsSearch.layoutManager = layout
 
         arrCategoryCardShop = getCategory()
-        val adaptador = CategoryCardAdapter(arrCategoryCardShop)
+        val adaptador = CategorySectionCardAdapter(arrCategoryCardShop)
         binding.rvCategoryCardsSearch.adapter = adaptador
 
         adaptador.listener = this

@@ -52,6 +52,11 @@ class SignUpFragment : Fragment(){
             if (!name.isNullOrEmpty() && !email.isNullOrEmpty() && !pass.isNullOrEmpty())
                 clickListener.onSignUpButtonClicked(name, email, pass);
         }
+
+        binding.btnSignUpGoogle.setOnClickListener {
+            println("Go to google SignUp")
+            clickListener.onSignInFragClicked()
+        }
         return binding.root
     }
 
