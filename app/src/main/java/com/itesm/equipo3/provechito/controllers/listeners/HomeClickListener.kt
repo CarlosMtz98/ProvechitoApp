@@ -10,6 +10,7 @@ interface HomeClickListener {
     fun onCategoryCardClicked(name: String)
     fun onRecipeCardClicked(name: String, category: String, imgUri: String)
     fun onSettingsClicked()
+    fun onAboutClicked()
     fun onBeginClicked()
     fun onNextClicked()
     fun onSendClicked()
