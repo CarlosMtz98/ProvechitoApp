@@ -151,7 +151,7 @@ class HomeFragment : Fragment(), ClickListener {
                         val recipeListResponse = response.body()
                         if (response.isSuccessful && recipeListResponse?.recipes != null) {
                             for (recipe in recipeListResponse.recipes){
-                                val recipeItem = RecipeCard(recipe.name!!, "Comida internacional", recipe.thumbnailUrl!!, "${recipe.duration.toString()} minutos")
+                                val recipeItem = RecipeCard(recipe.name!!, "Comida internacional", recipe.thumbnailUrl!!, "${recipe.duration.toString()} mins")
                                 results.add(recipeItem)
                             }
                         } else {
@@ -176,7 +176,7 @@ class HomeFragment : Fragment(), ClickListener {
                         val recipeListResponse = response.body()
                         if (response.isSuccessful && recipeListResponse?.recipes != null) {
                             for (recipe in recipeListResponse.recipes){
-                                val recipeItem = RecipeCard(recipe.name!!, "Comida internacional", recipe.thumbnailUrl!!, "${recipe.duration.toString()} minutos")
+                                val recipeItem = RecipeCard(recipe.name!!, "Comida internacional", recipe.thumbnailUrl!!, "${recipe.duration.toString()} mins")
                                 results.add(recipeItem)
                             }
                         } else {
