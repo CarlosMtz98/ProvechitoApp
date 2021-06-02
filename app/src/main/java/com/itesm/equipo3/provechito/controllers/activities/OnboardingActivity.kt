@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -32,20 +33,32 @@ class OnboardingActivity : AppCompatActivity() {
         screenPager = binding.screenViewPager
         screenPager.adapter = introViewPageAdapter;
         TabLayoutMediator(tabBarIndicator, screenPager) {tab, position ->
-            println("P: $position")
+
         }.attach()
 
         binding.getStartedBtnOb.visibility = View.INVISIBLE
         binding.nextButtonOb.setOnClickListener {
             position = screenPager.currentItem
-            if (position < screensArrayList.size) {
-                position++
-                screenPager.currentItem = position
-            }
-            if (position == screensArrayList.size - 1) {
-                loadGetStartedScreen()
-            }
+            screenPager.currentItem = ++position
         }
+
+        tabBarIndicator.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if (tab?.position == screensArrayList.size -1) {
+                    loadGetStartedScreen()
+                } else {
+                    resetObScreenActions()
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                println("Tab: ${tab?.position}")
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                println("Tab: ${tab?.position}")
+            }
+        })
 
         binding.getStartedBtnOb.setOnClickListener {
             println("Go to Login")

@@ -39,5 +39,4 @@ class IntroViewPageAdapter(private val mContext: Context, val screenArrayList: A
             println("Hizo click ${position}")
         }
     }
-
 }
