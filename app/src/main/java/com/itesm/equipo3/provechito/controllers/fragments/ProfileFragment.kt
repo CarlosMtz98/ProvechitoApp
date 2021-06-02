@@ -39,6 +39,12 @@ class ProfileFragment : Fragment(), ClickListener {
             println("Go to recommended")
             listener.onSettingsClicked()
         }
+
+        binding.imageButton3.setOnClickListener {
+            val recentRecipesFragment = RecentRecipesFragment()
+            listener.onRecentClicked()
+        }
+
         return binding.root
     }
 

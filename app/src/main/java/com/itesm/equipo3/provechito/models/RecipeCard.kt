@@ -7,6 +7,6 @@ data class RecipeCard (
         val category: String,
         val imgUri: String,
         val duration: String,
-        val liked : Boolean = false,
+        var liked : Boolean = false,
         val id: String = ""
 ) : Serializable

@@ -8,7 +8,7 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.BitmapRequestListener
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
-import com.itesm.equipo3.provechito.databinding.RecipeCardViewBinding
+import com.itesm.equipo3.provechito.databinding.RecipeCardViewFullBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 import com.like.LikeButton
 
@@ -17,10 +17,10 @@ import com.like.OnLikeListener
 
 
 
-class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerView.Adapter<RecipeCardAdapter.ViewHolder>() {
+class RecipeCardFullAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerView.Adapter<RecipeCardFullAdapter.ViewHolder>() {
     var listener: ClickListener? = null
 
-    inner class ViewHolder(val binding: RecipeCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: RecipeCardViewFullBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: RecipeCard) {
             binding.tvRecipeNameCard.text = cardItem.name
             binding.tvRecipeCardCategory.text = cardItem.category
@@ -52,7 +52,7 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : Recy
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-                RecipeCardViewBinding.inflate(
+                RecipeCardViewFullBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
                         false

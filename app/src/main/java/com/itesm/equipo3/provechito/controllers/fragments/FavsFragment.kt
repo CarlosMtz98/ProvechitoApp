@@ -12,6 +12,7 @@ import com.itesm.equipo3.provechito.databinding.FragmentFavsBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardFullAdapter
 
 class FavsFragment : Fragment(), ClickListener {
     private var _binding: FragmentFavsBinding? = null
@@ -43,13 +44,16 @@ class FavsFragment : Fragment(), ClickListener {
     }
 
     private fun setupRvFavsRecipe() {
-        val gridLayout = GridLayoutManager(requireContext(), 2)
-        gridLayout.orientation = GridLayoutManager.HORIZONTAL
+        val gridLayout = GridLayoutManager(requireContext(), 1)
+        gridLayout.orientation = GridLayoutManager.VERTICAL
 
         binding.rvFavsRecipeCard.layoutManager = gridLayout
 
         arrRecipeCard = getLikedRecipes()
-        val adaptador = RecipeCardAdapter(arrRecipeCard)
+        arrRecipeCard.forEach {
+            it.liked = true
+        }
+        val adaptador = RecipeCardFullAdapter(arrRecipeCard)
         binding.rvFavsRecipeCard.adapter = adaptador
 
         adaptador.listener = this

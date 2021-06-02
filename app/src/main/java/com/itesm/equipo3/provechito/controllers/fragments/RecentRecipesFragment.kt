@@ -1,6 +1,7 @@
 package com.itesm.equipo3.provechito.controllers.fragments
 
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,11 +12,23 @@ import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecentRecipesBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardFullAdapter
+import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 
 class RecentRecipesFragment : Fragment(), ClickListener {
+    private lateinit var listener: HomeClickListener
     private var _binding: FragmentRecentRecipesBinding? = null
     private val binding get() = _binding!!
     private lateinit var arrRecentRecipeCard: ArrayList<RecipeCard>
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomeClickListener) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement SignUpListener.")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +50,12 @@ class RecentRecipesFragment : Fragment(), ClickListener {
     }
 
     private fun setupRVRecentRecipes() {
-        val layout = GridLayoutManager(requireContext(), 2)
+        val layout = GridLayoutManager(requireContext(), 1)
         layout.orientation = GridLayoutManager.VERTICAL
         binding.rvRecentRecipes.layoutManager = layout
 
         arrRecentRecipeCard = getRecentRecipes()
-        val adaptador = RecipeCardAdapter(arrRecentRecipeCard)
+        val adaptador = RecipeCardFullAdapter(arrRecentRecipeCard)
         binding.rvRecentRecipes.adapter = adaptador
 
         adaptador.listener = this
@@ -63,7 +76,9 @@ class RecentRecipesFragment : Fragment(), ClickListener {
     }
 
     override fun recipeClicked(position: Int) {
-        println("Clicked $position")
+        val recipeCard = arrRecentRecipeCard[position]
+        println("posicion: $recipeCard")
+        listener.onRecipeCardClicked(recipeCard)
     }
 
     override fun categoryClicked(position: Int) {
