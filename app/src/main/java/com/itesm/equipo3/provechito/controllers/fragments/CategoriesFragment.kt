@@ -7,12 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.itesm.equipo3.provechito.api.ApiClient
+import com.itesm.equipo3.provechito.api.ResponseObjects.CategoryListResponse
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentCategoriesBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 import com.itesm.equipo3.provechito.controllers.adapters.CategoryCardAdapter
 import com.itesm.equipo3.provechito.controllers.adapters.CategorySectionCardAdapter
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
+import com.itesm.equipo3.provechito.models.RecipeCard
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class CategoriesFragment : Fragment(), ClickListener {
@@ -20,6 +26,7 @@ class CategoriesFragment : Fragment(), ClickListener {
     private val binding get() = _binding!!
     private lateinit var arrCategories: ArrayList<CategoryCard>
     private lateinit var listener: HomeClickListener
+    private lateinit var apiClient: ApiClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +36,7 @@ class CategoriesFragment : Fragment(), ClickListener {
         super.onAttach(context)
         if (context is HomeClickListener) {
             listener = context
+            apiClient = ApiClient()
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")
         }
@@ -39,8 +47,31 @@ class CategoriesFragment : Fragment(), ClickListener {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+        arrCategories = ArrayList()
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
-        setupRVCategories()
+
+        apiClient.getApiService(this.context!!).getCategories()
+                .enqueue(object : Callback<CategoryListResponse> {
+                    override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
+                        // Error fetching posts
+                        //@TODO throw message that it could not fetch the data
+                    }
+
+                    override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
+                        val categoryResponse = response.body()
+                        if (response.isSuccessful && categoryResponse?.categories != null) {
+                            for (category in categoryResponse.categories) {
+                                arrCategories.add(CategoryCard(category.name!!, category.thumbnailUrl!!))
+                            }
+                        } else {
+                            // @TODO add alert that the request did not work
+                            println("Failed response category: ${response.message()}")
+                        }
+                        setupRVCategories(arrCategories)
+                    }
+
+                })
+
         return binding.root
     }
 
@@ -49,25 +80,16 @@ class CategoriesFragment : Fragment(), ClickListener {
         _binding = null
     }
 
-    private fun setupRVCategories() {
+    private fun setupRVCategories(categoriesList: ArrayList<CategoryCard>) {
         val layout = GridLayoutManager(requireContext(),2)
         layout.orientation = GridLayoutManager.VERTICAL
         binding.rvCategoryCards.layoutManager = layout
-
-        arrCategories = getCategories()
-        val adaptador = CategorySectionCardAdapter(arrCategories)
+        val adaptador = CategorySectionCardAdapter(categoriesList)
         binding.rvCategoryCards.adapter = adaptador
 
         adaptador.listener = this
     }
 
-    private fun getCategories(): ArrayList<CategoryCard> {
-        return arrayListOf(
-            CategoryCard("Comida Italiana", "https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
-            CategoryCard("Comida Mexicana", "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
-            CategoryCard("Comida Argentina", "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80")
-        )
-    }
 
     companion object {
         fun newInstance() : CategoriesFragment {

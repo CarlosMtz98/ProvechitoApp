@@ -8,17 +8,16 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.BitmapRequestListener
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
+import com.itesm.equipo3.provechito.controllers.listeners.LikeClickListener
 import com.itesm.equipo3.provechito.databinding.RecipeCardViewBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 import com.like.LikeButton
 
 import com.like.OnLikeListener
 
-
-
-
 class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerView.Adapter<RecipeCardAdapter.ViewHolder>() {
     var listener: ClickListener? = null
+    var likeListener: LikeClickListener? = null
 
     inner class ViewHolder(val binding: RecipeCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: RecipeCard) {
@@ -30,10 +29,14 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : Recy
             }
             binding.starButton.setOnLikeListener(object : OnLikeListener {
                 override fun liked(likeButton: LikeButton) {
-
+                    if (likeListener != null) {
+                        likeListener!!.likeOnClick(cardItem.id)
+                    }
                 }
                 override fun unLiked(likeButton: LikeButton) {
-
+                    if (likeListener != null) {
+                        likeListener!!.unlikeOnClick(cardItem.id)
+                    }
                 }
             })
             AndroidNetworking.get(cardItem.imgUri)
@@ -65,13 +68,11 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : Recy
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tarjeta = arrRecipeCard[position]
+        val recipeCard = arrRecipeCard[position]
 
-        holder.set(tarjeta)
-
+        holder.set(recipeCard)
         holder.binding.recipeCardImage.setOnClickListener {
             if (listener != null) {
-                println("Hellow ")
                 listener?.recipeClicked(position)
             }
         }
