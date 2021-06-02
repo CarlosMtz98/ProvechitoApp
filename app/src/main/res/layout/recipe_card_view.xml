@@ -44,7 +44,7 @@
             android:layout_width="145dp"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
-            android:background="@color/blue"
+            android:background="@color/mid_grey"
             android:contentDescription="@string/recipe_picture"
             android:foreground="@drawable/ic_roundedoverlay"
             android:foregroundTint="?attr/colorOnSecondary"

@@ -45,9 +45,9 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
-            android:background="@color/blue"
+            android:background="@color/greyed_out"
             android:contentDescription="@string/recipe_picture"
-            android:foreground="@drawable/ic_categoryrndoverlay"
+            android:foreground="@color/greyed_out"
             android:foregroundTint="?attr/colorOnSecondary"
             android:scaleType="centerCrop" />
 
