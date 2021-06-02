@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -79,25 +79,70 @@
             android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/textView39"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvStepsRecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/toma_aproximadamente_00_minutos"
-            android:textAppearance="@style/SmallText"
-            android:textColor="?attr/colorOnPrimary" />
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"/>
 
-        <Button
-            android:id="@+id/btnBegin"
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@string/tiempo"
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="18sp" />
+
+        <Chronometer
+            android:id="@+id/chronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_gravity="center"
+            android:text="@string/xx_xx_xx"
+            android:textAlignment="center"
+            android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="40sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/comenzar"
-            android:textAllCaps="false" />
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imgButtonReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:contentDescription="@string/reset"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/ic_skip_previous" />
+
+            <ImageButton
+                android:id="@+id/imgButtonPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:contentDescription="@string/pausa"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@drawable/ic_pause" />
+
+            <ImageButton
+                android:id="@+id/imgButtonStart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_play_circle_outline" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView40"
@@ -119,9 +164,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSimilares"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="-20dp"
             android:layout_marginRight="-20dp"
             android:paddingTop="5dp" />
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
