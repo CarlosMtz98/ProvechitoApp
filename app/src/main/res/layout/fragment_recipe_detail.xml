@@ -38,6 +38,7 @@
             android:text="@string/nombre_del_platillo"
             android:textAlignment="center"
             android:textAppearance="@style/H1"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="24sp" />
 
         <Button
@@ -61,6 +62,7 @@
             android:layout_marginTop="15dp"
             android:text="@string/ingredientes"
             android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -122,7 +124,8 @@
                 android:contentDescription="@string/reset"
                 android:scaleX="1"
                 android:scaleY="1"
-                android:src="@drawable/ic_skip_previous" />
+                android:src="@drawable/ic_skip_previous"
+                android:tint="?attr/colorOnPrimary" />
 
             <ImageButton
                 android:id="@+id/imgButtonPause"
@@ -133,7 +136,8 @@
                 android:contentDescription="@string/pausa"
                 android:scaleX="1"
                 android:scaleY="1"
-                android:src="@drawable/ic_pause" />
+                android:src="@drawable/ic_pause"
+                android:tint="?attr/colorOnPrimary" />
 
             <ImageButton
                 android:id="@+id/imgButtonStart"
@@ -141,7 +145,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
-                android:src="@drawable/ic_play_circle_outline" />
+                android:src="@drawable/ic_play_circle_outline"
+                android:tint="?attr/colorOnPrimary" />
         </LinearLayout>
 
         <TextView
@@ -151,6 +156,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/recetas_similares"
             android:textAppearance="@style/H2"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="18sp" />
 
         <TextView
@@ -159,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="@string/mira_recetas_parecidas"
-            android:textColor="@color/dark_blue" />
+            android:textColor="?attr/colorOnPrimary" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSimilares"

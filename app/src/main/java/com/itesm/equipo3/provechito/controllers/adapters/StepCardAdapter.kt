@@ -15,7 +15,6 @@ import com.itesm.equipo3.provechito.models.StepCard
 class StepCardAdapter ( val arrSteps: ArrayList<StepCard>): RecyclerView.Adapter<StepCardAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: StepCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: StepCard) {
-            binding.stepNumber.text = cardItem.number.toString() + "  "
             binding.stepDescription.text = cardItem.description
         }
     }
@@ -38,14 +37,14 @@ class StepCardAdapter ( val arrSteps: ArrayList<StepCard>): RecyclerView.Adapter
         holder.binding.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
             holder.binding.stepDescription.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             holder.binding.stepDescription.setTextColor(Color.GRAY)
-            holder.binding.stepNumber.setTextColor(Color.GRAY)
+            holder.binding.checkBox.isEnabled = false
         }
 
         holder.binding.root.setOnClickListener {
             holder.binding.stepDescription.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
             holder.binding.stepDescription.setTextColor(Color.GRAY)
-            holder.binding.stepNumber.setTextColor(Color.GRAY)
             holder.binding.checkBox.isChecked = true
+            holder.binding.checkBox.isEnabled = false
         }
     }
 

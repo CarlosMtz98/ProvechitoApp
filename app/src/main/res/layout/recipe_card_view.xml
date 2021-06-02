@@ -87,7 +87,8 @@
                 android:layout_height="16dp"
                 android:layout_marginRight="8dp"
                 android:contentDescription="@string/duration"
-                app:srcCompat="@drawable/ic_icon_tiempo" />
+                app:srcCompat="@drawable/ic_icon_tiempo"
+                app:tint="?attr/colorOnPrimary" />
 
             <TextView
                 android:id="@+id/tvRecipeDurationCard"
