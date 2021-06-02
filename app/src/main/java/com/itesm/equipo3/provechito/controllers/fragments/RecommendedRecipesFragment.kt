@@ -12,6 +12,7 @@ import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecommendedRecipesBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardFullAdapter
 
 
 class RecommendedRecipesFragment : Fragment(), ClickListener {
@@ -40,12 +41,12 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
     }
 
     private fun setupRVRecommendedRecipes() {
-        val layout = GridLayoutManager(requireContext(), 2)
+        val layout = GridLayoutManager(requireContext(), 1)
         layout.orientation = GridLayoutManager.VERTICAL
         binding.rvRecommendedRecipes.layoutManager = layout
 
         arrRecommendedRecipes = getRecommendedRecipes()
-        val adaptador = RecipeCardAdapter(arrRecommendedRecipes)
+        val adaptador = RecipeCardFullAdapter(arrRecommendedRecipes)
         binding.rvRecommendedRecipes.adapter = adaptador
 
         adaptador.listener = this

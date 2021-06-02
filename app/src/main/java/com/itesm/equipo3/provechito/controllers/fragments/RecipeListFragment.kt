@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.controllers.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,11 +11,22 @@ import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecipeListBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
 import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 
 class RecipeListFragment : Fragment(), ClickListener {
+    private lateinit var listener: HomeClickListener
     private lateinit var recipeList: ArrayList<RecipeCard>
     private var _binding: FragmentRecipeListBinding? = null
     private val binding get() = _binding!!
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is HomeClickListener) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement SignUpListener.")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +69,9 @@ class RecipeListFragment : Fragment(), ClickListener {
     }
 
     override fun recipeClicked(position: Int) {
-        println("Hello")
+        val recipeCard = recipeList[position]
+        println("posicion: $recipeCard")
+        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
     }
 
     override fun categoryClicked(position: Int) {

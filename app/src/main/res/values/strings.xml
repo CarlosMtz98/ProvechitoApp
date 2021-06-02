@@ -89,7 +89,6 @@
     <string name="share">Share</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="lista_de_compras">Lista de compras</string>
     <string name="revisa_tu_lista_de_compras">Revisa tu lista de compras</string>
     <string name="buscar">buscar...</string>
     <string name="plus_button">Plus button</string>
@@ -104,4 +103,5 @@
     <string name="registro">Registro</string>
     <string name="nombre">Nombre</string>
     <string name="descripci_n">Descripción</string>
+    <string name="lista_de_compras">Lista de compras</string>
 </resources>
