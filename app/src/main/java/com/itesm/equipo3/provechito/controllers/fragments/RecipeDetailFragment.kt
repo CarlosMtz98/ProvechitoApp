@@ -90,22 +90,20 @@ class RecipeDetailFragment : Fragment(), ClickListener {
                                     if (!ingredient.isNullOrEmpty()) {
                                         arrIngredients.add(IngredientCard(ingredient))
                                     }
-                                    var nSteps = 1
-                                    for(step:String? in recipe.preparationSteps){
-                                        //println(step)
-                                        //println(nSteps)
-                                        //println("FIN DEL PASO")
-                                        if(!step.isNullOrEmpty()){
-                                            arrSteps.add(StepCard(nSteps, step))
-                                            //println(arrSteps[nSteps].description)
-                                            nSteps += 1
-                                        }
+                                }
+                                var nSteps = 1
+                                for(step:String? in recipe.preparationSteps){
+                                    //println(step)
+                                    //println(nSteps)
+                                    //println("FIN DEL PASO")
+                                    if(!step.isNullOrEmpty()){
+                                        arrSteps.add(StepCard(nSteps, step))
+                                        //println(arrSteps[nSteps].description)
+                                        nSteps += 1
                                     }
-                                    setupRecipeDetails()
-                                    setupStepRV(arrSteps)
-                                    setupIngredientRV(arrIngredients)
                                 }
                                 setupRecipeDetails()
+                                setupStepRV(arrSteps)
                                 setupIngredientRV(arrIngredients)
                             }
                         }
