@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mid_white"
+    android:background="?attr/colorOnSecondary"
     android:orientation="vertical"
     tools:context=".controllers.fragments.SignInFragment">
 
@@ -57,11 +57,12 @@
         android:background="@drawable/round_corner_toggle"
         android:backgroundTint="@color/white"
         android:ems="10"
-        android:hint="email@example.com"
+        android:hint="@string/email_example_com"
         android:inputType="textEmailAddress"
         android:padding="8dp"
         android:textAppearance="@style/BodyText"
-        android:textColor="?attr/colorOnPrimary" />
+        android:textColor="?attr/colorOnPrimary"
+        android:autofillHints="" />
 
 
     <TextView
