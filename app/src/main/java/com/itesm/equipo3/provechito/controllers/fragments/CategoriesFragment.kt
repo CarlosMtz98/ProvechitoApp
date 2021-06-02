@@ -11,6 +11,7 @@ import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentCategoriesBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 import com.itesm.equipo3.provechito.controllers.adapters.CategoryCardAdapter
+import com.itesm.equipo3.provechito.controllers.adapters.CategorySectionCardAdapter
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 
 
@@ -54,7 +55,7 @@ class CategoriesFragment : Fragment(), ClickListener {
         binding.rvCategoryCards.layoutManager = layout
 
         arrCategories = getCategories()
-        val adaptador = CategoryCardAdapter(arrCategories)
+        val adaptador = CategorySectionCardAdapter(arrCategories)
         binding.rvCategoryCards.adapter = adaptador
 
         adaptador.listener = this

@@ -108,15 +108,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <ImageButton
-                    android:id="@+id/arrowSearchImgButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="#00FFFFFF"
-                    android:src="@drawable/ic_next_arrow"
-                    android:tint="?attr/colorOnPrimary" />
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
