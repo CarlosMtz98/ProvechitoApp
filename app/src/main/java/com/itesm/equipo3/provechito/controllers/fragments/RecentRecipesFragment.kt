@@ -40,6 +40,7 @@ class RecentRecipesFragment : Fragment(), ClickListener {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRecentRecipesBinding.inflate(inflater, container, false)
+        arrRecentRecipeCard = arguments!!.getSerializable("arrRecent") as ArrayList<RecipeCard>
         setupRVRecentRecipes()
         return binding.root
     }
@@ -54,7 +55,6 @@ class RecentRecipesFragment : Fragment(), ClickListener {
         layout.orientation = GridLayoutManager.VERTICAL
         binding.rvRecentRecipes.layoutManager = layout
 
-        arrRecentRecipeCard = getRecentRecipes()
         val adaptador = RecipeCardFullAdapter(arrRecentRecipeCard)
         binding.rvRecentRecipes.adapter = adaptador
 
