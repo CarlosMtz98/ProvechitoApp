@@ -113,7 +113,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCategoryCardsSearch"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
 
         </LinearLayout>
     </ScrollView>

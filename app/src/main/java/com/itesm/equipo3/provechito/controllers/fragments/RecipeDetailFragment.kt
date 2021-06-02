@@ -3,29 +3,31 @@ package com.itesm.equipo3.provechito.controllers.fragments
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.BitmapRequestListener
-import com.google.android.gms.tasks.Tasks.await
+//import com.google.android.gms.tasks.Tasks.await
 import com.itesm.equipo3.provechito.api.ApiClient
 import com.itesm.equipo3.provechito.api.ResponseObjects.RecipeListResponse
 import com.itesm.equipo3.provechito.controllers.adapters.IngredientCardAdapter
 import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.controllers.adapters.StepCardAdapter
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
-import com.itesm.equipo3.provechito.models.IngredientCard
-import com.itesm.equipo3.provechito.models.Recipe
-import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.models.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class RecipeDetailFragment : Fragment(), ClickListener {
 
@@ -33,9 +35,13 @@ class RecipeDetailFragment : Fragment(), ClickListener {
     private val binding get() = _binding!!
     private lateinit var arrRecipeCard: ArrayList<RecipeCard>
     private lateinit var arrIngredients: ArrayList<IngredientCard>
+    private lateinit var arrSteps: ArrayList<StepCard>
     private lateinit var listener: HomeClickListener
     private lateinit var recipe: Recipe
     private lateinit var apiClient: ApiClient
+    private lateinit var chronometer: Chronometer
+    private var running = false
+    private var pauseOffSet by Delegates.notNull<Long>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -57,63 +63,123 @@ class RecipeDetailFragment : Fragment(), ClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecipeDetailBinding.inflate(inflater, container, false)
-        binding.btnBegin.setOnClickListener {
-            val detailedStep = FragmentDetailedStep()
-            listener.onBeginClicked()
-        }
 
         val bundle = this.arguments
         if (bundle != null) {
             val recipeCard = bundle.getSerializable("recipeData") as RecipeCard
             arrIngredients = ArrayList<IngredientCard>()
+            arrSteps = ArrayList<StepCard>()
             if (recipeCard.id.isNotEmpty()) {
                 println(recipeCard.id)
                 apiClient.getApiService(this.context!!).getRecipe(recipeCard.id)
-                        .enqueue(object : Callback<Recipe> {
-                            override fun onFailure(call: Call<Recipe>, t: Throwable) {
-                                //@TODO throw message that it could not fetch the data
-                                println("Fail")
-                            }
+                    .enqueue(object : Callback<Recipe> {
+                        override fun onFailure(call: Call<Recipe>, t: Throwable) {
+                            //@TODO throw message that it could not fetch the data
+                            println("Fail")
+                        }
 
-                            override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
-                                val recipeData = response.body()
-                                println(recipeData.toString())
-                                if (!response.isSuccessful || recipeData == null) {
-                                    // @TODO add alert that the request did not work
-                                    println("Empty recipe details")
-                                } else {
-                                    recipe = recipeData!!
-                                    for (ingredient: String? in recipe.ingredients) {
-                                        if (!ingredient.isNullOrEmpty()) {
-                                            arrIngredients.add(IngredientCard(ingredient))
-                                        }
+                        override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
+                            val recipeData = response.body()
+                            println(recipeData.toString())
+                            if (!response.isSuccessful || recipeData == null) {
+                                // @TODO add alert that the request did not work
+                                println("Empty recipe details")
+                            } else {
+                                recipe = recipeData!!
+                                for (ingredient: String? in recipe.ingredients) {
+                                    if (!ingredient.isNullOrEmpty()) {
+                                        arrIngredients.add(IngredientCard(ingredient))
                                     }
-                                    setupRecipeDetails()
-                                    setupIngredientRV(arrIngredients)
                                 }
+                                var nSteps = 1
+                                for(step:String? in recipe.preparationSteps){
+                                    //println(step)
+                                    //println(nSteps)
+                                    //println("FIN DEL PASO")
+                                    if(!step.isNullOrEmpty()){
+                                        arrSteps.add(StepCard(nSteps, step))
+                                        //println(arrSteps[nSteps].description)
+                                        nSteps += 1
+                                    }
+                                }
+                                setupRecipeDetails()
+                                setupStepRV(arrSteps)
+                                setupIngredientRV(arrIngredients)
                             }
-                        })
+                        }
+                    })
+            } else {
+                recipe = Recipe(recipeCard.name, recipeCard.category, recipeCard.imgUri)
+                arrIngredients = arrayListOf(IngredientCard("N/A"))
+                setupRecipeDetails()
             }
         }
 
         setupRecipeCardRV()
 
+        pauseOffSet = 0
+        chronometer = binding.chronometer
+        chronometer.text = "00:00:00"
+        chronometer.setOnChronometerTickListener{
+            val time = SystemClock.elapsedRealtime() - chronometer.base
+            val h = (time / 3600000).toInt()
+            val m = (time - h * 3600000).toInt() / 60000
+            val s = (time - h * 3600000 - m * 60000).toInt() / 1000
+            val t = (if (h < 10) "0$h" else h).toString() + ":" + (if (m < 10) "0$m" else m) + ":" + if (s < 10) "0$s" else s
+            chronometer.text = t
+
+        }
+
+        binding.imgButtonStart.setOnClickListener {
+            startChronometer()
+        }
+        binding.imgButtonPause.setOnClickListener {
+            pauseChronometer()
+        }
+        binding.imgButtonReset.setOnClickListener {
+            resetChronometer()
+        }
+        return binding.root
+
         return binding.root
     }
+
+    private fun startChronometer(){
+        if(!running){
+            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffSet)
+            chronometer.start()
+            running = true
+        }
+    }
+
+    private fun pauseChronometer(){
+        if(running){
+            chronometer.stop()
+            pauseOffSet = SystemClock.elapsedRealtime() - chronometer.getBase()
+            running = false
+        }
+    }
+
+    private fun resetChronometer(){
+        chronometer.setBase(SystemClock.elapsedRealtime())
+        pauseOffSet = 0
+        chronometer.text = "00:00:00"
+    }
+
 
     private fun setupRecipeDetails() {
         binding.tvRecipe.text = recipe.name
         binding.btnCategory.text = recipe.categories.firstOrNull()?.name ?: "Sin categoría"
         AndroidNetworking.get(recipe.imageUrls.firstOrNull() ?: "" )
-                .build()
-                .getAsBitmap(object: BitmapRequestListener {
-                    override fun onResponse(response: Bitmap?) {
-                        binding.tvBgImg.setImageBitmap(response)
-                    }
-                    override fun onError(anError: ANError?) {
-                        println(anError?.message.toString())
-                    }
-                })
+            .build()
+            .getAsBitmap(object: BitmapRequestListener {
+                override fun onResponse(response: Bitmap?) {
+                    binding.tvBgImg.setImageBitmap(response)
+                }
+                override fun onError(anError: ANError?) {
+                    println(anError?.message.toString())
+                }
+            })
     }
 
     fun setImage(imgUri: String) {
@@ -137,6 +203,16 @@ class RecipeDetailFragment : Fragment(), ClickListener {
         val ingredientCardAdapter = IngredientCardAdapter(recipeCardList)
         binding.rvIngredientsRecipe.adapter = ingredientCardAdapter
         ingredientCardAdapter.listener = this
+    }
+
+    private fun setupStepRV(stepCardList: ArrayList<StepCard>) {
+        val layout = GridLayoutManager(requireContext(), 1)
+        layout.orientation = GridLayoutManager.VERTICAL
+        binding.rvStepsRecipe.layoutManager = layout
+
+        val stepCardAdapter = StepCardAdapter(stepCardList)
+        binding.rvStepsRecipe.adapter = stepCardAdapter
+        stepCardAdapter.listener = this
     }
 
     private fun setupRecipeCardRV() {
@@ -177,18 +253,12 @@ class RecipeDetailFragment : Fragment(), ClickListener {
         _binding = null
     }
 
-    override fun recipeClicked(position: Int) {
-        val recipeCard = arrRecipeCard[position]
-        println("posicion: $recipeCard")
-        //listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
+    override fun recipeClicked(tarjeta: RecipeCard) {
+        listener.onRecipeCardClicked(tarjeta)
     }
 
     override fun categoryClicked(position: Int) {
         println("Clicked $position")
-    }
-
-    private fun fetchRecipeDetails(id: String) {
-
     }
 
 }

@@ -27,6 +27,8 @@ class RecipeCardFullAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : 
             binding.tvRecipeNameCard.text = cardItem.name
             binding.tvRecipeCardCategory.text = cardItem.category
             binding.tvRecipeDurationCard.text = cardItem.duration
+            binding.tvPrecio.text = cardItem.precio
+            binding.tvDificultad.text = cardItem.dificultad
             if (cardItem.liked) {
                 binding.starButton.setLiked(true)
             }
@@ -54,11 +56,11 @@ class RecipeCardFullAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-                RecipeCardViewFullBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                )
+            RecipeCardViewFullBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
@@ -73,8 +75,7 @@ class RecipeCardFullAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : 
 
         holder.binding.recipeCardImage.setOnClickListener {
             if (listener != null) {
-                println("Hellow ")
-                listener?.recipeClicked(position)
+                listener!!.recipeClicked(tarjeta)
             }
         }
     }

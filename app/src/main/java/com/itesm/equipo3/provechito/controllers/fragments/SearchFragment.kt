@@ -13,6 +13,7 @@ import com.itesm.equipo3.provechito.databinding.FragmentSearchBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 import com.itesm.equipo3.provechito.controllers.adapters.CategoryCardAdapter
 import com.itesm.equipo3.provechito.controllers.adapters.CategorySectionCardAdapter
+import com.itesm.equipo3.provechito.models.RecipeCard
 
 
 class SearchFragment : Fragment(), ClickListener {
@@ -33,7 +34,7 @@ class SearchFragment : Fragment(), ClickListener {
         if (context is HomeClickListener) {
             listener = context
         } else {
-            throw ClassCastException(context.toString() + " must implement HomeClickListner.")
+            throw ClassCastException("$context must implement HomeClickListner.")
         }
     }
 
@@ -68,8 +69,8 @@ class SearchFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun recipeClicked(position: Int) {
-        println("Clicked $position")
+    override fun recipeClicked(tarjeta: RecipeCard) {
+        listener.onRecipeCardClicked(tarjeta)
     }
 
     override fun categoryClicked(position: Int) {

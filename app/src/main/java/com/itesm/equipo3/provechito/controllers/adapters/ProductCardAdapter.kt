@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
+import com.itesm.equipo3.provechito.controllers.listeners.CustomListeners
 import com.itesm.equipo3.provechito.databinding.ProductItemViewBinding
 import com.itesm.equipo3.provechito.models.ProductCard
 
@@ -15,7 +16,7 @@ class ProductCardAdapter(val arrProducts: ArrayList<ProductCard>) : RecyclerView
             binding.tvDateAdded.text = cardItem.dateAdded
         }
     }
-    var listener: ClickListener? = null
+    var listener: CustomListeners? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ProductItemViewBinding.inflate(
@@ -29,13 +30,10 @@ class ProductCardAdapter(val arrProducts: ArrayList<ProductCard>) : RecyclerView
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tarjeta = arrProducts[position]
         holder.set(tarjeta)
-
-        holder.binding.root.setOnClickListener {
-            listener?.recipeClicked(position)
-            println("Hizo click ${position}")
-        }
         holder.binding.btnOptions.setOnClickListener {
-            listener?.recipeClicked(position)
+            if (listener != null) {
+                listener?.ingredientClicked(position)
+            }
         }
     }
 

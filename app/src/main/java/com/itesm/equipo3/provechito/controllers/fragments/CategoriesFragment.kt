@@ -97,8 +97,8 @@ class CategoriesFragment : Fragment(), ClickListener {
         }
     }
 
-    override fun recipeClicked(position: Int) {
-        println("Clicked $position")
+    override fun recipeClicked(tarjeta: RecipeCard) {
+        listener.onRecipeCardClicked(tarjeta)
     }
 
     override fun categoryClicked(position: Int) {

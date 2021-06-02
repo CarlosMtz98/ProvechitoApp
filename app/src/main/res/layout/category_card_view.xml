@@ -17,7 +17,7 @@
         android:layout_width="0dp"
         android:layout_height="96dp"
         android:background="@drawable/ico_background"
-        android:backgroundTint="@color/pink"
+        android:backgroundTint="@color/mid_grey"
         android:contentDescription="@string/categoryname"
         android:foreground="@drawable/ic_categoryrndoverlay"
         android:foregroundTint="?attr/colorOnSecondary"

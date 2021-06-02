@@ -55,11 +55,11 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : Recy
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-                RecipeCardViewBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                )
+            RecipeCardViewBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
@@ -69,7 +69,6 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipeCard = arrRecipeCard[position]
-
         holder.set(recipeCard)
         holder.binding.recipeCardImage.setOnClickListener {
             if (listener != null) {
