@@ -5,8 +5,8 @@ import com.itesm.equipo3.provechito.models.RecipeCard
 import java.util.*
 
 interface HomeClickListener {
-    fun onRecentClicked()
-    fun onRecommendedClicked()
+    fun onRecentClicked(arr: ArrayList<RecipeCard>)
+    fun onRecommendedClicked(arr: ArrayList<RecipeCard>)
     fun onCategoriesLinkClicked()
     fun onCategoryCardClicked(name: String)
     fun onRecipeCardClicked(recipe: RecipeCard)

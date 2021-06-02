@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.itesm.equipo3.provechito.api.ApiClient
+import com.itesm.equipo3.provechito.api.ResponseObjects.RecipeListResponse
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentProfileBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
@@ -14,6 +16,9 @@ import com.itesm.equipo3.provechito.models.StatisticsCard
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.controllers.adapters.StatisticsCardAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /*
     Autor: Zoe Caballero
@@ -23,6 +28,7 @@ class ProfileFragment : Fragment(), ClickListener {
     private lateinit var arrStatisticsCard: ArrayList<StatisticsCard>
     private lateinit var arrLastRecipesCard: ArrayList<RecipeCard>
     private var _binding: FragmentProfileBinding? = null
+    private lateinit var apiClient: ApiClient
 
     private val binding get() = _binding!!
 
@@ -32,8 +38,9 @@ class ProfileFragment : Fragment(), ClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        getRecentRecipes()
         configureStadisticsRV()
-        configureLastRecipesRV()
+
 
         binding.imgButtonSettings.setOnClickListener {
             println("Go to recommended")
@@ -42,7 +49,7 @@ class ProfileFragment : Fragment(), ClickListener {
 
         binding.imageButton3.setOnClickListener {
             val recentRecipesFragment = RecentRecipesFragment()
-            listener.onRecentClicked()
+            listener.onRecentClicked(arrLastRecipesCard)
         }
 
         return binding.root
@@ -57,6 +64,7 @@ class ProfileFragment : Fragment(), ClickListener {
         super.onAttach(context)
         if (context is HomeClickListener) {
             listener = context
+            apiClient = ApiClient()
         } else {
             throw ClassCastException("$context must implement SignUpListener.")
         }
@@ -67,11 +75,35 @@ class ProfileFragment : Fragment(), ClickListener {
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvLastRecipesCards.layoutManager = layout
 
-        arrLastRecipesCard = getLastRecipes()
         val adaptador = RecipeCardAdapter(arrLastRecipesCard)
         binding.rvLastRecipesCards.adapter = adaptador
 
         adaptador.listener = this
+    }
+
+    private fun getRecentRecipes() {
+        val results = ArrayList<RecipeCard>()
+        apiClient.getApiService(this.context!!).getRecentRecipes()
+                .enqueue(object : Callback<RecipeListResponse> {
+                    override fun onFailure(call: Call<RecipeListResponse>, t: Throwable) {
+                        // Error fetching posts
+                        //@TODO throw message that it could not fetch the data
+                    }
+
+                    override fun onResponse(call: Call<RecipeListResponse>, response: Response<RecipeListResponse>) {
+                        val recipeListResponse = response.body()
+                        if (response.isSuccessful && recipeListResponse?.recipes != null) {
+                            for (recipe in recipeListResponse.recipes){
+                                val recipeItem = RecipeCard(name = recipe.name!!, category = "Comida internacional", imgUri = recipe.thumbnailUrl!!, duration = "${recipe.duration.toString()} minutos", id = recipe._id!!)
+                                results.add(recipeItem)
+                            }
+                        } else {
+                            // @TODO add alert that the request did not work
+                        }
+                        arrLastRecipesCard = results
+                        configureLastRecipesRV()
+                    }
+                })
     }
 
     private fun getLastRecipes(): ArrayList<RecipeCard>{

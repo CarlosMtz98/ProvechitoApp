@@ -63,16 +63,22 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .commit()
     }
 
-    override fun onRecentClicked() {
+    override fun onRecentClicked(arr: ArrayList<RecipeCard>) {
         val recentRecipesFragment = RecentRecipesFragment.newInstance()
+        val arguments = Bundle()
+        arguments.putSerializable("arrRecent", arr)
+        recentRecipesFragment.arguments = arguments
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrameLayout, recentRecipesFragment)
                 .addToBackStack(null)
                 .commit()
     }
 
-    override fun onRecommendedClicked() {
+    override fun onRecommendedClicked(arr: ArrayList<RecipeCard>) {
         val recommendedRecipesFragment = RecommendedRecipesFragment.newInstance()
+        val arguments = Bundle()
+        arguments.putSerializable("arrRecipe", arr)
+        recommendedRecipesFragment.arguments = arguments
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrameLayout, recommendedRecipesFragment)
                 .addToBackStack(null)
