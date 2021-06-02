@@ -20,4 +20,9 @@ data class Recipe (
     var featureImageUrl: String?,
     var imageUrls: ArrayList<String?>,
     var likes: Int?
-) : Serializable
+) : Serializable {
+    constructor(name: String, category: String, thumbnailUrl: String?) : this(
+            "", name, arrayListOf("N/A"), arrayListOf("N/A"), arrayListOf(Category(category)),
+            0, "", 0, 0, 0, "N/A", "N/A",
+            "N/A", thumbnailUrl, thumbnailUrl, arrayListOf(thumbnailUrl), 0)
+}

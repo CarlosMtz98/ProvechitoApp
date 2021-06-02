@@ -8,7 +8,6 @@ import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.controllers.fragments.*
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
-import com.itesm.equipo3.provechito.models.Recipe
 import com.itesm.equipo3.provechito.models.RecipeCard
 
 
@@ -17,7 +16,7 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.initialize(applicationContext)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -92,7 +91,7 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
         val categoriesFragment = CategoryFocusFragment()
         val arguments = Bundle()
         arguments.putString("NAME", name)
-        categoriesFragment.setArguments(arguments)
+        categoriesFragment.arguments = arguments
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrameLayout, categoriesFragment)
             .addToBackStack(null)
@@ -103,7 +102,7 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
         val recipeDetailFragment = RecipeDetailFragment()
         val arguments = Bundle()
         arguments.putSerializable("recipeData", recipe)
-        recipeDetailFragment.setArguments(arguments)
+        recipeDetailFragment.arguments = arguments
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrameLayout, recipeDetailFragment)
             .addToBackStack(null)

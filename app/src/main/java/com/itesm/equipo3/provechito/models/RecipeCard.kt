@@ -8,5 +8,7 @@ data class RecipeCard (
         val imgUri: String,
         val duration: String,
         var liked : Boolean = false,
-        val id: String = ""
+        val id: String = "",
+        val precio: String = "N/A",
+        val dificultad: String = "N/A"
 ) : Serializable

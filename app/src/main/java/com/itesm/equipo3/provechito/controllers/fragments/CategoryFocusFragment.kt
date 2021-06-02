@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
+import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentCategoryFocusBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
-import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
-import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
 
 class CategoryFocusFragment : Fragment(), ClickListener {
 
@@ -42,10 +42,10 @@ class CategoryFocusFragment : Fragment(), ClickListener {
     }
 
     private fun setupRecipeCardRV() {
-        val layout = GridLayoutManager(requireContext(), 2)
+        val layout = GridLayoutManager(requireContext(), 1)
         binding.rvRecetas.layoutManager = layout
         arrRecipeCard = getHomeRecipe()
-        val adaptador = RecipeCardAdapter(arrRecipeCard)
+        val adaptador = RecipeCardFullAdapter(arrRecipeCard)
         binding.rvRecetas.adapter = adaptador
         adaptador.listener = this
     }
@@ -67,10 +67,8 @@ class CategoryFocusFragment : Fragment(), ClickListener {
         _binding = null
     }
 
-    override fun recipeClicked(position: Int) {
-        val recipeCard = arrRecipeCard[position]
-        println("posicion: $recipeCard")
-        listener.onRecipeCardClicked(recipeCard)
+    override fun recipeClicked(tarjeta: RecipeCard) {
+        listener.onRecipeCardClicked(tarjeta)
     }
 
     override fun categoryClicked(position: Int) {

@@ -8,7 +8,7 @@ import com.itesm.equipo3.provechito.databinding.StatisticsCardViewBinding
 
 import com.itesm.equipo3.provechito.models.StatisticsCard
 
-class StatisticsCardAdapter (val arrStatisticsCard: ArrayList<StatisticsCard>) : RecyclerView.Adapter<StatisticsCardAdapter.ViewHolder>() {
+class StatisticsCardAdapter (private val arrStatisticsCard: ArrayList<StatisticsCard>) : RecyclerView.Adapter<StatisticsCardAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: StatisticsCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: StatisticsCard) {
@@ -35,10 +35,5 @@ class StatisticsCardAdapter (val arrStatisticsCard: ArrayList<StatisticsCard>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tarjeta = arrStatisticsCard[position]
         holder.set(tarjeta)
-
-        holder.binding.root.setOnClickListener {
-            listener?.recipeClicked(position)
-            println("Hizo click ${position}")
-        }
     }
 }
