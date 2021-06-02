@@ -1,13 +1,15 @@
 package com.itesm.equipo3.provechito.controllers.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.itesm.equipo3.provechito.databinding.FragmentSignInBinding
+import androidx.fragment.app.Fragment
 import com.itesm.equipo3.provechito.controllers.listeners.SignInClickListener
+import com.itesm.equipo3.provechito.databinding.FragmentSignInBinding
+
 
 /*
 * Autor: Zoe CD
@@ -51,6 +53,10 @@ class SignInFragment : Fragment(){
             if (!email.isNullOrEmpty() && !pass.isNullOrEmpty())
                 clickListener.onSignInButtonClicked(email, pass)
             // @TODO Alert that one of the two inputs is empty
+        }
+
+        binding.btnSignInGoogle.setOnClickListener {
+            clickListener.googleSingInClick()
         }
 
         return binding.root
