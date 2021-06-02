@@ -58,7 +58,6 @@ class RecipeDetailFragment : Fragment(), ClickListener {
     ): View {
         _binding = FragmentRecipeDetailBinding.inflate(inflater, container, false)
         binding.btnBegin.setOnClickListener {
-            val detailedStep = FragmentDetailedStep()
             listener.onBeginClicked()
         }
 
@@ -69,30 +68,34 @@ class RecipeDetailFragment : Fragment(), ClickListener {
             if (recipeCard.id.isNotEmpty()) {
                 println(recipeCard.id)
                 apiClient.getApiService(this.context!!).getRecipe(recipeCard.id)
-                        .enqueue(object : Callback<Recipe> {
-                            override fun onFailure(call: Call<Recipe>, t: Throwable) {
-                                //@TODO throw message that it could not fetch the data
-                                println("Fail")
-                            }
+                    .enqueue(object : Callback<Recipe> {
+                        override fun onFailure(call: Call<Recipe>, t: Throwable) {
+                            //@TODO throw message that it could not fetch the data
+                            println("Fail")
+                        }
 
-                            override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
-                                val recipeData = response.body()
-                                println(recipeData.toString())
-                                if (!response.isSuccessful || recipeData == null) {
-                                    // @TODO add alert that the request did not work
-                                    println("Empty recipe details")
-                                } else {
-                                    recipe = recipeData!!
-                                    for (ingredient: String? in recipe.ingredients) {
-                                        if (!ingredient.isNullOrEmpty()) {
-                                            arrIngredients.add(IngredientCard(ingredient))
-                                        }
+                        override fun onResponse(call: Call<Recipe>, response: Response<Recipe>) {
+                            val recipeData = response.body()
+                            println(recipeData.toString())
+                            if (!response.isSuccessful || recipeData == null) {
+                                // @TODO add alert that the request did not work
+                                println("Empty recipe details")
+                            } else {
+                                recipe = recipeData!!
+                                for (ingredient: String? in recipe.ingredients) {
+                                    if (!ingredient.isNullOrEmpty()) {
+                                        arrIngredients.add(IngredientCard(ingredient))
                                     }
-                                    setupRecipeDetails()
-                                    setupIngredientRV(arrIngredients)
                                 }
+                                setupRecipeDetails()
+                                setupIngredientRV(arrIngredients)
                             }
-                        })
+                        }
+                    })
+            } else {
+                recipe = Recipe(recipeCard.name, recipeCard.category, recipeCard.imgUri)
+                arrIngredients = arrayListOf(IngredientCard("N/A"))
+                setupRecipeDetails()
             }
         }
 
@@ -105,15 +108,15 @@ class RecipeDetailFragment : Fragment(), ClickListener {
         binding.tvRecipe.text = recipe.name
         binding.btnCategory.text = recipe.categories.firstOrNull()?.name ?: "Sin categoría"
         AndroidNetworking.get(recipe.imageUrls.firstOrNull() ?: "" )
-                .build()
-                .getAsBitmap(object: BitmapRequestListener {
-                    override fun onResponse(response: Bitmap?) {
-                        binding.tvBgImg.setImageBitmap(response)
-                    }
-                    override fun onError(anError: ANError?) {
-                        println(anError?.message.toString())
-                    }
-                })
+            .build()
+            .getAsBitmap(object: BitmapRequestListener {
+                override fun onResponse(response: Bitmap?) {
+                    binding.tvBgImg.setImageBitmap(response)
+                }
+                override fun onError(anError: ANError?) {
+                    println(anError?.message.toString())
+                }
+            })
     }
 
     fun setImage(imgUri: String) {
@@ -177,18 +180,12 @@ class RecipeDetailFragment : Fragment(), ClickListener {
         _binding = null
     }
 
-    override fun recipeClicked(position: Int) {
-        val recipeCard = arrRecipeCard[position]
-        println("posicion: $recipeCard")
-        //listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
+    override fun recipeClicked(tarjeta: RecipeCard) {
+        listener.onRecipeCardClicked(tarjeta)
     }
 
     override fun categoryClicked(position: Int) {
         println("Clicked $position")
-    }
-
-    private fun fetchRecipeDetails(id: String) {
-
     }
 
 }

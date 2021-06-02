@@ -13,6 +13,7 @@ import com.itesm.equipo3.provechito.models.CategoryCard
 import com.itesm.equipo3.provechito.controllers.adapters.CategoryCardAdapter
 import com.itesm.equipo3.provechito.controllers.adapters.CategorySectionCardAdapter
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
+import com.itesm.equipo3.provechito.models.RecipeCard
 
 
 class CategoriesFragment : Fragment(), ClickListener {
@@ -75,8 +76,8 @@ class CategoriesFragment : Fragment(), ClickListener {
         }
     }
 
-    override fun recipeClicked(position: Int) {
-        println("Clicked $position")
+    override fun recipeClicked(tarjeta: RecipeCard) {
+        listener.onRecipeCardClicked(tarjeta)
     }
 
     override fun categoryClicked(position: Int) {

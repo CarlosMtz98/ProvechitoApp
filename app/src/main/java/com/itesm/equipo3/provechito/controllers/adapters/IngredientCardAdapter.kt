@@ -17,21 +17,19 @@ class IngredientCardAdapter( val arrIngredients: ArrayList<IngredientCard>): Rec
     var listener: ClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-                IngredientCardViewBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                )
+            IngredientCardViewBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tarjeta = arrIngredients[position]
-        holder.set(tarjeta)
-
-        holder.binding.root.setOnClickListener {
-            listener?.recipeClicked(position)
-            println("Hizo click ${position}")
+        val ingrediente = arrIngredients[position]
+        holder.set(ingrediente)
+        holder.binding.imageButton4.setOnClickListener {
+            TODO("Añadir ingrediente a compras")
         }
     }
 

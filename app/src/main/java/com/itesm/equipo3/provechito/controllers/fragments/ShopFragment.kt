@@ -24,6 +24,7 @@ import com.itesm.equipo3.provechito.models.ProductCard
 import com.itesm.equipo3.provechito.controllers.adapters.CustomAdapter
 import com.itesm.equipo3.provechito.views.CustomViewModel
 import com.itesm.equipo3.provechito.controllers.adapters.ProductCardAdapter
+import com.itesm.equipo3.provechito.models.RecipeCard
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -130,9 +131,8 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         super.onStart()
     }
 
-    override fun recipeClicked(position: Int) {
+    override fun ingredientClicked(position: Int) {
         val ingredient = arrProducts[position]
-        println("position: ${ingredient}")
         val popup = PopupMenu(this.context, binding.rvProducts[position], END)
         val inflater: MenuInflater = popup.menuInflater
         inflater.inflate(R.menu.popup_shopping, popup.menu)
@@ -140,7 +140,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         val formatter = SimpleDateFormat.getDateTimeInstance()
         val formatedDate = formatter.format(date)
 
-        popup.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+        popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.item_edit -> {
                     val v = LayoutInflater.from(this.context).inflate(R.layout.add_item, null, false)
@@ -189,9 +189,13 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
                 }
             }
             true
-        })
+        }
 
         popup.show()
+    }
+
+    override fun recipeClicked(tarjeta: RecipeCard) {
+        println("jajas")
     }
 
     override fun categoryClicked(position: Int) {
