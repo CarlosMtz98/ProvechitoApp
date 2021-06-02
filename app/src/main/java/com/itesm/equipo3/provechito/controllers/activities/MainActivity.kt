@@ -8,6 +8,8 @@ import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.controllers.fragments.*
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
+import com.itesm.equipo3.provechito.models.Recipe
+import com.itesm.equipo3.provechito.models.RecipeCard
 
 
 class MainActivity : AppCompatActivity(), HomeClickListener {
@@ -97,17 +99,15 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .commit()
     }
 
-    override fun onRecipeCardClicked(name: String, category: String, imgUri: String) {
-        val recipieDetailFragment = RecipeDetailFragment()
+    override fun onRecipeCardClicked(recipe: RecipeCard) {
+        val recipeDetailFragment = RecipeDetailFragment()
         val arguments = Bundle()
-        arguments.putString("NAME", name)
-        arguments.putString("CAT", category)
-        arguments.putString("IMG", imgUri)
-        recipieDetailFragment.setArguments(arguments)
+        arguments.putSerializable("recipeData", recipe)
+        recipeDetailFragment.setArguments(arguments)
         supportFragmentManager.beginTransaction()
-                .replace(R.id.mainFrameLayout, recipieDetailFragment)
-                .addToBackStack(null)
-                .commit()
+            .replace(R.id.mainFrameLayout, recipeDetailFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onBeginClicked() {
@@ -141,5 +141,4 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .addToBackStack(null)
             .commit()
     }
-
 }

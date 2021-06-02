@@ -7,10 +7,11 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
+        android:paddingLeft="0dp"
         android:paddingTop="4dp"
         android:paddingRight="16dp"
         android:paddingBottom="4dp"
@@ -18,34 +19,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView19"
+        <ImageButton
+            android:id="@+id/imageButton4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="0.5"
-            android:text="@string/mamana"
-            android:textAlignment="textStart"
-            android:textSize="20sp" />
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_weight="0"
+            android:background="#00FFFFFF"
+            android:contentDescription="@string/add_to_cart"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/ic_shopping_cart" />
 
         <TextView
             android:id="@+id/tvIngredientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
             android:layout_weight="6"
             android:text="@string/textview"
             android:textAppearance="@style/Link" />
 
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:contentDescription="@string/add_to_cart"
-            android:scaleType="fitEnd"
-            app:srcCompat="@drawable/ic_shopping_cart" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

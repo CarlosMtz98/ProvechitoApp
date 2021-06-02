@@ -34,7 +34,6 @@ class HomeFragment : Fragment(), ClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onAttach(context: Context) {
@@ -85,10 +84,10 @@ class HomeFragment : Fragment(), ClickListener {
         layout.orientation = LinearLayoutManager.HORIZONTAL
 
         binding.rvRecipieCards.layoutManager = layout
-        val adaptador = RecipeCardAdapter(arr)
-        binding.rvRecipieCards.adapter = adaptador
+        val recipeCardAdapter = RecipeCardAdapter(arr)
+        binding.rvRecipieCards.adapter = recipeCardAdapter
 
-        adaptador.listener = this
+        recipeCardAdapter.listener = this
     }
 
     private fun setupRecentRecipesRV(arr: ArrayList<RecipeCard>) {
@@ -96,10 +95,10 @@ class HomeFragment : Fragment(), ClickListener {
         layout.orientation = LinearLayoutManager.HORIZONTAL
 
         binding.rvRecentRecipies.layoutManager = layout
-        val adaptador = RecipeCardAdapter(arr)
-        binding.rvRecentRecipies.adapter = adaptador
+        val recipeCardAdapter = RecipeCardAdapter(arr)
+        binding.rvRecentRecipies.adapter = recipeCardAdapter
 
-        adaptador.listener = this
+        recipeCardAdapter.listener = this
     }
 
     private fun configureCategoryCardRV(arr: ArrayList<CategoryCard>){
@@ -107,10 +106,10 @@ class HomeFragment : Fragment(), ClickListener {
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvCategoryCards.layoutManager = layout
 
-        val adaptador = CategoryCardAdapter(arr)
-        binding.rvCategoryCards.adapter = adaptador
+        val recipeCardAdapter = CategoryCardAdapter(arr)
+        binding.rvCategoryCards.adapter = recipeCardAdapter
 
-        adaptador.listener = this
+        recipeCardAdapter.listener = this
     }
 
     private fun getHomeCategory() {
@@ -123,14 +122,14 @@ class HomeFragment : Fragment(), ClickListener {
                 }
 
                 override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
-                    val categorytResponse = response.body()
-                    if (response.isSuccessful && categorytResponse?.categories != null) {
-                        for (category in categorytResponse.categories)
-                        {
+                    val categoryResponse = response.body()
+                    if (response.isSuccessful && categoryResponse?.categories != null) {
+                        for (category in categoryResponse.categories) {
                             results.add(CategoryCard(category.name!!, category.thumbnailUrl!!))
                         }
                     } else {
                         // @TODO add alert that the request did not work
+                        println("Failed response category: ${response.message()}")
                     }
                     arrCategoryCard = results
                     configureCategoryCardRV(results)
@@ -151,7 +150,7 @@ class HomeFragment : Fragment(), ClickListener {
                         val recipeListResponse = response.body()
                         if (response.isSuccessful && recipeListResponse?.recipes != null) {
                             for (recipe in recipeListResponse.recipes){
-                                val recipeItem = RecipeCard(recipe.name!!, "Comida internacional", recipe.thumbnailUrl!!, "${recipe.duration.toString()} minutos")
+                                val recipeItem = RecipeCard(name = recipe.name!!, category = "Comida internacional", imgUri = recipe.thumbnailUrl!!, duration = "${recipe.duration.toString()} minutos", id = recipe._id!!)
                                 results.add(recipeItem)
                             }
                         } else {
@@ -176,7 +175,7 @@ class HomeFragment : Fragment(), ClickListener {
                         val recipeListResponse = response.body()
                         if (response.isSuccessful && recipeListResponse?.recipes != null) {
                             for (recipe in recipeListResponse.recipes){
-                                val recipeItem = RecipeCard(recipe.name!!, "Comida internacional", recipe.thumbnailUrl!!, "${recipe.duration.toString()} minutos")
+                                val recipeItem = RecipeCard(name = recipe.name!!, category = "Comida internacional", imgUri = recipe.thumbnailUrl!!, duration = "${recipe.duration.toString()} minutos", id = recipe._id!!)
                                 results.add(recipeItem)
                             }
                         } else {
@@ -190,13 +189,13 @@ class HomeFragment : Fragment(), ClickListener {
 
     override fun recipeClicked(position: Int) {
         val recipeCard = arrRecipeCard[position]
-        println("posicion: $recipeCard")
-        listener.onRecipeCardClicked(recipeCard.name, recipeCard.category, recipeCard.imgUri)
+        println("Position: $recipeCard")
+        listener.onRecipeCardClicked(recipeCard)
     }
 
     override fun categoryClicked(position: Int) {
         val categoryCard = arrCategoryCard[position]
-        println("posicion: $categoryCard")
+        println("Position: $categoryCard")
         listener.onCategoryCardClicked(categoryCard.name)
     }
 
