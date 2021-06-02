@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/green"
                 android:fontFamily="@font/poppins_light"
                 android:text="@string/cambiar_contrase_a"
                 android:textColor="@color/mid_white" />
@@ -144,9 +144,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/green"
                 android:fontFamily="@font/poppins_light"
                 android:text="@string/cerrar_sesi_n"
+                android:textColor="@color/mid_white" />
+
+            <Button
+                android:id="@+id/btnAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/green"
+                android:fontFamily="@font/poppins_light"
+                android:text="Acerca de "
                 android:textColor="@color/mid_white" />
 
         </LinearLayout>

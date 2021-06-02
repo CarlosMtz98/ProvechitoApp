@@ -16,6 +16,7 @@
         android:background="#00FFFFFF"
         android:contentDescription="@string/share"
         android:elevation="1dp"
+        android:scaleType="fitCenter"
         android:tint="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout"
