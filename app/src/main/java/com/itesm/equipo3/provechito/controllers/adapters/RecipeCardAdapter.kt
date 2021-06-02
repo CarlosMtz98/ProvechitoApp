@@ -72,7 +72,7 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : Recy
         holder.set(recipeCard)
         holder.binding.recipeCardImage.setOnClickListener {
             if (listener != null) {
-                listener?.recipeClicked(position)
+                listener?.recipeClicked(recipeCard)
             }
         }
     }
