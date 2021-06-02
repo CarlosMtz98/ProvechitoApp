@@ -7,22 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import com.itesm.equipo3.provechito.api.ApiClient
+import com.itesm.equipo3.provechito.api.ResponseObjects.CategoryListResponse
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentSearchBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
-import com.itesm.equipo3.provechito.controllers.adapters.CategoryCardAdapter
 import com.itesm.equipo3.provechito.controllers.adapters.CategorySectionCardAdapter
 import com.itesm.equipo3.provechito.models.RecipeCard
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class SearchFragment : Fragment(), ClickListener {
 
     private lateinit var listener: HomeClickListener
-    private lateinit var arrCategoryCardShop: ArrayList<CategoryCard>
+    private lateinit var arrCategoriesList: ArrayList<CategoryCard>
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+    private lateinit var apiClient: ApiClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +38,7 @@ class SearchFragment : Fragment(), ClickListener {
         super.onAttach(context)
         if (context is HomeClickListener) {
             listener = context
+            apiClient = ApiClient()
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")
         }
@@ -44,17 +50,37 @@ class SearchFragment : Fragment(), ClickListener {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        configureRVCategoryShop()
+        arrCategoriesList = ArrayList()
+        apiClient.getApiService(this.context!!).getCategories()
+                .enqueue(object : Callback<CategoryListResponse> {
+                    override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
+                        // Error fetching posts
+                        //@TODO throw message that it could not fetch the data
+                    }
+
+                    override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
+                        val categoryResponse = response.body()
+                        if (response.isSuccessful && categoryResponse?.categories != null) {
+                            for (category in categoryResponse.categories) {
+                                arrCategoriesList.add(CategoryCard(category.name!!, category.thumbnailUrl!!))
+                            }
+                        } else {
+                            // @TODO add alert that the request did not work
+                            println("Failed response category: ${response.message()}")
+                        }
+                        configureRVCategoryShop(arrCategoriesList)
+                    }
+
+                })
 
         return binding.root
     }
 
-    private fun configureRVCategoryShop() {
+    private fun configureRVCategoryShop(categoryCardList: ArrayList<CategoryCard>) {
         val layout = GridLayoutManager(requireContext(), 2)
         binding.rvCategoryCardsSearch.layoutManager = layout
 
-        arrCategoryCardShop = getCategory()
-        val adaptador = CategorySectionCardAdapter(arrCategoryCardShop)
+        val adaptador = CategorySectionCardAdapter(categoryCardList)
         binding.rvCategoryCardsSearch.adapter = adaptador
 
         adaptador.listener = this
@@ -74,8 +100,8 @@ class SearchFragment : Fragment(), ClickListener {
     }
 
     override fun categoryClicked(position: Int) {
-        val recipeCard = arrCategoryCardShop[position]
+        val recipeCard = arrCategoriesList[position]
         println("posicion: $recipeCard")
-        listener.onCategoryCardClicked(arrCategoryCardShop[position].name)
+        listener.onCategoryCardClicked(arrCategoriesList[position].name)
     }
 }
