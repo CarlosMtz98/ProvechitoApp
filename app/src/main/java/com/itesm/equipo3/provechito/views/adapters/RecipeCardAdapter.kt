@@ -10,36 +10,39 @@ import com.androidnetworking.interfaces.BitmapRequestListener
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 import com.itesm.equipo3.provechito.databinding.RecipeCardViewBinding
-import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.like.LikeButton
 
 import com.like.OnLikeListener
 
-class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerView.Adapter<RecipeCardAdapter.ViewHolder>() {
+class RecipeCardAdapter(private val arrRecipeCard: ArrayList<Recipe>) : RecyclerView.Adapter<RecipeCardAdapter.ViewHolder>() {
     var listener: ClickListener? = null
     var likeListener: LikeClickListener? = null
 
     inner class ViewHolder(val binding: RecipeCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun set(cardItem: RecipeCard) {
+        fun set(cardItem: Recipe) {
             binding.tvRecipeNameCard.text = cardItem.name
-            binding.tvRecipeCardCategory.text = cardItem.category
-            binding.tvRecipeDurationCard.text = cardItem.duration
-            if (cardItem.liked) {
+            // Todo: regresar primera categoría
+            binding.tvRecipeCardCategory.text = cardItem.categories?.firstOrNull()?.name ?: "Sin categoría"
+            binding.tvRecipeDurationCard.text = cardItem.duration.toString()
+
+            if (cardItem.hasUserLike) {
                 binding.starButton.setLiked(true)
             }
+
             binding.starButton.setOnLikeListener(object : OnLikeListener {
                 override fun liked(likeButton: LikeButton) {
                     if (likeListener != null) {
-                        likeListener!!.likeOnClick(cardItem.id)
+                        likeListener!!.likeOnClick(cardItem.id!!)
                     }
                 }
                 override fun unLiked(likeButton: LikeButton) {
                     if (likeListener != null) {
-                        likeListener!!.unlikeOnClick(cardItem.id)
+                        likeListener!!.unlikeOnClick(cardItem.id!!)
                     }
                 }
             })
-            AndroidNetworking.get(cardItem.imgUri)
+            AndroidNetworking.get(cardItem.thumbnailUrl)
                 .build()
                 .getAsBitmap(object : BitmapRequestListener {
                     override fun onResponse(response: Bitmap?) {
@@ -76,6 +79,4 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : Recy
             }
         }
     }
-
-
 }

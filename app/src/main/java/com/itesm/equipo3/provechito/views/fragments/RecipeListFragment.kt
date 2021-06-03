@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecipeListBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 
 class RecipeListFragment : Fragment(), ClickListener {
     private lateinit var listener: HomeClickListener
-    private lateinit var recipeList: ArrayList<RecipeCard>
+    private lateinit var recipeList: ArrayList<Recipe>
     private var _binding: FragmentRecipeListBinding? = null
     private val binding get() = _binding!!
 
@@ -60,15 +61,11 @@ class RecipeListFragment : Fragment(), ClickListener {
         adaptador.listener = this
     }
 
-    private fun getRecipes(): ArrayList<RecipeCard> {
-        return arrayListOf(
-                RecipeCard("Pasta arrabiata", "italiana", "https://images.unsplash.com/photo-1607375658859-39f31567ce13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=740&q=80", "15min"),
-                RecipeCard("Pizza napolitana", "italiana", "https://images.unsplash.com/photo-1589187151053-5ec8818e661b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "35min"),
-                RecipeCard("Gelato", "italiana", "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "45min")
-        )
+    private fun getRecipes(): ArrayList<Recipe> {
+        return arrayListOf()
     }
 
-    override fun recipeClicked(tarjeta: RecipeCard) {
+    override fun recipeClicked(tarjeta: Recipe) {
         listener.onRecipeCardClicked(tarjeta)
     }
 

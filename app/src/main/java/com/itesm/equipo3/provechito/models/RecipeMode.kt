@@ -2,7 +2,7 @@ package com.itesm.equipo3.provechito.models
 
 import java.io.Serializable
 
-data class Recipe (
+data class RecipeMode (
     var _id: String?,
     var name: String?,
     var preparationSteps: ArrayList<String?>,

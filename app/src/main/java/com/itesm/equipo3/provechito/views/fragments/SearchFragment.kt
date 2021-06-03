@@ -14,7 +14,7 @@ import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentSearchBinding
 import com.itesm.equipo3.provechito.models.CategoryCard
 import com.itesm.equipo3.provechito.views.adapters.CategorySectionCardAdapter
-import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -95,7 +95,7 @@ class SearchFragment : Fragment(), ClickListener {
         )
     }
 
-    override fun recipeClicked(tarjeta: RecipeCard) {
+    override fun recipeClicked(tarjeta: Recipe) {
         listener.onRecipeCardClicked(tarjeta)
     }
 

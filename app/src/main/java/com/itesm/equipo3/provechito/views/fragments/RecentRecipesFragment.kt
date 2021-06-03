@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecentRecipesBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 
@@ -18,7 +19,7 @@ class RecentRecipesFragment : Fragment(), ClickListener {
     private lateinit var listener: HomeClickListener
     private var _binding: FragmentRecentRecipesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var arrRecentRecipeCard: ArrayList<RecipeCard>
+    private lateinit var arrRecentRecipeCard: ArrayList<Recipe>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,7 +40,7 @@ class RecentRecipesFragment : Fragment(), ClickListener {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRecentRecipesBinding.inflate(inflater, container, false)
-        arrRecentRecipeCard = arguments!!.getSerializable("arrRecent") as ArrayList<RecipeCard>
+        arrRecentRecipeCard = arguments!!.getSerializable("arrRecent") as ArrayList<Recipe>
         setupRVRecentRecipes()
         return binding.root
     }
@@ -60,21 +61,13 @@ class RecentRecipesFragment : Fragment(), ClickListener {
         adaptador.listener = this
     }
 
-    private fun getRecentRecipes(): ArrayList<RecipeCard> {
-        return arrayListOf(
-            RecipeCard("Pastel de chocolate", "Repostería", "https://images.unsplash.com/photo-1614786482494-7fc57abd0074?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "Fácil"),
-            RecipeCard("Enchiladas verdes", "mexicana", "https://cdn.kiwilimon.com/recetaimagen/26245/38984.jpg", "Medio"),
-            RecipeCard("Pizza napolitana", "italiana", "https://images.unsplash.com/photo-1589187151053-5ec8818e661b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "Difícil")
-        )
-    }
-
     companion object {
         fun newInstance() : RecentRecipesFragment {
             return RecentRecipesFragment()
         }
     }
 
-    override fun recipeClicked(tarjeta: RecipeCard) {
+    override fun recipeClicked(tarjeta: Recipe) {
         listener.onRecipeCardClicked(tarjeta)
     }
 

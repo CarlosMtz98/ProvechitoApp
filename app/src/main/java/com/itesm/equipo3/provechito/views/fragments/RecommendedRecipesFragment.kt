@@ -12,6 +12,7 @@ import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecommendedRecipesBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 
 class RecommendedRecipesFragment : Fragment(), ClickListener {
@@ -20,7 +21,7 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
 
     private var _binding: FragmentRecommendedRecipesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var arrRecommendedRecipes: ArrayList<RecipeCard>
+    private lateinit var arrRecommendedRecipes: ArrayList<Recipe>
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -36,7 +37,7 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
             savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecommendedRecipesBinding.inflate(inflater, container, false)
-        arrRecommendedRecipes = arguments!!.getSerializable("arrRecipe") as ArrayList<RecipeCard>
+        arrRecommendedRecipes = arguments!!.getSerializable("arrRecipe") as ArrayList<Recipe>
         setupRVRecommendedRecipes()
         return binding.root
     }
@@ -45,7 +46,6 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
         val layout = GridLayoutManager(requireContext(), 1)
         layout.orientation = GridLayoutManager.VERTICAL
         binding.rvRecommendedRecipes.layoutManager = layout
-
 
         val adaptador = RecipeCardFullAdapter(arrRecommendedRecipes)
         binding.rvRecommendedRecipes.adapter = adaptador
@@ -59,7 +59,7 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
         }
     }
 
-    override fun recipeClicked(tarjeta: RecipeCard) {
+    override fun recipeClicked(tarjeta: Recipe) {
         listener.onRecipeCardClicked(tarjeta)
     }
 

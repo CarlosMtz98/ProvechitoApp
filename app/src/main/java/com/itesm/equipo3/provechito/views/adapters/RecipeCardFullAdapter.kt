@@ -11,6 +11,7 @@ import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 import com.itesm.equipo3.provechito.databinding.RecipeCardViewFullBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.like.LikeButton
 
 import com.like.OnLikeListener
@@ -18,29 +19,29 @@ import com.like.OnLikeListener
 
 
 
-class RecipeCardFullAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : RecyclerView.Adapter<RecipeCardFullAdapter.ViewHolder>() {
+class RecipeCardFullAdapter(private val recipeList: ArrayList<Recipe>) : RecyclerView.Adapter<RecipeCardFullAdapter.ViewHolder>() {
     var listener: ClickListener? = null
     var likeListener: LikeClickListener? = null
 
     inner class ViewHolder(val binding: RecipeCardViewFullBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun set(cardItem: RecipeCard) {
+        fun set(cardItem: Recipe) {
             binding.tvRecipeNameCard.text = cardItem.name
-            binding.tvRecipeCardCategory.text = cardItem.category
-            binding.tvRecipeDurationCard.text = cardItem.duration
-            binding.tvPrecio.text = cardItem.precio
-            binding.tvDificultad.text = cardItem.dificultad
-            if (cardItem.liked) {
+            binding.tvRecipeCardCategory.text = cardItem.categories?.firstOrNull()?.name ?: "Sin categoría"
+            binding.tvRecipeDurationCard.text = cardItem.duration.toString()
+            binding.tvPrecio.text = cardItem.price
+            binding.tvDificultad.text = cardItem.difficulty
+            if (cardItem.hasUserLike) {
                 binding.starButton.setLiked(true)
             }
             binding.starButton.setOnLikeListener(object : OnLikeListener {
                 override fun liked(likeButton: LikeButton) {
-                    likeListener?.likeOnClick(cardItem.id)
+                    likeListener?.likeOnClick(cardItem.id!!)
                 }
                 override fun unLiked(likeButton: LikeButton) {
-                    likeListener?.unlikeOnClick(cardItem.id)
+                    likeListener?.unlikeOnClick(cardItem.id!!)
                 }
             })
-            AndroidNetworking.get(cardItem.imgUri)
+            AndroidNetworking.get(cardItem.thumbnailUrl)
                 .build()
                 .getAsBitmap(object : BitmapRequestListener {
                     override fun onResponse(response: Bitmap?) {
@@ -65,11 +66,11 @@ class RecipeCardFullAdapter(private val arrRecipeCard: ArrayList<RecipeCard>) : 
     }
 
     override fun getItemCount(): Int {
-        return arrRecipeCard.size
+        return recipeList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tarjeta = arrRecipeCard[position]
+        val tarjeta = recipeList[position]
 
         holder.set(tarjeta)
 

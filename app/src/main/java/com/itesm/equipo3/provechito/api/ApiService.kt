@@ -1,9 +1,13 @@
 package com.itesm.equipo3.provechito.api
 
 import com.itesm.equipo3.provechito.api.RequestObjects.*
-import com.itesm.equipo3.provechito.api.ResponseObjects.DeleteResponse
 import com.itesm.equipo3.provechito.api.ResponseObjects.*
-import com.itesm.equipo3.provechito.models.*
+import com.itesm.equipo3.provechito.models.Category
+import com.itesm.equipo3.provechito.models.Product
+import com.itesm.equipo3.provechito.models.User
+import com.itesm.equipo3.provechito.pojo.Like.Like
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
+import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import retrofit2.Call
 import retrofit2.http.*
 

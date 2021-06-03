@@ -11,6 +11,7 @@ import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentReviewBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 class ReviewFragment : Fragment(), ClickListener {
 
@@ -53,7 +54,7 @@ class ReviewFragment : Fragment(), ClickListener {
         return binding.root
     }
 
-    override fun recipeClicked(tarjeta: RecipeCard) {
+    override fun recipeClicked(tarjeta: Recipe) {
         TODO("Not yet implemented")
     }
 

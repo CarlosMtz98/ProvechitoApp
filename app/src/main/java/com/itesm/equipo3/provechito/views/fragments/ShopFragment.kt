@@ -24,7 +24,7 @@ import com.itesm.equipo3.provechito.models.ProductCard
 import com.itesm.equipo3.provechito.views.adapters.CustomAdapter
 import com.itesm.equipo3.provechito.views.components.slideLinearLayout.CustomViewModel
 import com.itesm.equipo3.provechito.views.adapters.ProductCardAdapter
-import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -193,7 +193,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         popup.show()
     }
 
-    override fun recipeClicked(tarjeta: RecipeCard) {
+    override fun recipeClicked(tarjeta: Recipe) {
         println("jajas")
     }
 

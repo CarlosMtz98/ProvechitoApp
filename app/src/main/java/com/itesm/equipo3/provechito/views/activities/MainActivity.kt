@@ -9,6 +9,7 @@ import com.itesm.equipo3.provechito.views.fragments.*
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 
 class MainActivity : AppCompatActivity(), HomeClickListener {
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .commit()
     }
 
-    override fun onRecentClicked(arr: ArrayList<RecipeCard>) {
+    override fun onRecentClicked(arr: ArrayList<Recipe>) {
         val recentRecipesFragment = RecentRecipesFragment.newInstance()
         val arguments = Bundle()
         arguments.putSerializable("arrRecent", arr)
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
                 .commit()
     }
 
-    override fun onRecommendedClicked(arr: ArrayList<RecipeCard>) {
+    override fun onRecommendedClicked(arr: ArrayList<Recipe>) {
         val recommendedRecipesFragment = RecommendedRecipesFragment.newInstance()
         val arguments = Bundle()
         arguments.putSerializable("arrRecipe", arr)
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .commit()
     }
 
-    override fun onRecipeCardClicked(recipe: RecipeCard) {
+    override fun onRecipeCardClicked(recipe: Recipe) {
         val recipeDetailFragment = RecipeDetailFragment()
         val arguments = Bundle()
         arguments.putSerializable("recipeData", recipe)
