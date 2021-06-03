@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.activities.OnboardingActivity">
+    tools:context=".views.activities.OnboardingActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/screen_view_pager"

@@ -35,6 +35,12 @@ interface ApiService {
     @GET("/api/recipe/random")
     fun getRandomRecipe(): Call<Recipe>
 
+    @GET("/api/recipe/by/category/id")
+    fun getByCategory(@Path("id") id: String): Call<RecipeListResponse>
+
+    @GET("/api/recipe/search")
+    fun searchRecipes(@Query("recipeName") recipeName: String)
+
 
     // Categories
     @GET("/api/category/")
