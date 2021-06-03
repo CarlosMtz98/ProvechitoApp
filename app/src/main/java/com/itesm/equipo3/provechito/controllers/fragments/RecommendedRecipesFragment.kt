@@ -7,16 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.itesm.equipo3.provechito.api.ApiClient
+import com.itesm.equipo3.provechito.api.ResponseObjects.RecipeListResponse
+import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.controllers.listeners.ClickListener
 import com.itesm.equipo3.provechito.controllers.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecommendedRecipesBinding
 import com.itesm.equipo3.provechito.models.RecipeCard
-import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardAdapter
-import com.itesm.equipo3.provechito.controllers.adapters.RecipeCardFullAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class RecommendedRecipesFragment : Fragment(), ClickListener {
     private lateinit var listener: HomeClickListener
+
 
     private var _binding: FragmentRecommendedRecipesBinding? = null
     private val binding get() = _binding!!
@@ -36,6 +41,7 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
             savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRecommendedRecipesBinding.inflate(inflater, container, false)
+        arrRecommendedRecipes = arguments!!.getSerializable("arrRecipe") as ArrayList<RecipeCard>
         setupRVRecommendedRecipes()
         return binding.root
     }
@@ -45,18 +51,11 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
         layout.orientation = GridLayoutManager.VERTICAL
         binding.rvRecommendedRecipes.layoutManager = layout
 
-        arrRecommendedRecipes = getRecommendedRecipes()
+
         val adaptador = RecipeCardFullAdapter(arrRecommendedRecipes)
         binding.rvRecommendedRecipes.adapter = adaptador
 
         adaptador.listener = this
-    }
-
-    private fun getRecommendedRecipes(): java.util.ArrayList<RecipeCard> {
-        return arrayListOf(
-            RecipeCard("Pastel de chocolate", "Repostería", "https://images.unsplash.com/photo-1614786482494-7fc57abd0074?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80", "Fácil"),
-            RecipeCard("Enchiladas verdes", "mexicana", "https://cdn.kiwilimon.com/recetaimagen/26245/38984.jpg", "Medio")
-        )
     }
 
     companion object {

@@ -58,12 +58,12 @@ class HomeFragment : Fragment(), ClickListener {
         binding.btnRecomendations.setOnClickListener {
             val recommendedRecipesFragment = RecommendedRecipesFragment()
             println("Go to recommended")
-            listener.onRecommendedClicked()
+            listener.onRecommendedClicked(arrRecipeCard)
         }
 
         binding.btnRecentRecipes.setOnClickListener {
             val recentRecipesFragment = RecentRecipesFragment()
-            listener.onRecentClicked()
+            listener.onRecentClicked(arrRecentRecipes)
         }
 
         binding.buttonCategory.setOnClickListener {
