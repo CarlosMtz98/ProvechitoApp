@@ -9,102 +9,89 @@
     tools:context=".views.fragments.SearchFragment">
 
 
-    <ScrollView
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/round_corner_toggle"
+        android:backgroundTint="@color/white"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@+id/btnRandomRecipe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_toggle"
+            android:backgroundTint="@color/white"
+            android:hint="@string/search"
+            android:paddingLeft="10dp"
+            android:paddingTop="8dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="8dp"
+            android:textAppearance="@style/BodyText"
+            android:textColor="?attr/colorOnPrimary" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+    </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:background="@drawable/round_corner_toggle"
-                    android:backgroundTint="@color/white"
-                    app:hintEnabled="false">
+    <Button
+        android:id="@+id/btnRandomRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/round_corner_toggle"
+        app:backgroundTint="@color/yellow"
+        android:text="@string/receta_aleatoria"
+        android:theme="@style/Theme.Provechito"
+        app:layout_constraintBottom_toTopOf="@id/textView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/round_corner_toggle"
-                        android:backgroundTint="@color/white"
-                        android:hint="@string/search"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="8dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="8dp"
-                        android:textAppearance="@style/BodyText"
-                        android:textColor="?attr/colorOnPrimary" />
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:text="@string/recetas"
+        android:textAppearance="@style/H2"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRandomRecipe" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14">
 
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <Button
-                android:id="@+id/btnRandomRecipe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/round_corner_toggle"
-                android:text="@string/receta_aleatoria"
-                android:theme="@style/Theme.Provechito"
-                app:backgroundTint="@color/yellow" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="40dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/categor_as"
-                    android:textAppearance="@style/H2"
-                    android:textColor="?attr/colorOnPrimary" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCategoryCardsSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" />
-
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategoryCardsSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="15"
+            tools:listitem="@layout/recipe_card_view_full" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

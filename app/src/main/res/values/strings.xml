@@ -108,4 +108,5 @@
     <string name="precio">Precio</string>
     <string name="dificultad">Dificultad</string>
     <string name="receta_aleatoria">Receta Aleatoria</string>
+    <string name="recetas">Recetas</string>
 </resources>

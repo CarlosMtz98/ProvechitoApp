@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.api.ApiClient
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
@@ -20,14 +21,15 @@ import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.CategoryPresenter
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
+import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 
 
-class SearchFragment : Fragment(), IRecipe.View, ClickListener, ICategory.View {
+class SearchFragment : Fragment(), IRecipe.View, ClickListener {
     private val recipePresenter: RecipePresenter = RecipePresenter(this)
-    private val categoryPresenter: CategoryPresenter = CategoryPresenter(this)
 
     private lateinit var listener: HomeClickListener
-    private var arrCategories = ArrayList<Category>()
+    private var arrRecipes = ArrayList<Recipe>()
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -56,7 +58,7 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener, ICategory.View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         context?.let {
             val context = it
-            categoryPresenter.getCategories(it)
+            recipePresenter.getRecipes(it, 0)
             binding.btnRandomRecipe.setOnClickListener {
                 recipePresenter.getRandomRecipe(context)
             }
@@ -65,11 +67,11 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener, ICategory.View {
         return binding.root
     }
 
-    private fun configureRVCategoryShop(categoryCardList: ArrayList<Category>) {
-        val layout = GridLayoutManager(requireContext(), 2)
+    private fun configureRV(recipeList: ArrayList<Recipe>) {
+        val layout = LinearLayoutManager(requireContext())
         binding.rvCategoryCardsSearch.layoutManager = layout
 
-        val adaptador = CategorySectionCardAdapter(categoryCardList)
+        val adaptador = RecipeCardFullAdapter(recipeList)
         binding.rvCategoryCardsSearch.adapter = adaptador
 
         adaptador.listener = this
@@ -84,21 +86,14 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener, ICategory.View {
     }
 
     override fun showRecipe(recipe: Recipe) {
-        throw NotImplementedError()
+        listener.onRecipeCardClicked(recipe)
     }
 
     override fun showRecipes(recipeList: RecipeListResponse, type: Int) {
-        throw NotImplementedError()
-    }
-
-    override fun showCategory(category: Category) {
-        throw NotImplementedError()
-    }
-
-    override fun showCategories(categoryList: CategoryListResponse) {
-        categoryList.categories?.let {
-            arrCategories = categoryList.categories!!
-            configureRVCategoryShop(arrCategories)
+        recipeList.recipes?.let {
+            arrRecipes = recipeList.recipes!!
+            configureRV(arrRecipes)
         }
+
     }
 }
