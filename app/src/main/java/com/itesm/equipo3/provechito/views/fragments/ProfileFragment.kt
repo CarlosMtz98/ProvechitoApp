@@ -19,6 +19,7 @@ import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.views.adapters.StatisticsCardAdapter
 
 /*
@@ -53,7 +54,6 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
             presenter.getRecipes(it, 2)
         }
 
-        configureStatisticsRV()
         binding.imgButtonSettings.setOnClickListener {
             listener.onSettingsClicked()
         }
@@ -76,29 +76,10 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvLastRecipesCards.layoutManager = layout
 
-        val recipeAdapter = RecipeCardAdapter(recipeList)
+        val recipeAdapter = RecipeCardFullAdapter(recipeList)
         binding.rvLastRecipesCards.adapter = recipeAdapter
 
         recipeAdapter.listener = this
-    }
-
-    private fun configureStatisticsRV() {
-        val layout = LinearLayoutManager(requireContext())
-        layout.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rvStatisticsCards.layoutManager = layout
-
-        arrStatisticsCard = getProfileStatistics()
-        val statisticsAdapter = StatisticsCardAdapter(arrStatisticsCard)
-        binding.rvStatisticsCards.adapter = statisticsAdapter
-
-        statisticsAdapter.listener = this
-    }
-
-    private fun getProfileStatistics(): ArrayList<StatisticsCard>{
-        return arrayListOf(
-            StatisticsCard("Recetas Realizadas", "10"),
-            StatisticsCard("Recetas Dominadas", "10")
-        )
     }
 
     override fun recipeClicked(tarjeta: Recipe) {
