@@ -1,7 +1,7 @@
 package com.itesm.equipo3.provechito.pojo.Recipe
 
 import com.google.gson.annotations.SerializedName
-import com.itesm.equipo3.provechito.models.Category
+import com.itesm.equipo3.provechito.pojo.Category.Category
 import java.io.Serializable
 
 class Recipe : Serializable {

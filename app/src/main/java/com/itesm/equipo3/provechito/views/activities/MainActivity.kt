@@ -8,6 +8,7 @@ import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.views.fragments.*
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
+import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 
@@ -93,10 +94,10 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .commit()
     }
 
-    override fun onCategoryCardClicked(name: String) {
+    override fun onCategoryCardClicked(category: Category) {
         val categoriesFragment = CategoryFocusFragment()
         val arguments = Bundle()
-        arguments.putString("NAME", name)
+        arguments.putSerializable("categoryData", category)
         categoriesFragment.arguments = arguments
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrameLayout, categoriesFragment)

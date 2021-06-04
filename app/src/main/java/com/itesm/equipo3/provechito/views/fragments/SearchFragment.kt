@@ -8,22 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.api.ApiClient
-import com.itesm.equipo3.provechito.api.ResponseObjects.CategoryListResponse
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentSearchBinding
-import com.itesm.equipo3.provechito.models.CategoryCard
+import com.itesm.equipo3.provechito.interfaces.ICategory
+import com.itesm.equipo3.provechito.interfaces.IRecipe
+import com.itesm.equipo3.provechito.pojo.Category.Category
+import com.itesm.equipo3.provechito.pojo.Category.CategoryListResponse
 import com.itesm.equipo3.provechito.views.adapters.CategorySectionCardAdapter
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
+import com.itesm.equipo3.provechito.presenters.CategoryPresenter
+import com.itesm.equipo3.provechito.presenters.RecipePresenter
 
 
-class SearchFragment : Fragment(), ClickListener {
+class SearchFragment : Fragment(), IRecipe.View, ClickListener, ICategory.View {
+    private val recipePresenter: RecipePresenter = RecipePresenter(this)
+    private val categoryPresenter: CategoryPresenter = CategoryPresenter(this)
 
     private lateinit var listener: HomeClickListener
-    private lateinit var arrCategoriesList: ArrayList<CategoryCard>
+    private var arrCategories = ArrayList<Category>()
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -50,33 +54,18 @@ class SearchFragment : Fragment(), ClickListener {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        arrCategoriesList = ArrayList()
-        apiClient.getApiService(this.context!!).getCategories()
-                .enqueue(object : Callback<CategoryListResponse> {
-                    override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
-                        // Error fetching posts
-                        //@TODO throw message that it could not fetch the data
-                    }
-
-                    override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
-                        val categoryResponse = response.body()
-                        if (response.isSuccessful && categoryResponse?.categories != null) {
-                            for (category in categoryResponse.categories) {
-                                arrCategoriesList.add(CategoryCard(category.name!!, category.thumbnailUrl!!))
-                            }
-                        } else {
-                            // @TODO add alert that the request did not work
-                            println("Failed response category: ${response.message()}")
-                        }
-                        configureRVCategoryShop(arrCategoriesList)
-                    }
-
-                })
+        context?.let {
+            val context = it
+            categoryPresenter.getCategories(it)
+            binding.btnRandomRecipe.setOnClickListener {
+                recipePresenter.getRandomRecipe(context)
+            }
+        }
 
         return binding.root
     }
 
-    private fun configureRVCategoryShop(categoryCardList: ArrayList<CategoryCard>) {
+    private fun configureRVCategoryShop(categoryCardList: ArrayList<Category>) {
         val layout = GridLayoutManager(requireContext(), 2)
         binding.rvCategoryCardsSearch.layoutManager = layout
 
@@ -86,22 +75,30 @@ class SearchFragment : Fragment(), ClickListener {
         adaptador.listener = this
     }
 
-    private fun getCategory(): ArrayList<CategoryCard> {
-        return arrayListOf(
-            CategoryCard("Italiana", "https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
-            CategoryCard("Mexicana", "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80"),
-            CategoryCard("Argentina", "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80"),
-            CategoryCard("Tailandesa", "https://images.unsplash.com/photo-1569562211093-4ed0d0758f12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=80")
-        )
-    }
-
     override fun recipeClicked(tarjeta: Recipe) {
         listener.onRecipeCardClicked(tarjeta)
     }
 
-    override fun categoryClicked(position: Int) {
-        val recipeCard = arrCategoriesList[position]
-        println("posicion: $recipeCard")
-        listener.onCategoryCardClicked(arrCategoriesList[position].name)
+    override fun categoryClicked(category: Category) {
+        listener.onCategoryCardClicked(category)
+    }
+
+    override fun showRecipe(recipe: Recipe) {
+        throw NotImplementedError()
+    }
+
+    override fun showRecipes(recipeList: RecipeListResponse, type: Int) {
+        throw NotImplementedError()
+    }
+
+    override fun showCategory(category: Category) {
+        throw NotImplementedError()
+    }
+
+    override fun showCategories(categoryList: CategoryListResponse) {
+        categoryList.categories?.let {
+            arrCategories = categoryList.categories!!
+            configureRVCategoryShop(arrCategories)
+        }
     }
 }

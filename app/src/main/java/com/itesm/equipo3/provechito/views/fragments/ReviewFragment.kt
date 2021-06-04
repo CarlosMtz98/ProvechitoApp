@@ -10,6 +10,7 @@ import com.itesm.equipo3.provechito.api.ApiClient
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentReviewBinding
+import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 class ReviewFragment : Fragment(), ClickListener {
@@ -54,10 +55,10 @@ class ReviewFragment : Fragment(), ClickListener {
     }
 
     override fun recipeClicked(tarjeta: Recipe) {
-        TODO("Not yet implemented")
+        throw NotImplementedError()
     }
 
-    override fun categoryClicked(position: Int) {
-        TODO("Not yet implemented")
+    override fun categoryClicked(category: Category) {
+        throw NotImplementedError()
     }
 }
