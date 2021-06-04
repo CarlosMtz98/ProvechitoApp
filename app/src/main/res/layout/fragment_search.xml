@@ -25,7 +25,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <android.widget.EditText
+            android:id="@+id/editTextSample"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -37,7 +38,8 @@
             android:paddingRight="10dp"
             android:paddingBottom="8dp"
             android:textAppearance="@style/BodyText"
-            android:textColor="?attr/colorOnPrimary" />
+            android:textColor="?attr/colorOnPrimary"
+            android:textColorHint="?attr/colorOnPrimary"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,12 +67,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:text="@string/recetas"
         android:textAppearance="@style/H2"
         android:textColor="?attr/colorOnPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRandomRecipe" />
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:itemCount="15"
-            tools:listitem="@layout/recipe_card_view_full" />
+            tools:listitem="@layout/recipe_card_search" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

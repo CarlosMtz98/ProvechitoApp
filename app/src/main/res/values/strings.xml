@@ -109,4 +109,6 @@
     <string name="dificultad">Dificultad</string>
     <string name="receta_aleatoria">Receta Aleatoria</string>
     <string name="recetas">Recetas</string>
+    <string name="ultimas_recetas">Ultimas Recetas</string>
+    <string name="estas_son_las_ltimas_recetas_que_hiciste">Estas son las últimas recetas que hiciste :)</string>
 </resources>

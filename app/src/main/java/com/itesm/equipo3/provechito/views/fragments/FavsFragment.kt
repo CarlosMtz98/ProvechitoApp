@@ -8,22 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import com.itesm.equipo3.provechito.api.ApiClient
-import com.itesm.equipo3.provechito.api.ResponseObjects.DeleteResponse
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentFavsBinding
 import com.itesm.equipo3.provechito.interfaces.ILike
+import com.itesm.equipo3.provechito.models.StatisticsCard
 import com.itesm.equipo3.provechito.pojo.Category.Category
-import com.itesm.equipo3.provechito.pojo.Like.Like
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.presenters.LikePresenter
-import com.itesm.equipo3.provechito.views.adapters.ProductCardAdapter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.itesm.equipo3.provechito.views.adapters.StatisticsCardAdapter
+
 
 class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
     private var likePresenter = LikePresenter(this)
@@ -31,13 +27,11 @@ class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
     private var _binding: FragmentFavsBinding? = null
     private val binding get() = _binding!!
     private lateinit var listener: HomeClickListener
-    private lateinit var apiClient: ApiClient
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is HomeClickListener) {
             listener = context
-            apiClient = ApiClient()
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")
         }
@@ -66,11 +60,16 @@ class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
 
         recipeCardList.forEach { it.hasUserLike = true }
 
-        val likeRecipeAdapter = RecipeCardFullAdapter(recipeCardList)
-        binding.rvFavsRecipeCard.adapter = likeRecipeAdapter
-
-        likeRecipeAdapter.listener = this
-        likeRecipeAdapter.likeListener = this
+        if (recipeCardList.size > 0) {
+            val likeRecipeAdapter = RecipeCardFullAdapter(recipeCardList)
+            binding.rvFavsRecipeCard.adapter = likeRecipeAdapter
+            likeRecipeAdapter.listener = this
+            likeRecipeAdapter.likeListener = this
+        } else {
+            val products = ArrayList<StatisticsCard>()
+            products.add(StatisticsCard("No hay likes :(", "Ve a dar corazones y vuelve aquí"))
+            binding.rvFavsRecipeCard.adapter = StatisticsCardAdapter(products)
+        }
     }
 
     override fun recipeClicked(recipe: Recipe) {
