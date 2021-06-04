@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import com.itesm.equipo3.provechito.R
-import com.itesm.equipo3.provechito.views.listeners.CustomListeners
+import com.itesm.equipo3.provechito.views.listeners.ShopListener
 
 class CustomViewHolder : BaseViewHolder {
 
@@ -20,7 +20,7 @@ class CustomViewHolder : BaseViewHolder {
     private val rightImage : ImageView
     private val cardView : CardView
 
-    constructor(context : Context, itemView : View, customListeners : CustomListeners) : super(context, itemView, customListeners) {
+    constructor(context : Context, itemView : View, shopListener : ShopListener) : super(context, itemView, shopListener) {
         //textView = itemView.findViewById(R.id.text_view)
         cardView = itemView.findViewById(R.id.card_view)
         leftImage = itemView.findViewById(R.id.button_left)

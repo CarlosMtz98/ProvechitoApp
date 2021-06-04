@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.itesm.equipo3.provechito.R
-import com.itesm.equipo3.provechito.views.listeners.CustomListeners
+import com.itesm.equipo3.provechito.views.listeners.ShopListener
 import com.itesm.equipo3.provechito.views.components.slideLinearLayout.BaseViewHolder
 import com.itesm.equipo3.provechito.views.components.slideLinearLayout.CustomViewHolder
 import com.itesm.equipo3.provechito.views.components.slideLinearLayout.CustomViewModel
@@ -17,13 +17,13 @@ class CustomAdapter : RecyclerView.Adapter<BaseViewHolder> {
         private val TAG : String = CustomAdapter::class.java.getSimpleName()
     }
     /**Main */
-    private val customListeners : CustomListeners
+    private val shopListener : ShopListener
     private val swipeState : SwipeState
 
     private var list : MutableList<CustomViewModel>
 
-    constructor(customListeners : CustomListeners, swipeState : SwipeState) : super() {
-        this.customListeners = customListeners
+    constructor(shopListener : ShopListener, swipeState : SwipeState) : super() {
+        this.shopListener = shopListener
         this.swipeState = swipeState
     }
 
@@ -34,7 +34,7 @@ class CustomAdapter : RecyclerView.Adapter<BaseViewHolder> {
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int) : BaseViewHolder {
         val layoutInflater : LayoutInflater = LayoutInflater.from(parent.getContext())
         val view : View = layoutInflater.inflate(R.layout.product_item_view, parent, false)
-        return CustomViewHolder(parent.getContext(), view, customListeners)
+        return CustomViewHolder(parent.getContext(), view, shopListener)
     }
 
     override fun onBindViewHolder(holder : BaseViewHolder, position : Int) {

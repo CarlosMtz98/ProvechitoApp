@@ -1,9 +1,9 @@
 package com.itesm.equipo3.provechito.views.listeners
 
-import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
+import com.itesm.equipo3.provechito.pojo.Category.Category
 
 interface ClickListener {
-    fun recipeClicked(tarjeta: Recipe)
+    fun recipeClicked(recipe: Recipe)
     fun categoryClicked(category: Category)
 }
