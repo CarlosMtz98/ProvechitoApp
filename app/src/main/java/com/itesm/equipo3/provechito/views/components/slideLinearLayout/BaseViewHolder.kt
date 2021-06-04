@@ -7,7 +7,7 @@ import android.view.Display
 import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.RecyclerView
-import com.itesm.equipo3.provechito.views.listeners.CustomListeners
+import com.itesm.equipo3.provechito.views.listeners.ShopListener
 
 abstract class BaseViewHolder : RecyclerView.ViewHolder {
 
@@ -24,7 +24,7 @@ abstract class BaseViewHolder : RecyclerView.ViewHolder {
     }
     /** Main */
     private val context : Context
-    private val customListeners : CustomListeners
+    private val shopListener : ShopListener
     /** On Swipe */
     private val size : Point
     private val display : Display
@@ -36,9 +36,9 @@ abstract class BaseViewHolder : RecyclerView.ViewHolder {
     public var dXLead : Float = 0.toFloat()
     public var dXTrail : Float = 0.toFloat()
 
-    constructor(context : Context, itemView : View, customListeners : CustomListeners) : super(itemView) {
+    constructor(context : Context, itemView : View, shopListener : ShopListener) : super(itemView) {
         this.context = context
-        this.customListeners = customListeners
+        this.shopListener = shopListener
         windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         size = Point()
         display = windowManager.getDefaultDisplay() //activity.getWindowManager().getDefaultDisplay()
@@ -49,8 +49,8 @@ abstract class BaseViewHolder : RecyclerView.ViewHolder {
         cardViewTrailing = size.x.toFloat() * 0.90f //trailing
     }
 
-    public fun getListener() : CustomListeners {
-        return customListeners
+    public fun getListener() : ShopListener {
+        return shopListener
     }
 
     public fun setSwipe(view : View, swipeState : SwipeState) {

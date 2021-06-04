@@ -3,10 +3,11 @@ package com.itesm.equipo3.provechito.api
 import com.itesm.equipo3.provechito.api.RequestObjects.*
 import com.itesm.equipo3.provechito.api.ResponseObjects.*
 import com.itesm.equipo3.provechito.models.Category
-import com.itesm.equipo3.provechito.models.Product
 import com.itesm.equipo3.provechito.models.User
 import com.itesm.equipo3.provechito.pojo.Like.Like
 import com.itesm.equipo3.provechito.pojo.Like.LikeListResponse
+import com.itesm.equipo3.provechito.pojo.Products.Product
+import com.itesm.equipo3.provechito.pojo.Products.ProductListResponse
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import retrofit2.Call
@@ -60,10 +61,10 @@ interface ApiService {
     fun getProducts(): Call<ProductListResponse>
 
     @POST("/api/product")
-    fun addProduct(@Body request: ProductRequest): Call<Product>
+    fun addProduct(@Body newProduct: Product): Call<Product>
 
     @PATCH("/api/product/{id}")
-    fun updateProduct(@Path("id") id: String): Call<Product>
+    fun updateProduct(@Path("id") id: String, @Body updateProduct: Product ): Call<Product>
 
     @DELETE("/api/product/{id}")
     fun removeProduct(@Path("id") id: String): Call<DeleteResponse>

@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity.END
 import android.view.LayoutInflater
 import android.view.MenuInflater
@@ -15,29 +16,29 @@ import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.gson.Gson
 import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
-import com.itesm.equipo3.provechito.views.listeners.CustomListeners
+import com.itesm.equipo3.provechito.views.listeners.ShopListener
 import com.itesm.equipo3.provechito.databinding.AddItemBinding
 import com.itesm.equipo3.provechito.databinding.FragmentShopBinding
-import com.itesm.equipo3.provechito.models.ProductCard
-import com.itesm.equipo3.provechito.views.adapters.CustomAdapter
+import com.itesm.equipo3.provechito.interfaces.IProduct
+import com.itesm.equipo3.provechito.pojo.Products.Product
+import com.itesm.equipo3.provechito.pojo.Products.ProductListResponse
 import com.itesm.equipo3.provechito.views.components.slideLinearLayout.CustomViewModel
 import com.itesm.equipo3.provechito.views.adapters.ProductCardAdapter
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
+import com.itesm.equipo3.provechito.presenters.ProductPresenter
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ShopFragment : Fragment(), ClickListener, CustomListeners {
-    private lateinit var arrProducts: ArrayList<ProductCard>
+class ShopFragment : Fragment(), ShopListener, ClickListener, IProduct.View {
     private var _binding: FragmentShopBinding? = null
+    private var _bindingIngredient: AddItemBinding? = null
     private val binding get() = _binding!!
-    private var _bindingIngredient:AddItemBinding? = null
-    private val bindingAddItem get() = _bindingIngredient!!
-    private lateinit var adapter : CustomAdapter
-    private lateinit var itemList : MutableList<CustomViewModel>
-
+    private val productPresenter = ProductPresenter(this)
+    private var productsList = ArrayList<Product>()
 
     companion object {
         private val TAG : String = ShopFragment::class.java.getSimpleName()
@@ -52,12 +53,18 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onStart() {
+        super.onStart()
+    }
 
-    private fun configurarRV() {
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
+
+    private fun setupProductsRV() {
         val layout = GridLayoutManager(requireContext(), 1)
         binding.rvProducts.layoutManager = layout
-        arrProducts = createProductArr()
-        val adapter = ProductCardAdapter(arrProducts)
+        val adapter = ProductCardAdapter(productsList)
         binding.rvProducts.adapter = adapter
         adapter.listener = this
     }
@@ -66,16 +73,6 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
         super.onDestroyView()
         _binding = null
         _bindingIngredient = null
-
-    }
-    private fun createProductArr(): ArrayList<ProductCard> {
-        return arrayListOf(
-                ProductCard("Queso", 1, "Lácteo", "Viernes 16 de abril"),
-                ProductCard("Cilantro", 2, "Verdura", "Viernes 16 de abril"),
-                ProductCard("Ajo", 3, "Verdura", "Viernes 16 de abril"),
-                ProductCard("Jitomate", 4, "Verdura", "Viernes 16 de abril"),
-                ProductCard("Cebolla", 5, "Verdura", "Viernes 16 de abril")
-        )
     }
 
     override fun onCreateView(
@@ -83,9 +80,9 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        context?.let { productPresenter.getProducts(it) }
         _binding = FragmentShopBinding.inflate(layoutInflater, container, false)
         _bindingIngredient = AddItemBinding.inflate(layoutInflater, container, false)
-        configurarRV()
         binding.btnAddItem.setOnClickListener {
             addItem()
         }
@@ -99,52 +96,34 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
 
         val ingredientName = v.findViewById<EditText>(R.id.tvIngredientName)
         val ingredientDescription = v.findViewById<EditText>(R.id.tvIngredientDescription)
-        val date = Calendar.getInstance().time
-        val formatter = SimpleDateFormat("EEEE  d  MMMM")
-        val formatedDate = formatter.format(date)
 
         addDialog.setView(v)
         addDialog.setTitle("Ingrediente")
         addDialog.setPositiveButton("Agregar"){ dialog, _->
-            val name = ingredientName.text.toString()
-            val description = ingredientDescription.text.toString()
-            arrProducts.add(ProductCard(name, arrProducts.lastIndex + 1, description, formatedDate.toString()))
-            val adapter = ProductCardAdapter(arrProducts)
-            binding.rvProducts.adapter = adapter
-            adapter.listener = this
+            val newProduct = Product(ingredientName.text.toString(), ingredientDescription.text.toString())
+            context?.let { productPresenter.addProduct(it, newProduct) }
             Toast.makeText(this.context, "Ingrediente agregado", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
-
         }
         addDialog.setNegativeButton("Cancelar"){ dialog, _ ->
             dialog.dismiss()
-            //Toast.makeText(this.context, "Cancel", Toast.LENGTH_SHORT).show()
-
         }
         addDialog.create()
         addDialog.show()
-
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     override fun ingredientClicked(position: Int) {
-        val ingredient = arrProducts[position]
+        var ingredient = productsList[position]
         val popup = PopupMenu(this.context, binding.rvProducts[position], END)
         val inflater: MenuInflater = popup.menuInflater
         inflater.inflate(R.menu.popup_shopping, popup.menu)
-        val date = Calendar.getInstance().time
-        val formatter = SimpleDateFormat.getDateTimeInstance()
-        val formatedDate = formatter.format(date)
 
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.item_edit -> {
                     val v = LayoutInflater.from(this.context).inflate(R.layout.add_item, null, false)
-                    val name = v.findViewById<EditText>(R.id.tvIngredientName)
-                    val description = v.findViewById<EditText>(R.id.tvIngredientDescription)
+                    var name = v.findViewById<EditText>(R.id.tvIngredientName)
+                    var description = v.findViewById<EditText>(R.id.tvIngredientDescription)
                     name.setText(ingredient.name)
                     description.setText(ingredient.description)
                     AlertDialog.Builder(this.context)
@@ -153,10 +132,7 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
                             .setPositiveButton("Aceptar") { dialog, _ ->
                                 ingredient.name = name.text.toString()
                                 ingredient.description = description.text.toString()
-                                ingredient.dateAdded = formatedDate.toString()
-                                val adapter = ProductCardAdapter(arrProducts)
-                                binding.rvProducts.adapter = adapter
-                                adapter.listener = this
+                                context?.let { productPresenter.updateProduct(it, ingredient) }
                                 Toast.makeText(this.context, "Ingrediente Actualizado", Toast.LENGTH_SHORT).show()
                                 dialog.dismiss()
                             }
@@ -172,10 +148,8 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
                             .setTitle("Borrar")
                             .setMessage("¿Quieres borrar este ingrediente?")
                             .setPositiveButton("Aceptar") { dialog, _ ->
-                                arrProducts.removeAt(position)
-                                val adapter = ProductCardAdapter(arrProducts)
-                                binding.rvProducts.adapter = adapter
-                                adapter.listener = this
+                                context?.let { productPresenter.removeProduct(it, ingredient) }
+                                productsList.removeAt(position)
                                 Toast.makeText(this.context, "Ingrediente eliminado", Toast.LENGTH_SHORT).show()
                                 dialog.dismiss()
                             }
@@ -207,5 +181,23 @@ class ShopFragment : Fragment(), ClickListener, CustomListeners {
 
     override fun onClickRight(item: CustomViewModel, position: Int) {
         println("Pico a la derecha $position")
+    }
+
+    override fun showProducts(productsList: ProductListResponse) {
+        productsList.products?.let {
+            this.productsList.addAll(it)
+            setupProductsRV()
+        }
+    }
+
+    override fun showNewProduct(product: Product) {
+        productsList.add(product)
+        reloadProducts()
+    }
+
+    override fun reloadProducts() {
+        val adapter = ProductCardAdapter(productsList)
+        binding.rvProducts.adapter = adapter
+        adapter.listener = this
     }
 }
