@@ -3,15 +3,21 @@ package com.itesm.equipo3.provechito.views.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentSettingsBinding
+import com.itesm.equipo3.provechito.interfaces.IUser
+import com.itesm.equipo3.provechito.models.IngredientCard
+import com.itesm.equipo3.provechito.models.User
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
+import com.itesm.equipo3.provechito.presenters.UserPresenter
 
 
-class SettingsFragment : Fragment(){
+class SettingsFragment : Fragment() {
     private lateinit var listener: HomeClickListener
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -25,6 +31,18 @@ class SettingsFragment : Fragment(){
         binding.btnAbout.setOnClickListener {
             listener.onAboutClicked()
         }
+
+        val bundle = this.arguments
+        var userData: User? = null
+        if (bundle != null) {
+            userData = bundle.getSerializable("userData") as User
+        }
+
+        userData?.let {
+            binding.etNombre.setText(it.name ?: "Sin nombre")
+            binding.etCorreo.setText(it.email ?: "Sin correo")
+        }
+
         return binding.root
 
     }

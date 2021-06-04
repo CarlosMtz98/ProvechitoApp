@@ -29,7 +29,6 @@ class CategoriesFragment : Fragment(), ICategory.View, ClickListener {
     private val binding get() = _binding!!
     private lateinit var arrCategories: ArrayList<Category>
     private lateinit var listener: HomeClickListener
-    private lateinit var apiClient: ApiClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +38,6 @@ class CategoriesFragment : Fragment(), ICategory.View, ClickListener {
         super.onAttach(context)
         if (context is HomeClickListener) {
             listener = context
-            apiClient = ApiClient()
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")
         }
@@ -52,26 +50,9 @@ class CategoriesFragment : Fragment(), ICategory.View, ClickListener {
         // Inflate the layout for this fragment
         arrCategories = ArrayList()
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
-
-        apiClient.getApiService(this.requireContext()).getCategories()
-                .enqueue(object : Callback<CategoryListResponse> {
-                    override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
-                        // Error fetching posts
-                        //@TODO throw message that it could not fetch the data
-                    }
-
-                    override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
-                        val categoryResponse = response.body()
-                        if (response.isSuccessful && categoryResponse?.categories != null) {
-                            arrCategories = categoryResponse.categories!!
-                        } else {
-                            // @TODO add alert that the request did not work
-                            println("Failed response category: ${response.message()}")
-                        }
-                        setupRVCategories(arrCategories)
-                    }
-
-                })
+        context?.let {
+            categoryPresenter.getCategories(it)
+        }
 
         return binding.root
     }
@@ -111,7 +92,10 @@ class CategoriesFragment : Fragment(), ICategory.View, ClickListener {
     }
 
     override fun showCategories(categoryList: CategoryListResponse) {
-        TODO("Not yet implemented")
+        categoryList.categories?.let {
+            arrCategories.addAll(it)
+            setupRVCategories(arrCategories)
+        }
     }
 
 }

@@ -11,20 +11,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentProfileBinding
+import com.itesm.equipo3.provechito.interfaces.IUser
 import com.itesm.equipo3.provechito.interfaces.IRecipe
+import com.itesm.equipo3.provechito.models.User
 import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
+import com.itesm.equipo3.provechito.presenters.UserPresenter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 
 /*
     Autor: Zoe Caballero
  */
-class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
+class ProfileFragment : Fragment(), IRecipe.View, IUser.View, ClickListener {
     private lateinit var listener: HomeClickListener
     private val presenter = RecipePresenter(this)
+    private val userPresenter = UserPresenter(this)
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private var arrLastRecipesList = ArrayList<Recipe>()
@@ -48,14 +52,11 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
 
         context?.let {
             presenter.getRecipes(it, 2)
-        }
-
-        binding.imgButtonSettings.setOnClickListener {
-            listener.onSettingsClicked()
+            userPresenter.getUserData(it)
         }
 
         binding.imageButton3.setOnClickListener {
-            val recentRecipesFragment = RecentRecipesFragment()
+            RecentRecipesFragment()
             listener.onRecentClicked(arrLastRecipesList)
         }
 
@@ -102,5 +103,15 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
         }
     }
 
+    override fun showProfile(user: User) {
+        if (!user.name.isNullOrEmpty()) {
+            binding.tvProfileName.text = user.name
+        } else if (!user.email.isNullOrEmpty()) {
+            binding.tvProfileName.text = user.email
+        }
+        binding.imgButtonSettings.setOnClickListener {
+            listener.onSettingsClicked(user)
+        }
+    }
 
 }
