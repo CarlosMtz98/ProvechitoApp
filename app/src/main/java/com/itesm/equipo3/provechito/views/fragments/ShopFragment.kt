@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity.END
 import android.view.LayoutInflater
 import android.view.MenuInflater
@@ -16,23 +15,16 @@ import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.gson.Gson
 import com.itesm.equipo3.provechito.R
-import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.ShopListener
 import com.itesm.equipo3.provechito.databinding.AddItemBinding
 import com.itesm.equipo3.provechito.databinding.FragmentShopBinding
 import com.itesm.equipo3.provechito.interfaces.IProduct
 import com.itesm.equipo3.provechito.pojo.Products.Product
 import com.itesm.equipo3.provechito.pojo.Products.ProductListResponse
-import com.itesm.equipo3.provechito.models.ProductCard
-import com.itesm.equipo3.provechito.pojo.Category.Category
-import com.itesm.equipo3.provechito.views.adapters.CustomAdapter
 import com.itesm.equipo3.provechito.views.components.slideLinearLayout.CustomViewModel
 import com.itesm.equipo3.provechito.views.adapters.ProductCardAdapter
-import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.presenters.ProductPresenter
-import java.text.SimpleDateFormat
 import java.util.*
 
 

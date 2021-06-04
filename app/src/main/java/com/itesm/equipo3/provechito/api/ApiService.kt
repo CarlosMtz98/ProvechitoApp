@@ -7,6 +7,7 @@ import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.models.User
 import com.itesm.equipo3.provechito.pojo.Like.Like
 import com.itesm.equipo3.provechito.pojo.Like.LikeListResponse
+import com.itesm.equipo3.provechito.pojo.Like.LikeRequest
 import com.itesm.equipo3.provechito.pojo.Products.Product
 import com.itesm.equipo3.provechito.pojo.Products.ProductListResponse
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
@@ -81,6 +82,9 @@ interface ApiService {
 
     @DELETE("/api/like/{id}")
     fun removeLike(@Path("id") id: String): Call<DeleteResponse>
+
+    @DELETE("/api/like/by/recipe/{id}")
+    fun removeLikeByRecipe(@Path("id") recipeId: String): Call<DeleteResponse>
 
 
     // Profile

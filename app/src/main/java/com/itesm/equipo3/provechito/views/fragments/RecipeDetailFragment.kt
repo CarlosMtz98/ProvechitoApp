@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Chronometer
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,15 +27,17 @@ import com.itesm.equipo3.provechito.interfaces.IRecipe
 import com.itesm.equipo3.provechito.models.IngredientCard
 import com.itesm.equipo3.provechito.models.StepCard
 import com.itesm.equipo3.provechito.pojo.Category.Category
+import com.itesm.equipo3.provechito.pojo.Products.Product
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
+import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 import kotlin.properties.Delegates
 
-class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener {
+class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener, LikeClickListener {
 
     private var _binding: FragmentRecipeDetailBinding? = null
-    private var presenter = RecipePresenter(this)
+    private var recipePresenter = RecipePresenter(this)
     private val binding get() = _binding!!
     private var recommendedRecipesList = ArrayList<Recipe>()
     private var arrIngredients = ArrayList<IngredientCard>()
@@ -70,8 +73,8 @@ class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener {
             arrIngredients = ArrayList<IngredientCard>()
             if (!recipeData.id.isNullOrEmpty()) {
                 context?.let {
-                    presenter.getRecipe(it, recipeData.id!!)
-                    presenter.getRecipes(it, 2)
+                    recipePresenter.getRecipe(it, recipeData.id!!)
+                    recipePresenter.getRecipes(it, 2)
                 }
             } else {
                 // Todo: handle error where there is no id from the previews fragemnt
@@ -218,5 +221,27 @@ class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener {
                 }
             }
         }
+    }
+
+    override fun likeRecipeAdded(recipe: Recipe) {
+        Toast.makeText(this.context, "Receta ${recipe.name} añadida a favoritas", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun removedLike(recipeId: String) {
+        Toast.makeText(this.context, "Receta removida de favoritos", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun recipeProductAdded(product: Product) {
+        Toast.makeText(this.context, "Ingrediente ${product.name} añadido", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun likeOnClick(recipeId: String) {
+        Log.i("LikeClicked", "RecipeId: $recipeId")
+        context?.let { recipePresenter.addLike(it, recipeId) }
+    }
+
+    override fun unlikeOnClick(recipeId: String, index: Int) {
+        Log.i("LikeUnClicked", "RecipeId: $recipeId, Index:")
+        context?.let { recipePresenter.removeLike(it, recipeId) }
     }
 }

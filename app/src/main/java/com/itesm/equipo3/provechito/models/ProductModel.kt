@@ -59,7 +59,6 @@ class ProductModel(val presenter: ProductPresenter) : IProduct.Model {
                 .enqueue(object: Callback<Product> {
                     override fun onFailure(call: Call<Product>, t: Throwable) {
                         Log.e("ProductModel", "AddProduct Failed Response")
-                        presenter.view.reloadProducts()
                     }
 
                     override fun onResponse(call: Call<Product>, response: Response<Product>) {

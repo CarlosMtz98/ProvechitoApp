@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
@@ -20,12 +21,15 @@ import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
 import com.itesm.equipo3.provechito.presenters.UserPresenter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
+import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.views.adapters.StatisticsCardAdapter
+import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 
 /*
     Autor: Zoe Caballero
  */
-class ProfileFragment : Fragment(), IRecipe.View, IUser.View, ClickListener {
+class ProfileFragment : Fragment(), IRecipe.View, LikeClickListener, IUser.View, ClickListener {
     private lateinit var listener: HomeClickListener
     private val presenter = RecipePresenter(this)
     private val userPresenter = UserPresenter(this)
@@ -56,7 +60,7 @@ class ProfileFragment : Fragment(), IRecipe.View, IUser.View, ClickListener {
         }
 
         binding.imageButton3.setOnClickListener {
-            RecentRecipesFragment()
+            val recentRecipesFragment = RecentRecipesFragment()
             listener.onRecentClicked(arrLastRecipesList)
         }
 
@@ -103,6 +107,14 @@ class ProfileFragment : Fragment(), IRecipe.View, IUser.View, ClickListener {
         }
     }
 
+    override fun likeRecipeAdded(recipe: Recipe) {
+        Toast.makeText(this.context, "Receta ${recipe.name} añadida a favoritas", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun removedLike(recipeId: String) {
+        Toast.makeText(this.context, "Receta removida de favoritos", Toast.LENGTH_SHORT).show()
+    }
+
     override fun showProfile(user: User) {
         if (!user.name.isNullOrEmpty()) {
             binding.tvProfileName.text = user.name
@@ -114,4 +126,13 @@ class ProfileFragment : Fragment(), IRecipe.View, IUser.View, ClickListener {
         }
     }
 
+    override fun likeOnClick(recipeId: String) {
+        Log.i("LikeClicked", "RecipeId: $recipeId")
+        context?.let { recipePresenter.addLike(it, recipeId) }
+    }
+
+    override fun unlikeOnClick(recipeId: String, index: Int) {
+        Log.i("LikeUnClicked", "RecipeId: $recipeId, Index:")
+        context?.let { recipePresenter.removeLike(it, recipeId) }
+    }
 }

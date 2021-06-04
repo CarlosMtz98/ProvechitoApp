@@ -15,9 +15,6 @@ import com.like.LikeButton
 
 import com.like.OnLikeListener
 
-
-
-
 class RecipeCardFullAdapter(private val recipeList: ArrayList<Recipe>) : RecyclerView.Adapter<RecipeCardFullAdapter.ViewHolder>() {
     var listener: ClickListener? = null
     var likeListener: LikeClickListener? = null
@@ -29,17 +26,8 @@ class RecipeCardFullAdapter(private val recipeList: ArrayList<Recipe>) : Recycle
             binding.tvRecipeDurationCard.text = cardItem.duration.toString()
             binding.tvPrecio.text = cardItem.price
             binding.tvDificultad.text = cardItem.difficulty
-            if (cardItem.hasUserLike) {
-                binding.starButton.setLiked(true)
-            }
-            binding.starButton.setOnLikeListener(object : OnLikeListener {
-                override fun liked(likeButton: LikeButton) {
-                    likeListener?.likeOnClick(cardItem.id!!)
-                }
-                override fun unLiked(likeButton: LikeButton) {
-                    likeListener?.unlikeOnClick(cardItem.id!!)
-                }
-            })
+            binding.starButton.isLiked = cardItem.hasUserLike
+
             AndroidNetworking.get(cardItem.thumbnailUrl)
                 .build()
                 .getAsBitmap(object : BitmapRequestListener {
@@ -69,16 +57,27 @@ class RecipeCardFullAdapter(private val recipeList: ArrayList<Recipe>) : Recycle
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tarjeta = recipeList[position]
+        val recipe = recipeList[position]
 
-        holder.set(tarjeta)
+        holder.set(recipe)
 
         holder.binding.recipeCardImage.setOnClickListener {
             if (listener != null) {
-                listener!!.recipeClicked(tarjeta)
+                listener!!.recipeClicked(recipe)
             }
         }
+
+        holder.binding.starButton.setOnLikeListener(object : OnLikeListener {
+            override fun liked(likeButton: LikeButton) {
+                if (likeListener != null) {
+                    likeListener!!.likeOnClick(recipeList[position].id!!)
+                }
+            }
+            override fun unLiked(likeButton: LikeButton) {
+                if (likeListener != null) {
+                    likeListener!!.unlikeOnClick(recipeList[position].id!!, position)
+                }
+            }
+        })
     }
-
-
 }
