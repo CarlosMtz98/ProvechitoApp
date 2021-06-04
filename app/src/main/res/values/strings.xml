@@ -45,7 +45,7 @@
     <string name="a01066812_itesm_mx">a01066812@itesm.mx</string>
     <string name="sebasti_n_garc_a_olivares">Sebastián García Olivares</string>
     <string name="aqu_est_todo_lo_que_te_ha_gustado_hasta_ahora">Aquí está todo lo que te ha gustado hasta ahora</string>
-    <string name="likes">Likes</string>
+    <string name="likes">Favoritos</string>
     <string name="inicio">Inicio</string>
     <string name="recomendaciones">Recomendaciones</string>
     <string name="mira_las_recetas_que_tenemos_para_ti">Mira las recetas que tenemos para ti</string>
@@ -107,4 +107,9 @@
     <string name="descripci_n">Descripción</string>
     <string name="precio">Precio</string>
     <string name="dificultad">Dificultad</string>
+    <string name="receta_aleatoria">Receta Aleatoria</string>
+    <string name="recetas">Recetas</string>
+    <string name="ultimas_recetas">Ultimas Recetas</string>
+    <string name="estas_son_las_ltimas_recetas_que_hiciste">Estas son las últimas recetas que hiciste :)</string>
+    <string name="acerca_de">Acerca de</string>
 </resources>

@@ -1,9 +1,18 @@
 package com.itesm.equipo3.provechito.api
 
 import com.itesm.equipo3.provechito.api.RequestObjects.*
-import com.itesm.equipo3.provechito.api.ResponseObjects.DeleteResponse
 import com.itesm.equipo3.provechito.api.ResponseObjects.*
-import com.itesm.equipo3.provechito.models.*
+import com.itesm.equipo3.provechito.pojo.Category.CategoryListResponse
+import com.itesm.equipo3.provechito.pojo.Category.Category
+import com.itesm.equipo3.provechito.models.User
+import com.itesm.equipo3.provechito.pojo.Like.Like
+import com.itesm.equipo3.provechito.pojo.Like.LikeListResponse
+import com.itesm.equipo3.provechito.pojo.Like.LikeRequest
+import com.itesm.equipo3.provechito.pojo.Products.Product
+import com.itesm.equipo3.provechito.pojo.Products.ProductListResponse
+import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
+import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
+import com.itesm.equipo3.provechito.pojo.User.UserRequestResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -35,6 +44,12 @@ interface ApiService {
     @GET("/api/recipe/random")
     fun getRandomRecipe(): Call<Recipe>
 
+    @GET("/api/recipe/by/category/{id}")
+    fun getByCategory(@Path("id") id: String): Call<RecipeListResponse>
+
+    @GET("/api/recipe/search")
+    fun searchRecipes(@Query("recipeName") recipeName: String)
+
 
     // Categories
     @GET("/api/category/")
@@ -49,10 +64,10 @@ interface ApiService {
     fun getProducts(): Call<ProductListResponse>
 
     @POST("/api/product")
-    fun addProduct(@Body request: ProductRequest): Call<Product>
+    fun addProduct(@Body newProduct: Product): Call<Product>
 
     @PATCH("/api/product/{id}")
-    fun updateProduct(@Path("id") id: String): Call<Product>
+    fun updateProduct(@Path("id") id: String, @Body updateProduct: Product ): Call<Product>
 
     @DELETE("/api/product/{id}")
     fun removeProduct(@Path("id") id: String): Call<DeleteResponse>
@@ -60,7 +75,7 @@ interface ApiService {
 
     // Likes
     @GET("/api/like")
-    fun getLikes(): Call<LikesListResponse>
+    fun getLikes(): Call<LikeListResponse>
 
     @POST("/api/like")
     fun addLike(@Body request: LikeRequest): Call<Like>
@@ -68,8 +83,11 @@ interface ApiService {
     @DELETE("/api/like/{id}")
     fun removeLike(@Path("id") id: String): Call<DeleteResponse>
 
+    @DELETE("/api/like/by/recipe/{id}")
+    fun removeLikeByRecipe(@Path("id") recipeId: String): Call<DeleteResponse>
+
 
     // Profile
     @GET("/api/users/me")
-    fun getUserData(): Call<User>
+    fun getUserData(): Call<UserRequestResponse>
 }

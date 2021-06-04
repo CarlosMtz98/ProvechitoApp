@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorOnSecondary"
-    tools:context=".controllers.fragments.SettingsFragment">
+    tools:context=".views.fragments.SettingsFragment">
 
 
     <ScrollView
@@ -36,6 +36,7 @@
                     android:fontFamily="@font/poppins"
                     android:text="@string/ajustes"
                     android:textAppearance="@style/Theme.Provechito"
+                    android:textColor="?attr/colorOnPrimary"
                     android:textSize="30sp" />
 
             </LinearLayout>
@@ -49,10 +50,12 @@
                 android:fontFamily="@font/poppins"
                 android:text="@string/cuenta"
                 android:textAppearance="@style/Theme.Provechito"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="24sp" />
 
             <EditText
 
+                android:id="@+id/etCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -62,10 +65,12 @@
                 android:ems="10"
                 android:fontFamily="@font/poppins_light"
                 android:inputType="textPersonName"
-                android:text="@string/correo" />
+                android:text="@string/correo"
+                android:textColor="?attr/colorOnPrimary" />
 
             <EditText
 
+                android:id="@+id/etNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -73,17 +78,8 @@
                 android:ems="10"
                 android:fontFamily="@font/poppins_light"
                 android:inputType="textPersonName"
-                android:text="@string/nombre" />
-
-            <Button
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:backgroundTint="@color/green"
-                android:fontFamily="@font/poppins_light"
-                android:text="@string/cambiar_contrase_a"
-                android:textColor="@color/mid_white" />
+                android:text="@string/nombre"
+                android:textColor="?attr/colorOnPrimary" />
 
             <View
                 android:layout_width="wrap_content"
@@ -99,23 +95,8 @@
                 android:fontFamily="@font/poppins"
                 android:text="@string/notificaciones"
                 android:textAppearance="@style/Theme.Provechito"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="24sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="16dp"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switch2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
-                    android:text="@string/temporizador"
-                    android:textSize="18sp" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -141,6 +122,7 @@
                 android:background="?android:attr/listDivider" />
 
             <Button
+                android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -156,7 +138,7 @@
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/green"
                 android:fontFamily="@font/poppins_light"
-                android:text="Acerca de "
+                android:text="@string/acerca_de"
                 android:textColor="@color/mid_white" />
 
         </LinearLayout>

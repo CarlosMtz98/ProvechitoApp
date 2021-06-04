@@ -47,9 +47,8 @@
             android:adjustViewBounds="true"
             android:background="@color/mid_grey"
             android:contentDescription="@string/recipe_picture"
-            android:foreground="@drawable/ic_categoryrndoverlay"
-            android:foregroundTint="?attr/colorOnSecondary"
             android:scaleType="centerCrop"
+            android:src="@drawable/ic_categoryrndoverlay"
             tools:targetApi="m" />
 
         <TextView
@@ -78,6 +77,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -118,7 +118,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
-                android:text="@string/precio" />
+                android:text="@string/precio"
+                android:textAppearance="@style/Label" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -135,7 +136,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dificultad" />
+                android:text="@string/dificultad"
+                android:textAppearance="@style/Label" />
 
         </LinearLayout>
 

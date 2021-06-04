@@ -48,7 +48,6 @@
         android:layout_marginBottom="32dp"
         android:contentDescription="@string/onboarding_picture"
         android:cropToPadding="true"
-        android:foreground="@drawable/ic_roundedoverlay"
         android:foregroundTint="?attr/colorOnSecondary"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/intro_title"
