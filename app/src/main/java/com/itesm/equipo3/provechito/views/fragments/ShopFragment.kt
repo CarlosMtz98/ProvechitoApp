@@ -25,6 +25,9 @@ import com.itesm.equipo3.provechito.databinding.FragmentShopBinding
 import com.itesm.equipo3.provechito.interfaces.IProduct
 import com.itesm.equipo3.provechito.pojo.Products.Product
 import com.itesm.equipo3.provechito.pojo.Products.ProductListResponse
+import com.itesm.equipo3.provechito.models.ProductCard
+import com.itesm.equipo3.provechito.pojo.Category.Category
+import com.itesm.equipo3.provechito.views.adapters.CustomAdapter
 import com.itesm.equipo3.provechito.views.components.slideLinearLayout.CustomViewModel
 import com.itesm.equipo3.provechito.views.adapters.ProductCardAdapter
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
@@ -171,8 +174,8 @@ class ShopFragment : Fragment(), ShopListener, ClickListener, IProduct.View {
         println("jajas")
     }
 
-    override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+    override fun categoryClicked(category: Category) {
+        throw NotImplementedError()
     }
 
     override fun onClickLeft(item: CustomViewModel, position: Int) {

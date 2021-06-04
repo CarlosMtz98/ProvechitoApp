@@ -24,7 +24,7 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<Recipe>) : Recycler
             binding.tvRecipeNameCard.text = cardItem.name
             // Todo: regresar primera categoría
             binding.tvRecipeCardCategory.text = cardItem.categories?.firstOrNull()?.name ?: "Sin categoría"
-            binding.tvRecipeDurationCard.text = cardItem.duration.toString()
+            binding.tvRecipeDurationCard.text = "${cardItem.duration} mins"
 
             if (cardItem.hasUserLike) {
                 binding.starButton.setLiked(true)

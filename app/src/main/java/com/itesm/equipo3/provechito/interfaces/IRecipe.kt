@@ -13,6 +13,8 @@ class IRecipe {
     interface Presenter {
         fun getRecipe(context: Context, recipeId: String)
         fun getRecipes(context: Context, type: Int = 0)
+        fun getRandomRecipe(context: Context)
+        fun getByCategories(context: Context, categoryId: String)
         fun addLike(context: Context, recipeId: String)
         fun recipeDetailResponse(recipe: Recipe)
         fun recipesObtained(recipeList: RecipeListResponse, type: Int)
@@ -22,7 +24,9 @@ class IRecipe {
         fun getRecipe(context: Context, recipeId: String)
         fun getRecipes(context: Context)
         fun getRecentRecipes(context: Context)
+        fun getByCategories(context: Context, categoryId: String)
         fun getRecommendedRecipes(context: Context)
+        fun getRandomRecipe(context: Context)
         fun addLike(context: Context, recipeId: String)
     }
 }

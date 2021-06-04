@@ -8,34 +8,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
 import com.itesm.equipo3.provechito.api.ApiClient
-import com.itesm.equipo3.provechito.api.ResponseObjects.CategoryListResponse
 import com.itesm.equipo3.provechito.views.adapters.CategoryCardAdapter
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentHomeBinding
+import com.itesm.equipo3.provechito.interfaces.ICategory
 import com.itesm.equipo3.provechito.interfaces.IRecipe
-import com.itesm.equipo3.provechito.models.CategoryCard
+import com.itesm.equipo3.provechito.pojo.Category.Category
+import com.itesm.equipo3.provechito.pojo.Category.CategoryListResponse
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
+import com.itesm.equipo3.provechito.presenters.CategoryPresenter
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
-class HomeFragment : Fragment(), IRecipe.View, ClickListener {
+class HomeFragment : Fragment(), IRecipe.View, ICategory.View, ClickListener {
     private val recipePresenter: RecipePresenter = RecipePresenter(this)
+    private val categoryPresenter: CategoryPresenter = CategoryPresenter(this)
+
     private var arrRecipeCard = ArrayList<Recipe>()
     private var arrRecentRecipes = ArrayList<Recipe>()
+    private var arrCategoryCard = ArrayList<Category>()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var apiClient: ApiClient
 
     private lateinit var listener: HomeClickListener
-    private lateinit var arrCategoryCard: ArrayList<CategoryCard>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,22 +60,19 @@ class HomeFragment : Fragment(), IRecipe.View, ClickListener {
         context?.let {
             recipePresenter.getRecipes(it, 1)
             recipePresenter.getRecipes(it, 2)
+            categoryPresenter.getCategories(it)
         }
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        getHomeCategory()
 
         binding.btnRecomendations.setOnClickListener {
-            val recommendedRecipesFragment = RecommendedRecipesFragment()
             listener.onRecommendedClicked(arrRecipeCard)
         }
 
         binding.btnRecentRecipes.setOnClickListener {
-            val recentRecipesFragment = RecentRecipesFragment()
             listener.onRecentClicked(arrRecentRecipes)
         }
 
         binding.buttonCategory.setOnClickListener {
-            val categoriesFragment = CategoriesFragment()
             listener.onCategoriesLinkClicked()
         }
 
@@ -109,7 +106,7 @@ class HomeFragment : Fragment(), IRecipe.View, ClickListener {
         recipeCardAdapter.listener = this
     }
 
-    private fun configureCategoryCardRV(arr: ArrayList<CategoryCard>){
+    private fun configureCategoryCardRV(arr: ArrayList<Category>){
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvCategoryCards.layoutManager = layout
@@ -120,38 +117,12 @@ class HomeFragment : Fragment(), IRecipe.View, ClickListener {
         recipeCardAdapter.listener = this
     }
 
-    private fun getHomeCategory() {
-        val results = ArrayList<CategoryCard>()
-        apiClient.getApiService(this.context!!).getCategories()
-            .enqueue(object : Callback<CategoryListResponse> {
-                override fun onFailure(call: Call<CategoryListResponse>, t: Throwable) {
-                    // Error fetching posts
-                    //@TODO throw message that it could not fetch the data
-                }
-
-                override fun onResponse(call: Call<CategoryListResponse>, response: Response<CategoryListResponse>) {
-                    val categoryResponse = response.body()
-                    if (response.isSuccessful && categoryResponse?.categories != null) {
-                        for (category in categoryResponse.categories) {
-                            results.add(CategoryCard(category.name!!, category.thumbnailUrl!!))
-                        }
-                    } else {
-                        // @TODO add alert that the request did not work
-                        println("Failed response category: ${response.message()}")
-                    }
-                    arrCategoryCard = results
-                    configureCategoryCardRV(results)
-                }
-            })
-    }
-
     override fun recipeClicked(recipe: Recipe) {
         listener.onRecipeCardClicked(recipe)
     }
 
-    override fun categoryClicked(position: Int) {
-        val categoryCard = arrCategoryCard[position]
-        listener.onCategoryCardClicked(categoryCard.name)
+    override fun categoryClicked(category: Category) {
+        listener.onCategoryCardClicked(category)
     }
 
     companion object {
@@ -164,22 +135,33 @@ class HomeFragment : Fragment(), IRecipe.View, ClickListener {
         throw NotImplementedError()
     }
 
-    override fun showRecipes(recipeResponseList: RecipeListResponse, type: Int) {
+    override fun showRecipes(recipeList: RecipeListResponse, type: Int) {
         when (type) {
             1 -> {
                 Log.i("Recipe fetch type", "$type")
-                recipeResponseList.recipes?.let {
+                recipeList.recipes?.let {
                     arrRecipeCard.addAll(it)
                     setupRecipeCardRV(arrRecipeCard)
                 }
             }
             2 -> {
                 Log.e("Recipe fetch type", "$type")
-                recipeResponseList.recipes?.let {
+                recipeList.recipes?.let {
                     arrRecentRecipes.addAll(it)
                     setupRecentRecipesRV(arrRecentRecipes)
                 }
             }
+        }
+    }
+
+    override fun showCategory(category: Category) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showCategories(categoryList: CategoryListResponse) {
+        categoryList.categories?.let {
+            arrCategoryCard.addAll(it)
+            configureCategoryCardRV(arrCategoryCard)
         }
     }
 }

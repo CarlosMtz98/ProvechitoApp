@@ -4,5 +4,5 @@ import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 interface ClickListener {
     fun recipeClicked(recipe: Recipe)
-    fun categoryClicked(position: Int)
+    fun categoryClicked(category: Category)
 }

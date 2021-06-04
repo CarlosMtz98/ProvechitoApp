@@ -2,7 +2,8 @@ package com.itesm.equipo3.provechito.api
 
 import com.itesm.equipo3.provechito.api.RequestObjects.*
 import com.itesm.equipo3.provechito.api.ResponseObjects.*
-import com.itesm.equipo3.provechito.models.Category
+import com.itesm.equipo3.provechito.pojo.Category.CategoryListResponse
+import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.models.User
 import com.itesm.equipo3.provechito.pojo.Like.Like
 import com.itesm.equipo3.provechito.pojo.Like.LikeListResponse
@@ -41,7 +42,7 @@ interface ApiService {
     @GET("/api/recipe/random")
     fun getRandomRecipe(): Call<Recipe>
 
-    @GET("/api/recipe/by/category/id")
+    @GET("/api/recipe/by/category/{id}")
     fun getByCategory(@Path("id") id: String): Call<RecipeListResponse>
 
     @GET("/api/recipe/search")

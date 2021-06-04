@@ -9,14 +9,14 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.BitmapRequestListener
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.CategorySectionCardViewBinding
-import com.itesm.equipo3.provechito.models.CategoryCard
+import com.itesm.equipo3.provechito.pojo.Category.Category
 
-class CategorySectionCardAdapter (val arrCatogoryCard: ArrayList<CategoryCard>) : RecyclerView.Adapter<CategorySectionCardAdapter.ViewHolder>() {
+class CategorySectionCardAdapter(val arrCatogoryCard: ArrayList<Category>) : RecyclerView.Adapter<CategorySectionCardAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: CategorySectionCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun set(cardItem: CategoryCard) {
+        fun set(cardItem: Category) {
             binding.tvCategoryName.text = cardItem.name
-            AndroidNetworking.get(cardItem.imgUrl)
+            AndroidNetworking.get(cardItem.thumbnailUrl)
                 .build()
                 .getAsBitmap(object: BitmapRequestListener {
                     override fun onResponse(response: Bitmap?) {
@@ -49,8 +49,7 @@ class CategorySectionCardAdapter (val arrCatogoryCard: ArrayList<CategoryCard>) 
         holder.set(category)
 
         holder.binding.imgCategorySection.setOnClickListener {
-            listener?.categoryClicked(position)
-            println("Hizo click $position")
+            listener?.categoryClicked(category)
         }
     }
 }

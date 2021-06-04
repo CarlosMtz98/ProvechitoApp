@@ -9,14 +9,14 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.BitmapRequestListener
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.CategoryCardViewBinding
-import com.itesm.equipo3.provechito.models.CategoryCard
+import com.itesm.equipo3.provechito.pojo.Category.Category
 
-class CategoryCardAdapter (val arrCatogoryCard: ArrayList<CategoryCard>) : RecyclerView.Adapter<CategoryCardAdapter.ViewHolder>() {
+class CategoryCardAdapter (val arrCatogory: ArrayList<Category>) : RecyclerView.Adapter<CategoryCardAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: CategoryCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun set(cardItem: CategoryCard) {
+        fun set(cardItem: Category) {
             binding.tvCategoryCardName.text = cardItem.name
-            AndroidNetworking.get(cardItem.imgUrl)
+            AndroidNetworking.get(cardItem.thumbnailUrl)
                 .build()
                 .getAsBitmap(object: BitmapRequestListener {
                     override fun onResponse(response: Bitmap?) {
@@ -41,16 +41,15 @@ class CategoryCardAdapter (val arrCatogoryCard: ArrayList<CategoryCard>) : Recyc
     }
 
     override fun getItemCount(): Int {
-        return arrCatogoryCard.size
+        return arrCatogory.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val category = arrCatogoryCard[position]
+        val category = arrCatogory[position]
         holder.set(category)
 
         holder.binding.categoryCardImage.setOnClickListener {
-            listener?.categoryClicked(position)
-            println("Hizo click $position")
+            listener?.categoryClicked(category)
         }
     }
 }

@@ -14,6 +14,15 @@ class RecipePresenter(val view: IRecipe.View) : IRecipe.Presenter {
         recipeModel.getRecipe(context, recipeId)
     }
 
+    override fun getRandomRecipe(context: Context){
+        Log.i("Recipe Presenter",  "Running: Random")
+        recipeModel.getRandomRecipe(context)
+    }
+
+    override fun getByCategories(context: Context, categoryId: String) {
+        recipeModel.getByCategories(context, categoryId)
+    }
+
     override fun getRecipes(context: Context, type: Int) {
         Log.i("Recipe Presenter",  "Running type: $type")
         when (type) {
@@ -33,8 +42,8 @@ class RecipePresenter(val view: IRecipe.View) : IRecipe.Presenter {
         view.showRecipe(recipe)
     }
 
-    override fun recipesObtained(recipeResponseList: RecipeListResponse, type: Int) {
-        view.showRecipes(recipeResponseList, type)
+    override fun recipesObtained(recipeList: RecipeListResponse, type: Int) {
+        view.showRecipes(recipeList, type)
     }
 
     override fun addLike(context: Context, recipeId: String) {

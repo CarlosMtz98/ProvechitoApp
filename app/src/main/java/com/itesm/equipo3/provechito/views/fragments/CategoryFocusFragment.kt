@@ -11,13 +11,21 @@ import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentCategoryFocusBinding
+import com.itesm.equipo3.provechito.interfaces.ICategory
+import com.itesm.equipo3.provechito.interfaces.IRecipe
+import com.itesm.equipo3.provechito.models.IngredientCard
+import com.itesm.equipo3.provechito.models.RecipeModel
+import com.itesm.equipo3.provechito.pojo.Category.Category
+import com.itesm.equipo3.provechito.pojo.Category.CategoryListResponse
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
+import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
+import com.itesm.equipo3.provechito.presenters.RecipePresenter
 
-class CategoryFocusFragment : Fragment(), ClickListener {
-
+class CategoryFocusFragment : Fragment(), IRecipe.View, ClickListener {
+    private val recipePresenter: RecipePresenter = RecipePresenter(this)
     private var _binding: FragmentCategoryFocusBinding? = null
     private val binding get() = _binding!!
-    private lateinit var arrRecipeCard: ArrayList<Recipe>
+    var arrRecipeList = ArrayList<Recipe>()
     private lateinit var listener: HomeClickListener
 
     override fun onCreateView(
@@ -26,9 +34,19 @@ class CategoryFocusFragment : Fragment(), ClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCategoryFocusBinding.inflate(inflater, container, false)
-        val name = arguments!!.getString("NAME")
-        binding.etCategoryName.text = name
-        setupRecipeCardRV()
+        val bundle = this.arguments
+        if (bundle != null) {
+            val categoryData = bundle.getSerializable("categoryData") as Category
+            binding.etCategoryName.text = categoryData.name
+            if (!categoryData.id.isNullOrEmpty()) {
+                context?.let {
+                    recipePresenter.getByCategories(it, categoryData.id!!)
+                }
+            } else {
+                // Todo: handle error where there is no id from the previews fragemnt
+            }
+        }
+
         return binding.root
     }
 
@@ -41,18 +59,14 @@ class CategoryFocusFragment : Fragment(), ClickListener {
         }
     }
 
-    private fun setupRecipeCardRV() {
+    private fun setupRecipeCardRV(arrRecipeList: ArrayList<Recipe>) {
         val layout = GridLayoutManager(requireContext(), 1)
         binding.rvRecetas.layoutManager = layout
-        arrRecipeCard = getHomeRecipe()
-        val adaptador = RecipeCardFullAdapter(arrRecipeCard)
+        val adaptador = RecipeCardFullAdapter(arrRecipeList)
         binding.rvRecetas.adapter = adaptador
         adaptador.listener = this
     }
 
-    private fun getHomeRecipe(): ArrayList<Recipe> {
-        return arrayListOf()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -63,7 +77,18 @@ class CategoryFocusFragment : Fragment(), ClickListener {
         listener.onRecipeCardClicked(tarjeta)
     }
 
-    override fun categoryClicked(position: Int) {
+    override fun categoryClicked(category: Category) {
+        TODO("Not yet implemented")
+    }
 
+    override fun showRecipe(recipe: Recipe) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showRecipes(recipeList: RecipeListResponse, type: Int) {
+        recipeList.recipes?.let {
+            arrRecipeList.addAll(it)
+            setupRecipeCardRV(arrRecipeList)
+        }
     }
 }

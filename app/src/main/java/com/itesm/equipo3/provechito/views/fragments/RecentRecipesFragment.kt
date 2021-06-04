@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecentRecipesBinding
+import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
@@ -39,7 +40,7 @@ class RecentRecipesFragment : Fragment(), ClickListener {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRecentRecipesBinding.inflate(inflater, container, false)
-        arrRecentRecipeCard = arguments!!.getSerializable("arrRecent") as ArrayList<Recipe>
+        arrRecentRecipeCard = requireArguments().getSerializable("arrRecent") as ArrayList<Recipe>
         setupRVRecentRecipes()
         return binding.root
     }
@@ -70,7 +71,7 @@ class RecentRecipesFragment : Fragment(), ClickListener {
         listener.onRecipeCardClicked(tarjeta)
     }
 
-    override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+    override fun categoryClicked(category: Category) {
+        throw NotImplementedError()
     }
 }
