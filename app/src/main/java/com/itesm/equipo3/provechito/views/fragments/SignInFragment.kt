@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.itesm.equipo3.provechito.views.listeners.SignInClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentSignInBinding
@@ -27,7 +28,7 @@ class SignInFragment : Fragment(){
         if (context is SignInClickListener) {
             clickListener = context
         } else {
-            throw ClassCastException(context.toString() + " must implement SignInListener.")
+            throw ClassCastException("$context must implement SignInListener.")
         }
     }
 
@@ -49,9 +50,14 @@ class SignInFragment : Fragment(){
         binding.btnSignIn.setOnClickListener{
             val email: String = binding.editTextTextEmailAddress.text.toString()
             val pass: String = binding.textInputPasswordSignIn.text.toString()
-            if (!email.isNullOrEmpty() && !pass.isNullOrEmpty())
+            if (email.isNotEmpty() && pass.isNotEmpty()) {
                 clickListener.onSignInButtonClicked(email, pass)
-            // @TODO Alert that one of the two inputs is empty
+            } else if (email.isEmpty()){
+                Toast.makeText(context, "Ingresa un email primero", Toast.LENGTH_LONG).show()
+            } else if (pass.isEmpty()) {
+                Toast.makeText(context, "Ingresa tu contraseña", Toast.LENGTH_LONG).show()
+            }
+
         }
 
         binding.btnSignInGoogle.setOnClickListener {

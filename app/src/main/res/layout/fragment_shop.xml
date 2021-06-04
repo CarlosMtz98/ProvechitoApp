@@ -62,7 +62,7 @@
                 android:backgroundTint="?attr/colorOnSecondary"
                 android:contentDescription="@string/add_to_cart"
                 android:src="@drawable/ic_plus_circle"
-                app:tint="@color/yellow" />
+                app:tint="@color/green" />
 
         </LinearLayout>
 
