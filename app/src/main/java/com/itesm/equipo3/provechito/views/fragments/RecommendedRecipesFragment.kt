@@ -11,6 +11,7 @@ import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecommendedRecipesBinding
+import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 
@@ -62,7 +63,7 @@ class RecommendedRecipesFragment : Fragment(), ClickListener {
         listener.onRecipeCardClicked(tarjeta)
     }
 
-    override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+    override fun categoryClicked(category: Category) {
+        throw NotImplementedError()
     }
 }

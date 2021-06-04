@@ -25,6 +25,7 @@ import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
 import com.itesm.equipo3.provechito.interfaces.IRecipe
 import com.itesm.equipo3.provechito.models.IngredientCard
 import com.itesm.equipo3.provechito.models.StepCard
+import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
@@ -199,8 +200,8 @@ class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener {
         listener.onRecipeCardClicked(tarjeta)
     }
 
-    override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+    override fun categoryClicked(category: Category) {
+        throw NotImplementedError()
     }
 
     override fun showRecipe(recipe: Recipe) {

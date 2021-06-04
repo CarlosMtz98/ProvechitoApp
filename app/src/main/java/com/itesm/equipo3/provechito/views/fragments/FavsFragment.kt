@@ -12,6 +12,7 @@ import com.itesm.equipo3.provechito.api.ResponseObjects.DeleteResponse
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentFavsBinding
 import com.itesm.equipo3.provechito.interfaces.ILike
+import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Like.Like
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
@@ -77,8 +78,8 @@ class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
         listener.onRecipeCardClicked(recipe)
     }
 
-    override fun categoryClicked(position: Int) {
-        println("Clicked $position")
+    override fun categoryClicked(category: Category) {
+        throw NotImplementedError()
     }
 
     override fun likeOnClick(recipeId: String) {
@@ -87,7 +88,7 @@ class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
 
     override fun unlikeOnClick(recipeId: String) {
         println("Clicked unlike")
-        apiClient.getApiService(this.context!!).removeLike(recipeId)
+        apiClient.getApiService(this.requireContext()).removeLike(recipeId)
                 .enqueue(object : Callback<DeleteResponse> {
                     override fun onFailure(call: Call<DeleteResponse>, t: Throwable) {
                         // Error fetching posts

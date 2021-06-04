@@ -29,7 +29,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:background="@drawable/round_corner_toggle"
@@ -42,7 +42,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/round_corner_toggle"
                         android:backgroundTint="@color/white"
-                        android:hint="Search"
+                        android:hint="@string/search"
                         android:paddingLeft="10dp"
                         android:paddingTop="8dp"
                         android:paddingRight="10dp"
@@ -52,19 +52,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="#00FFFFFF"
-                    android:src="@drawable/ic_vector"
-                    android:tint="?attr/colorOnPrimary" />
             </LinearLayout>
 
             <Space
@@ -72,13 +59,13 @@
                 android:layout_height="20dp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnRandomRecipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/round_corner_toggle"
-                android:text="Receta Aleatoria"
+                android:text="@string/receta_aleatoria"
                 android:theme="@style/Theme.Provechito"
                 app:backgroundTint="@color/yellow" />
 
@@ -99,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Categories"
+                    android:text="@string/categor_as"
                     android:textAppearance="@style/H2"
                     android:textColor="?attr/colorOnPrimary" />
 

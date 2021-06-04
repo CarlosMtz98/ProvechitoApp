@@ -10,4 +10,5 @@ class RecipeListResponse {
     var totalPages: Int = 0
     @SerializedName("currentPage")
     var currentPage: Int = 0
+    var total: Int = 0
 }
