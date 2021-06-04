@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="?attr/colorOnSecondary"
-    android:paddingTop="20dp"
     tools:context=".views.fragments.ShopFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +31,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -51,63 +53,76 @@
 
             </LinearLayout>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <ImageButton
                 android:id="@+id/btnAddItem"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:contentDescription="@string/plus_button"
-                android:elevation="0dp"
-                android:focusable="true"
-                android:src="@android:drawable/ic_input_add"
-                app:backgroundTint="@color/blue"
-                app:elevation="0dp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/ic_categoryrndoverlay"
+                android:backgroundTint="?attr/colorOnSecondary"
+                android:contentDescription="@string/add_to_cart"
+                android:src="@drawable/ic_plus_circle"
+                app:tint="@color/yellow" />
 
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="center|center_horizontal"
+            android:gravity="start"
+            android:shadowColor="#000000"
+            android:shadowDx="1.2"
+            android:shadowDy="1.2"
+            android:shadowRadius="1.5"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_corner_toggle"
+                android:backgroundTint="@color/white"
+                android:hint="@string/buscar"
+                android:textAppearance="@style/BodyText"
+                android:textColor="?attr/colorOnPrimary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProducts"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_gravity="center|center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="start"
-                android:shadowColor="#000000"
-                android:shadowDx="1.2"
-                android:shadowDy="1.2"
-                android:shadowRadius="1.5"
-                app:hintEnabled="false">
+                android:layout_height="wrap_content"
+                tools:itemCount="13"
+                tools:listitem="@layout/product_item_view">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvSearch"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/round_corner_toggle"
-                    android:backgroundTint="@color/white"
-                    android:hint="@string/buscar"
-                    android:textAppearance="@style/BodyText"
-                    android:textColor="?attr/colorOnPrimary" />
-            </com.google.android.material.textfield.TextInputLayout>
-
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
+    </ScrollView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvProducts"
-            android:layout_width="match_parent"
-            android:layout_height="543dp"
-            tools:itemCount="13"
-            tools:listitem="@layout/product_item_view">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </LinearLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
