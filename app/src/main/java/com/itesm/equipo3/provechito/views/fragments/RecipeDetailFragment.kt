@@ -194,6 +194,7 @@ class RecipeDetailFragment : Fragment(), IRecipe.View, ClickListener, LikeClickL
         val recommendedRecipeAdapter = RecipeCardAdapter(recipeList)
         binding.rvSimilares.adapter = recommendedRecipeAdapter
         recommendedRecipeAdapter.listener = this
+        recommendedRecipeAdapter.likeListener = this
     }
 
     override fun onDestroyView() {
