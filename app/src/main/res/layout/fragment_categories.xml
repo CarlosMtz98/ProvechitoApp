@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorOnSecondary"
     android:paddingTop="20dp"
-    tools:context=".controllers.fragments.CategoriesFragment">
+    tools:context=".views.fragments.CategoriesFragment">
 
     <LinearLayout
         android:layout_width="0dp"

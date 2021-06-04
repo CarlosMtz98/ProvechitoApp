@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorOnSecondary"
-    tools:context=".controllers.fragments.RecipeDetailFragment">
+    tools:context=".views.fragments.RecipeDetailFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/tvBgImg"
+            android:id="@+id/recipeHeaderImageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginLeft="-20dp"
@@ -31,7 +31,7 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/tvRecipe"
+            android:id="@+id/recipeTitleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -42,7 +42,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/btnCategory"
+            android:id="@+id/categoryBtn"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

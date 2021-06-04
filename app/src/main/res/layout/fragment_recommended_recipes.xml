@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorOnSecondary"
     android:paddingTop="20dp"
-    tools:context=".controllers.fragments.RecommendedRecipesFragment">
+    tools:context=".views.fragments.RecommendedRecipesFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
