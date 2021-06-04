@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.api.ApiClient
@@ -18,13 +19,15 @@ import com.itesm.equipo3.provechito.interfaces.ICategory
 import com.itesm.equipo3.provechito.interfaces.IRecipe
 import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Category.CategoryListResponse
+import com.itesm.equipo3.provechito.pojo.Products.Product
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.CategoryPresenter
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
+import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 
 
-class HomeFragment : Fragment(), IRecipe.View, ICategory.View, ClickListener {
+class HomeFragment : Fragment(), IRecipe.View, ICategory.View, ClickListener, LikeClickListener {
     private val recipePresenter: RecipePresenter = RecipePresenter(this)
     private val categoryPresenter: CategoryPresenter = CategoryPresenter(this)
 
@@ -87,23 +90,23 @@ class HomeFragment : Fragment(), IRecipe.View, ICategory.View, ClickListener {
     private fun setupRecipeCardRV(arr: ArrayList<Recipe>) {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
-
         binding.rvRecipieCards.layoutManager = layout
+
         val recipeCardAdapter = RecipeCardAdapter(arr)
         binding.rvRecipieCards.adapter = recipeCardAdapter
-
         recipeCardAdapter.listener = this
+        recipeCardAdapter.likeListener = this
     }
 
     private fun setupRecentRecipesRV(arr: ArrayList<Recipe>) {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
-
         binding.rvRecentRecipies.layoutManager = layout
+
         val recipeCardAdapter = RecipeCardAdapter(arr)
         binding.rvRecentRecipies.adapter = recipeCardAdapter
-
         recipeCardAdapter.listener = this
+        recipeCardAdapter.likeListener = this
     }
 
     private fun configureCategoryCardRV(arr: ArrayList<Category>){
@@ -113,7 +116,6 @@ class HomeFragment : Fragment(), IRecipe.View, ICategory.View, ClickListener {
 
         val recipeCardAdapter = CategoryCardAdapter(arr)
         binding.rvCategoryCards.adapter = recipeCardAdapter
-
         recipeCardAdapter.listener = this
     }
 
@@ -154,8 +156,26 @@ class HomeFragment : Fragment(), IRecipe.View, ICategory.View, ClickListener {
         }
     }
 
+    override fun likeRecipeAdded(recipe: Recipe) {
+        Toast.makeText(this.context, "Receta ${recipe.name} añadida a favoritas", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun removedLike(recipeId: String) {
+        Toast.makeText(this.context, "Receta removida de favoritos", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun likeOnClick(recipeId: String) {
+        Log.i("LikeClicked", "RecipeId: $recipeId")
+        context?.let { recipePresenter.addLike(it, recipeId) }
+    }
+
+    override fun unlikeOnClick(recipeId: String, index: Int) {
+        Log.i("LikeUnClicked", "RecipeId: $recipeId, Index:")
+        context?.let { recipePresenter.removeLike(it, recipeId) }
+    }
+
     override fun showCategory(category: Category) {
-        TODO("Not yet implemented")
+        // TODO("Not yet implemented")
     }
 
     override fun showCategories(categoryList: CategoryListResponse) {

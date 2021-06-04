@@ -22,26 +22,11 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<Recipe>) : Recycler
     inner class ViewHolder(val binding: RecipeCardViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun set(cardItem: Recipe) {
             binding.tvRecipeNameCard.text = cardItem.name
-            // Todo: regresar primera categoría
             binding.tvRecipeCardCategory.text = cardItem.categories?.firstOrNull()?.name ?: "Sin categoría"
             binding.tvRecipeDurationCard.text = "${cardItem.duration} mins"
 
-            if (cardItem.hasUserLike) {
-                binding.starButton.setLiked(true)
-            }
+            binding.starButton.isLiked = cardItem.hasUserLike
 
-            binding.starButton.setOnLikeListener(object : OnLikeListener {
-                override fun liked(likeButton: LikeButton) {
-                    if (likeListener != null) {
-                        likeListener!!.likeOnClick(cardItem.id!!)
-                    }
-                }
-                override fun unLiked(likeButton: LikeButton) {
-                    if (likeListener != null) {
-                        likeListener!!.unlikeOnClick(cardItem.id!!)
-                    }
-                }
-            })
             AndroidNetworking.get(cardItem.thumbnailUrl)
                 .build()
                 .getAsBitmap(object : BitmapRequestListener {
@@ -78,5 +63,18 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<Recipe>) : Recycler
                 listener?.recipeClicked(recipeCard)
             }
         }
+
+        holder.binding.starButton.setOnLikeListener(object : OnLikeListener {
+            override fun liked(likeButton: LikeButton) {
+                if (likeListener != null) {
+                    likeListener!!.likeOnClick(arrRecipeCard[position].id!!)
+                }
+            }
+            override fun unLiked(likeButton: LikeButton) {
+                if (likeListener != null) {
+                    likeListener!!.unlikeOnClick(arrRecipeCard[position].id!!, position)
+                }
+            }
+        })
     }
 }

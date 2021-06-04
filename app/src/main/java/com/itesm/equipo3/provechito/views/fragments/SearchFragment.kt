@@ -2,12 +2,15 @@ package com.itesm.equipo3.provechito.views.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputLayout
@@ -20,6 +23,9 @@ import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
+import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
+import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
+import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardSearchAdapter
 
 
@@ -121,5 +127,13 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener {
             configureRV(arrRecipes)
         }
 
+    }
+
+    override fun likeRecipeAdded(recipe: Recipe) {
+        Toast.makeText(this.context, "Receta ${recipe.name} añadida a favoritas", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun removedLike(recipeId: String) {
+        Toast.makeText(this.context, "Receta removida de favoritos", Toast.LENGTH_SHORT).show()
     }
 }

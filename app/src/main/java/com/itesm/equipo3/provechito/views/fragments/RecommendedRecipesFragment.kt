@@ -17,8 +17,6 @@ import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 class RecommendedRecipesFragment : Fragment(), ClickListener {
     private lateinit var listener: HomeClickListener
-
-
     private var _binding: FragmentRecommendedRecipesBinding? = null
     private val binding get() = _binding!!
     private lateinit var arrRecommendedRecipes: ArrayList<Recipe>

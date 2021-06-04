@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.itesm.equipo3.provechito.interfaces.IRecipe
 import com.itesm.equipo3.provechito.models.RecipeModel
+import com.itesm.equipo3.provechito.pojo.Products.Product
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 
@@ -47,6 +48,26 @@ class RecipePresenter(val view: IRecipe.View) : IRecipe.Presenter {
     }
 
     override fun addLike(context: Context, recipeId: String) {
-        TODO("Not yet implemented")
+        recipeModel.addLike(context, recipeId)
+    }
+
+    override fun likeAdded(recipe: Recipe) {
+        view.likeRecipeAdded(recipe)
+    }
+
+    override fun addProduct(context: Context, product: Product) {
+        recipeModel.addProduct(context, product)
+    }
+
+    override fun productAdded(product: Product) {
+        view.recipeProductAdded(product)
+    }
+
+    override fun removeLike(context: Context, recipeId: String) {
+        recipeModel.removeLike(context, recipeId)
+    }
+
+    override fun likeRemoved(recipeId: String) {
+        view.removedLike(recipeId)
     }
 }

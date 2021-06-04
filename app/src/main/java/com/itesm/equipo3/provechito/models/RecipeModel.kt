@@ -4,7 +4,11 @@ import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.itesm.equipo3.provechito.api.ApiClient
+import com.itesm.equipo3.provechito.api.ResponseObjects.DeleteResponse
 import com.itesm.equipo3.provechito.interfaces.IRecipe
+import com.itesm.equipo3.provechito.pojo.Like.Like
+import com.itesm.equipo3.provechito.pojo.Like.LikeRequest
+import com.itesm.equipo3.provechito.pojo.Products.Product
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
@@ -129,6 +133,62 @@ class RecipeModel(val presenter: RecipePresenter) : IRecipe.Model {
     }
 
     override fun addLike(context: Context, recipeId: String) {
+        apiClient.getApiService(context).addLike(LikeRequest(recipeId))
+                .enqueue(object : Callback<Like> {
+                    override fun onFailure(call: Call<Like>, t: Throwable) {
+                        Log.e("RecipeModel", "AddLike response failed STATUS: ${t.message}")
+                    }
 
+                    override fun onResponse(call: Call<Like>, response: Response<Like>) {
+                        val serviceResponse = response.body()
+                        if (response.isSuccessful && serviceResponse != null) {
+                            Log.i("RecipeModel", "AddLike response Success")
+                            serviceResponse.recipe?.let { presenter.likeAdded(it) }
+                        } else {
+                            Log.e("RecipeModel", "AddLike response failed STATUS: ${response.isSuccessful}")
+                        }
+                    }
+                })
+    }
+
+    override fun addProduct(context: Context, product: Product) {
+        apiClient.getApiService(context).addProduct(product)
+                .enqueue(object: Callback<Product> {
+                    override fun onFailure(call: Call<Product>, t: Throwable) {
+                        Log.e("RecipeModel", "AddProduct Failed Response")
+                    }
+
+                    override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                        val serviceResponse = response.body()
+                        if (response.isSuccessful) {
+                            Log.i("RecipeModel", "AddProduct Success Response")
+                            if (serviceResponse != null) {
+                                presenter.view.recipeProductAdded(serviceResponse)
+                            }
+                        } else {
+                            Log.e("RecipeModel", "AddProduct Failed Response")
+                        }
+                    }
+
+                })
+    }
+
+    override fun removeLike(context: Context, recipeId: String) {
+            apiClient.getApiService(context).removeLikeByRecipe(recipeId)
+                    .enqueue(object : Callback<DeleteResponse> {
+                        override fun onFailure(call: Call<DeleteResponse>, t: Throwable) {
+                            Log.e("LikeModel", "RemoveLike response failed STATUS: ${t.message}")
+                        }
+
+                        override fun onResponse(call: Call<DeleteResponse>, response: Response<DeleteResponse>) {
+                            val serviceResponse = response.body()
+                            if (response.isSuccessful) {
+                                Log.i("LikeModel", "RemoveLike response Success")
+                                presenter.view.removedLike(recipeId)
+                            } else {
+                                Log.e("LikeModel", "RemoveLike response failed STATUS: ${response.isSuccessful}")
+                            }
+                        }
+                    })
     }
 }
