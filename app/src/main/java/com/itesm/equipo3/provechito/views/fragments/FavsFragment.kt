@@ -78,7 +78,7 @@ class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
             likeRecipeAdapter.likeListener = this
         } else {
             val products = ArrayList<StatisticsCard>()
-            products.add(StatisticsCard("No likes :(", "Go like some things and come back"))
+            products.add(StatisticsCard("No hay likes :(", "Ve a dar corazones y vuelve aquí"))
             binding.rvFavsRecipeCard.adapter = StatisticsCardAdapter(products)
         }
     }
