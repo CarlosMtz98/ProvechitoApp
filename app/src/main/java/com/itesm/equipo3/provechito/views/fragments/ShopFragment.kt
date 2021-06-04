@@ -36,7 +36,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ShopFragment : Fragment(), ShopListener, ClickListener, IProduct.View {
+class ShopFragment : Fragment(), ShopListener, IProduct.View {
     private var _binding: FragmentShopBinding? = null
     private var _bindingIngredient: AddItemBinding? = null
     private val binding get() = _binding!!
@@ -168,14 +168,6 @@ class ShopFragment : Fragment(), ShopListener, ClickListener, IProduct.View {
         }
 
         popup.show()
-    }
-
-    override fun recipeClicked(tarjeta: Recipe) {
-        println("jajas")
-    }
-
-    override fun categoryClicked(category: Category) {
-        throw NotImplementedError()
     }
 
     override fun onClickLeft(item: CustomViewModel, position: Int) {
