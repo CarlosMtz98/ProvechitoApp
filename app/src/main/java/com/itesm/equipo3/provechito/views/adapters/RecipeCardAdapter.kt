@@ -25,7 +25,7 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<Recipe>) : Recycler
             binding.tvRecipeCardCategory.text = cardItem.categories?.firstOrNull()?.name ?: "Sin categoría"
             binding.tvRecipeDurationCard.text = "${cardItem.duration} mins"
 
-            if (cardItem.hasUserLike) { binding.starButton.isLiked = true }
+            binding.starButton.isLiked = cardItem.hasUserLike
 
             AndroidNetworking.get(cardItem.thumbnailUrl)
                 .build()

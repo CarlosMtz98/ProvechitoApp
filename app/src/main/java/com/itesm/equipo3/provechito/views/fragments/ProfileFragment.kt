@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
@@ -20,13 +21,14 @@ import com.itesm.equipo3.provechito.presenters.RecipePresenter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.views.adapters.StatisticsCardAdapter
+import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 
 /*
     Autor: Zoe Caballero
  */
-class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
+class ProfileFragment : Fragment(), IRecipe.View, ClickListener, LikeClickListener {
     private lateinit var listener: HomeClickListener
-    private val presenter = RecipePresenter(this)
+    private val recipePresenter = RecipePresenter(this)
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private var arrStatisticsCard = ArrayList<StatisticsCard>()
@@ -50,7 +52,7 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         context?.let {
-            presenter.getRecipes(it, 2)
+            recipePresenter.getRecipes(it, 2)
         }
 
         configureStatisticsRV()
@@ -125,5 +127,21 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
         }
     }
 
+    override fun likeRecipeAdded(recipe: Recipe) {
+        Toast.makeText(this.context, "Receta ${recipe.name} añadida a favoritas", Toast.LENGTH_SHORT).show()
+    }
 
+    override fun removedLike(recipeId: String) {
+        Toast.makeText(this.context, "Receta removida de favoritos", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun likeOnClick(recipeId: String) {
+        Log.i("LikeClicked", "RecipeId: $recipeId")
+        context?.let { recipePresenter.addLike(it, recipeId) }
+    }
+
+    override fun unlikeOnClick(recipeId: String, index: Int) {
+        Log.i("LikeUnClicked", "RecipeId: $recipeId, Index:")
+        context?.let { recipePresenter.removeLike(it, recipeId) }
+    }
 }

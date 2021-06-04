@@ -2,10 +2,12 @@ package com.itesm.equipo3.provechito.views.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itesm.equipo3.provechito.api.ApiClient
@@ -23,6 +25,7 @@ import com.itesm.equipo3.provechito.presenters.CategoryPresenter
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
+import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 
 
 class SearchFragment : Fragment(), IRecipe.View, ClickListener {
@@ -95,5 +98,13 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener {
             configureRV(arrRecipes)
         }
 
+    }
+
+    override fun likeRecipeAdded(recipe: Recipe) {
+        Toast.makeText(this.context, "Receta ${recipe.name} añadida a favoritas", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun removedLike(recipeId: String) {
+        Toast.makeText(this.context, "Receta removida de favoritos", Toast.LENGTH_SHORT).show()
     }
 }

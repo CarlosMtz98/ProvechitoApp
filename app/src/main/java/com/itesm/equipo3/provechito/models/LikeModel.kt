@@ -32,20 +32,19 @@ class LikeModel(val presenter: ILike.Presenter) : ILike.Model{
     }
 
     override fun addLike(context: Context, recipeId: String) {
-
         apiClient.getApiService(context).addLike(LikeRequest(recipeId))
                 .enqueue(object : Callback<Like> {
                     override fun onFailure(call: Call<Like>, t: Throwable) {
-                        Log.e("LikeModel", "RemoveLike response failed STATUS: ${t.message}")
+                        Log.e("LikeModel", "AddLike response failed STATUS: ${t.message}")
                     }
 
                     override fun onResponse(call: Call<Like>, response: Response<Like>) {
                         val serviceResponse = response.body()
                         if (response.isSuccessful && serviceResponse != null) {
-                            Log.i("LikeModel", "RemoveLike response Success")
+                            Log.i("LikeModel", "AddLike response Success")
                             serviceResponse.recipe?.let { presenter.likeAdded(it) }
                         } else {
-                            Log.e("LikeModel", "RemoveLike response failed STATUS: ${response.isSuccessful}")
+                            Log.e("LikeModel", "AddLike response failed STATUS: ${response.isSuccessful}")
                         }
                     }
                 })

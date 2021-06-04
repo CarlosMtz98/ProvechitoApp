@@ -26,9 +26,7 @@ class RecipeCardFullAdapter(private val recipeList: ArrayList<Recipe>) : Recycle
             binding.tvRecipeDurationCard.text = cardItem.duration.toString()
             binding.tvPrecio.text = cardItem.price
             binding.tvDificultad.text = cardItem.difficulty
-            if (cardItem.hasUserLike) {
-                binding.starButton.isLiked = true
-            }
+            binding.starButton.isLiked = cardItem.hasUserLike
 
             AndroidNetworking.get(cardItem.thumbnailUrl)
                 .build()

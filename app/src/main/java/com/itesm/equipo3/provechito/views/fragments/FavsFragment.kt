@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.itesm.equipo3.provechito.api.ApiClient
 import com.itesm.equipo3.provechito.api.ResponseObjects.DeleteResponse
@@ -61,12 +62,9 @@ class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
     private fun setupLikesRV(recipeCardList: ArrayList<Recipe>) {
         val gridLayout = GridLayoutManager(requireContext(), 1)
         gridLayout.orientation = GridLayoutManager.VERTICAL
-
         binding.rvFavsRecipeCard.layoutManager = gridLayout
 
-        recipeCardList.forEach {
-            it.hasUserLike = true
-        }
+        recipeCardList.forEach { it.hasUserLike = true }
 
         val likeRecipeAdapter = RecipeCardFullAdapter(recipeCardList)
         binding.rvFavsRecipeCard.adapter = likeRecipeAdapter
@@ -98,6 +96,7 @@ class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
 
     override fun removeLike(index: Int) {
         arrRecipeCard.removeAt(index)
+        Toast.makeText(this.context, "Se eliminó el like de tú lista de favoritos", Toast.LENGTH_LONG).show()
         reloadLikesList()
     }
 
