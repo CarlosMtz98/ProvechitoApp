@@ -12,14 +12,12 @@ import com.google.gson.Gson
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentProfileBinding
 import com.itesm.equipo3.provechito.interfaces.IRecipe
-import com.itesm.equipo3.provechito.models.StatisticsCard
 import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
-import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
-import com.itesm.equipo3.provechito.views.adapters.StatisticsCardAdapter
+import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 
 /*
     Autor: Zoe Caballero
@@ -29,7 +27,6 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
     private val presenter = RecipePresenter(this)
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private var arrStatisticsCard = ArrayList<StatisticsCard>()
     private var arrLastRecipesList = ArrayList<Recipe>()
 
 
@@ -53,7 +50,6 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
             presenter.getRecipes(it, 2)
         }
 
-        configureStatisticsRV()
         binding.imgButtonSettings.setOnClickListener {
             listener.onSettingsClicked()
         }
@@ -76,33 +72,14 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvLastRecipesCards.layoutManager = layout
 
-        val recipeAdapter = RecipeCardAdapter(recipeList)
+        val recipeAdapter = RecipeCardFullAdapter(recipeList)
         binding.rvLastRecipesCards.adapter = recipeAdapter
 
         recipeAdapter.listener = this
     }
 
-    private fun configureStatisticsRV() {
-        val layout = LinearLayoutManager(requireContext())
-        layout.orientation = LinearLayoutManager.HORIZONTAL
-        binding.rvStatisticsCards.layoutManager = layout
-
-        arrStatisticsCard = getProfileStatistics()
-        val statisticsAdapter = StatisticsCardAdapter(arrStatisticsCard)
-        binding.rvStatisticsCards.adapter = statisticsAdapter
-
-        statisticsAdapter.listener = this
-    }
-
-    private fun getProfileStatistics(): ArrayList<StatisticsCard>{
-        return arrayListOf(
-            StatisticsCard("Recetas Realizadas", "10"),
-            StatisticsCard("Recetas Dominadas", "10")
-        )
-    }
-
-    override fun recipeClicked(tarjeta: Recipe) {
-        listener.onRecipeCardClicked(tarjeta)
+    override fun recipeClicked(recipe: Recipe) {
+        listener.onRecipeCardClicked(recipe)
     }
 
     override fun categoryClicked(category: Category) {
@@ -113,11 +90,11 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
         throw NotImplementedError()
     }
 
-    override fun showRecipes(recipeResponseList: RecipeListResponse, type: Int) {
-        Log.i("recipes list", " ${Gson().toJson(recipeResponseList)}")
+    override fun showRecipes(recipeList: RecipeListResponse, type: Int) {
+        Log.i("recipes list", " ${Gson().toJson(recipeList)}")
         when (type) {
             2 -> {
-                recipeResponseList.recipes?.let {
+                recipeList.recipes?.let {
                     arrLastRecipesList.addAll(it)
                     configureLastRecipesRV(arrLastRecipesList)
                 }
