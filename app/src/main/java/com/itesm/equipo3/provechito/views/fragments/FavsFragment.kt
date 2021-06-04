@@ -19,6 +19,7 @@ import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.presenters.LikePresenter
+import com.itesm.equipo3.provechito.views.adapters.ProductCardAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -86,29 +87,29 @@ class FavsFragment : Fragment(), ClickListener, LikeClickListener, ILike.View {
         println("Clicked like")
     }
 
-    override fun unlikeOnClick(recipeId: String) {
-        println("Clicked unlike")
-        apiClient.getApiService(this.requireContext()).removeLike(recipeId)
-                .enqueue(object : Callback<DeleteResponse> {
-                    override fun onFailure(call: Call<DeleteResponse>, t: Throwable) {
-                        // Error fetching posts
-                        //@TODO throw message that it could not fetch the data
-                    }
-
-                    override fun onResponse(call: Call<DeleteResponse>, response: Response<DeleteResponse>) {
-                        val serviceResponse = response.body()
-                        if (response.isSuccessful) {
-                            println(serviceResponse)
-                        } else {
-                            // @TODO add alert that the request did not work
-                            println("Failed response category: ${response.message()}")
-                        }
-
-                    }
-                })
+    override fun unlikeOnClick(recipeId: String, index: Int) {
+        context?.let { likePresenter.removeLike(it, recipeId, index) }
     }
 
     override fun showLikes(likedRecipes: ArrayList<Recipe>) {
-        setupLikesRV(likedRecipes)
+        arrRecipeCard.addAll(likedRecipes)
+        setupLikesRV(arrRecipeCard)
+    }
+
+    override fun removeLike(index: Int) {
+        arrRecipeCard.removeAt(index)
+        reloadLikesList()
+    }
+
+    override fun likeAdded(recipe: Recipe) {
+        arrRecipeCard.add(recipe)
+        reloadLikesList()
+    }
+
+
+    override fun reloadLikesList() {
+        val adapter = RecipeCardFullAdapter(arrRecipeCard)
+        binding.rvFavsRecipeCard.adapter = adapter
+        adapter.listener = this
     }
 }
