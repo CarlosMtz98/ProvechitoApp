@@ -23,6 +23,7 @@ import com.itesm.equipo3.provechito.presenters.CategoryPresenter
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
+import com.itesm.equipo3.provechito.views.adapters.RecipeCardSearchAdapter
 
 
 class SearchFragment : Fragment(), IRecipe.View, ClickListener {
@@ -71,7 +72,7 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener {
         val layout = LinearLayoutManager(requireContext())
         binding.rvCategoryCardsSearch.layoutManager = layout
 
-        val adaptador = RecipeCardFullAdapter(recipeList)
+        val adaptador = RecipeCardSearchAdapter(recipeList)
         binding.rvCategoryCardsSearch.adapter = adaptador
 
         adaptador.listener = this
