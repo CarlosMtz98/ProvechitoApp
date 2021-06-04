@@ -32,9 +32,10 @@ import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
 import com.itesm.equipo3.provechito.views.listeners.LikeClickListener
+import com.itesm.equipo3.provechito.views.listeners.RecipeDetailsClickListener
 import kotlin.properties.Delegates
 
-class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener, LikeClickListener {
+class RecipeDetailFragment : Fragment(), IRecipe.View, ClickListener, LikeClickListener, RecipeDetailsClickListener {
 
     private var _binding: FragmentRecipeDetailBinding? = null
     private var recipePresenter = RecipePresenter(this)
@@ -173,6 +174,7 @@ class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener, LikeClick
         val ingredientCardAdapter = IngredientCardAdapter(recipeCardList)
         binding.rvIngredientsRecipe.adapter = ingredientCardAdapter
         ingredientCardAdapter.listener = this
+        ingredientCardAdapter.ingredientsListener = this
     }
 
     private fun setupStepRV(stepCardList: ArrayList<StepCard>) {
@@ -243,5 +245,10 @@ class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener, LikeClick
     override fun unlikeOnClick(recipeId: String, index: Int) {
         Log.i("LikeUnClicked", "RecipeId: $recipeId, Index:")
         context?.let { recipePresenter.removeLike(it, recipeId) }
+    }
+
+    override fun clickRecipeIngredient(product: Product) {
+        Log.i("RecipeDetails", "Prodcut: ${product.name}")
+        context?.let { recipePresenter.addProduct(it, product) }
     }
 }
