@@ -175,7 +175,6 @@ class HomeFragment : Fragment(), IRecipe.View, ICategory.View, ClickListener, Li
     }
 
     override fun showCategory(category: Category) {
-        // TODO("Not yet implemented")
     }
 
     override fun showCategories(categoryList: CategoryListResponse) {

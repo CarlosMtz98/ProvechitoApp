@@ -3,6 +3,7 @@ package com.itesm.equipo3.provechito.views.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -99,6 +100,10 @@ class SigninActivity() : AppCompatActivity(), SignInClickListener {
 
                 override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                     val loginResponse = response.body()
+                    if (loginResponse == null) {
+                        Log.e("SignIn", "Error cawn")
+                        toastError()
+                    }
                     println("Res: ${loginResponse.toString()}")
                     if (response.isSuccessful && loginResponse?.user != null) {
                         sessionManager.saveAuthToken(loginResponse.token)
@@ -121,6 +126,10 @@ class SigninActivity() : AppCompatActivity(), SignInClickListener {
 
                 override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                     val signupResponse = response.body()
+                    if (signupResponse == null) {
+                        Log.e("SignIn", "Error cawn")
+                        toastError()
+                    }
                     println("Res: ${signupResponse.toString()}")
                     if (response.isSuccessful && signupResponse?.user != null) {
                         println("Token: ${signupResponse}")
@@ -141,7 +150,7 @@ class SigninActivity() : AppCompatActivity(), SignInClickListener {
     }
 
     private fun signIn() {
-        val signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
+        val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
@@ -165,23 +174,32 @@ class SigninActivity() : AppCompatActivity(), SignInClickListener {
                     }
                     override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                         val signupResponse = response.body()
-                        println("Res: ${signupResponse.toString()}")
+                        if (signupResponse == null) {
+                            Log.e("SignIn", "Error cawn")
+                            toastError()
+                        }
+                        println("Res2: $signupResponse")
                         if (response.isSuccessful && signupResponse?.user != null) {
-                            println("Token: ${signupResponse}")
+                            println("Token: $signupResponse")
                             sessionManager.saveAuthToken(signupResponse.token)
                             val i = Intent(baseContext, MainActivity::class.java)
                             startActivity(i)
                             finish()
                         } else {
+                            toastError()
                             println("Error: while signing the user")
-                            // @TODO add alert that the request did not work
                         }
                     }
                 })
             //updateUI(account)
         } catch (e: ApiException) {
             Log.e("failed code=", e.statusCode.toString())
+            toastError(e.statusCode.toString())
             //updateUI(null)
         }
+    }
+
+    fun toastError(e: String = ""){
+        Toast.makeText(this, "Hubo un error, intenta de nuevo por favor.\n$e", Toast.LENGTH_LONG).show()
     }
 }

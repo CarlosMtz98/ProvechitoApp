@@ -66,14 +66,10 @@ class RecipeCardAdapter(private val arrRecipeCard: ArrayList<Recipe>) : Recycler
 
         holder.binding.starButton.setOnLikeListener(object : OnLikeListener {
             override fun liked(likeButton: LikeButton) {
-                if (likeListener != null) {
-                    likeListener!!.likeOnClick(arrRecipeCard[position].id!!)
-                }
+                likeListener?.likeOnClick(arrRecipeCard[position].id!!)
             }
             override fun unLiked(likeButton: LikeButton) {
-                if (likeListener != null) {
-                    likeListener!!.unlikeOnClick(arrRecipeCard[position].id!!, position)
-                }
+                likeListener?.unlikeOnClick(arrRecipeCard[position].id!!, position)
             }
         })
     }
