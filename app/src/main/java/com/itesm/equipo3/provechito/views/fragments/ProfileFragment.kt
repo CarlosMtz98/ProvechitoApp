@@ -79,7 +79,7 @@ class ProfileFragment : Fragment(), IRecipe.View, LikeClickListener, IUser.View,
 
         val recipeAdapter = RecipeCardAdapter(recipeList)
         binding.rvLastRecipesCards.adapter = recipeAdapter
-
+        recipeAdapter.likeListener = this
         recipeAdapter.listener = this
     }
 

@@ -69,6 +69,7 @@ class CategoryFocusFragment : Fragment(), IRecipe.View, ClickListener, LikeClick
         val adaptador = RecipeCardFullAdapter(arrRecipeList)
         binding.rvRecetas.adapter = adaptador
         adaptador.listener = this
+        adaptador.likeListener = this
     }
 
 
