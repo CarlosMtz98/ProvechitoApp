@@ -1,5 +1,6 @@
 package com.itesm.equipo3.provechito.views.listeners
 
+import com.itesm.equipo3.provechito.models.User
 import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import java.util.*
@@ -10,7 +11,7 @@ interface HomeClickListener {
     fun onCategoriesLinkClicked()
     fun onCategoryCardClicked(name: Category)
     fun onRecipeCardClicked(recipe: Recipe)
-    fun onSettingsClicked()
+    fun onSettingsClicked(user: User)
     fun onAboutClicked()
     fun onBeginClicked()
     fun onNextClicked()
