@@ -1,6 +1,7 @@
 package com.itesm.equipo3.provechito.views.activities
 
 import android.os.Bundle
+import android.os.UserHandle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.androidnetworking.AndroidNetworking
@@ -8,6 +9,7 @@ import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.views.fragments.*
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
+import com.itesm.equipo3.provechito.models.User
 import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
@@ -132,8 +134,11 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
                 .commit()
     }
 
-    override fun onSettingsClicked() {
+    override fun onSettingsClicked(user: User) {
         val settingsFragment = SettingsFragment.newInstance()
+        val arguments = Bundle()
+        arguments.putSerializable("userData", user)
+        settingsFragment.arguments = arguments
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrameLayout, settingsFragment)
             .addToBackStack(null)
