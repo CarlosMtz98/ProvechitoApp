@@ -77,7 +77,7 @@ class ProfileFragment : Fragment(), IRecipe.View, LikeClickListener, IUser.View,
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvLastRecipesCards.layoutManager = layout
 
-        val recipeAdapter = RecipeCardFullAdapter(recipeList)
+        val recipeAdapter = RecipeCardAdapter(recipeList)
         binding.rvLastRecipesCards.adapter = recipeAdapter
 
         recipeAdapter.listener = this
@@ -128,11 +128,11 @@ class ProfileFragment : Fragment(), IRecipe.View, LikeClickListener, IUser.View,
 
     override fun likeOnClick(recipeId: String) {
         Log.i("LikeClicked", "RecipeId: $recipeId")
-        context?.let { recipePresenter.addLike(it, recipeId) }
+        context?.let { presenter.addLike(it, recipeId) }
     }
 
     override fun unlikeOnClick(recipeId: String, index: Int) {
         Log.i("LikeUnClicked", "RecipeId: $recipeId, Index:")
-        context?.let { recipePresenter.removeLike(it, recipeId) }
+        context?.let { presenter.removeLike(it, recipeId) }
     }
 }
