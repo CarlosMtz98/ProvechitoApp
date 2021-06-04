@@ -4,7 +4,7 @@ import android.content.Context
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 
-class RecipeInterface {
+class IRecipe {
     interface View {
         fun showRecipe(recipe: Recipe)
         fun showRecipes(recipeList: RecipeListResponse, type: Int = 0)

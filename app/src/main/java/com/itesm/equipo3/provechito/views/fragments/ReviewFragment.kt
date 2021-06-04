@@ -10,7 +10,6 @@ import com.itesm.equipo3.provechito.api.ApiClient
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentReviewBinding
-import com.itesm.equipo3.provechito.models.RecipeCard
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 class ReviewFragment : Fragment(), ClickListener {
@@ -42,9 +41,9 @@ class ReviewFragment : Fragment(), ClickListener {
 
         val bundle = this.arguments
         if (bundle != null) {
-            val recipeCard = bundle.getSerializable("recipeData") as RecipeCard
-            binding.tvRecipeName.text = recipeCard.name
-            binding.tvCategorie.text = recipeCard.category
+            val recipeData = bundle.getSerializable("recipeData") as Recipe
+            binding.tvRecipeName.text = recipeData.name
+            binding.tvCategorie.text = recipeData.categories?.firstOrNull()?.name ?: "Sin categoría"
         }
 
         binding.sendReviewButton.setOnClickListener {

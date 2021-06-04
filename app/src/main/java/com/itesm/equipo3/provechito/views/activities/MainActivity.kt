@@ -8,7 +8,6 @@ import com.itesm.equipo3.provechito.R
 import com.itesm.equipo3.provechito.views.fragments.*
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.ActivityMainBinding
-import com.itesm.equipo3.provechito.models.RecipeCard
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
 
     private fun setDefaultFragment() {
         val homeFragment = HomeFragment.newInstance()
-        setFragmentoOnActivity(homeFragment)
+        setFragmentOnActivity(homeFragment)
     }
 
     private fun setupAppNavigationMenu() {
@@ -35,30 +34,30 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             when (item.itemId) {
                 R.id.nav_home -> {
                     val homeFragment = HomeFragment()
-                    setFragmentoOnActivity(homeFragment)
+                    setFragmentOnActivity(homeFragment)
                 }
                 R.id.nav_shop -> {
                     val shopFragment = ShopFragment()
-                    setFragmentoOnActivity(shopFragment)
+                    setFragmentOnActivity(shopFragment)
                 }
                 R.id.nav_search -> {
                     val searchFragment = SearchFragment()
-                    setFragmentoOnActivity(searchFragment)
+                    setFragmentOnActivity(searchFragment)
                 }
                 R.id.nav_favs -> {
                     val favsFragment = FavsFragment()
-                    setFragmentoOnActivity(favsFragment)
+                    setFragmentOnActivity(favsFragment)
                 }
                 R.id.nav_profile -> {
                     val profileFragment = ProfileFragment()
-                    setFragmentoOnActivity(profileFragment)
+                    setFragmentOnActivity(profileFragment)
                 }
             }
             true
         }
     }
 
-    private fun setFragmentoOnActivity(frag: Fragment) {
+    private fun setFragmentOnActivity(frag: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrameLayout, frag)
             .commit()
@@ -139,6 +138,7 @@ class MainActivity : AppCompatActivity(), HomeClickListener {
             .addToBackStack(null)
             .commit()
     }
+
     override fun onAboutClicked() {
         val aboutFragment = AboutFragment.newInstance()
         supportFragmentManager.beginTransaction()

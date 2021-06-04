@@ -11,7 +11,6 @@ import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentCategoryFocusBinding
-import com.itesm.equipo3.provechito.models.RecipeCard
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 
 class CategoryFocusFragment : Fragment(), ClickListener {

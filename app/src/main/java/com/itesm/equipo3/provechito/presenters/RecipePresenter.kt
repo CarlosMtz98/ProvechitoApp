@@ -2,12 +2,12 @@ package com.itesm.equipo3.provechito.presenters
 
 import android.content.Context
 import android.util.Log
-import com.itesm.equipo3.provechito.interfaces.RecipeInterface
+import com.itesm.equipo3.provechito.interfaces.IRecipe
 import com.itesm.equipo3.provechito.models.RecipeModel
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 
-class RecipePresenter(val view: RecipeInterface.View) : RecipeInterface.Presenter {
+class RecipePresenter(val view: IRecipe.View) : IRecipe.Presenter {
     private val recipeModel = RecipeModel(this)
 
     override fun getRecipe(context: Context, recipeId: String) {

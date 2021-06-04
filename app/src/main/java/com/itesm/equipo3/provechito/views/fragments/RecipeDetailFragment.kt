@@ -16,14 +16,13 @@ import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.BitmapRequestListener
 import com.google.gson.Gson
-import com.itesm.equipo3.provechito.api.ApiClient
 import com.itesm.equipo3.provechito.views.adapters.IngredientCardAdapter
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.views.adapters.StepCardAdapter
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentRecipeDetailBinding
-import com.itesm.equipo3.provechito.interfaces.RecipeInterface
+import com.itesm.equipo3.provechito.interfaces.IRecipe
 import com.itesm.equipo3.provechito.models.IngredientCard
 import com.itesm.equipo3.provechito.models.StepCard
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
@@ -31,7 +30,7 @@ import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
 import kotlin.properties.Delegates
 
-class RecipeDetailFragment : Fragment(),  RecipeInterface.View, ClickListener {
+class RecipeDetailFragment : Fragment(),  IRecipe.View, ClickListener {
 
     private var _binding: FragmentRecipeDetailBinding? = null
     private var presenter = RecipePresenter(this)
@@ -40,7 +39,6 @@ class RecipeDetailFragment : Fragment(),  RecipeInterface.View, ClickListener {
     private var arrIngredients = ArrayList<IngredientCard>()
     private lateinit var arrSteps: ArrayList<StepCard>
     private lateinit var listener: HomeClickListener
-    private lateinit var apiClient: ApiClient
     private lateinit var chronometer: Chronometer
     private var running = false
     private var pauseOffSet by Delegates.notNull<Long>()
@@ -49,7 +47,6 @@ class RecipeDetailFragment : Fragment(),  RecipeInterface.View, ClickListener {
         super.onAttach(context)
         if (context is HomeClickListener) {
             listener = context
-            apiClient = ApiClient()
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")
         }
@@ -128,24 +125,30 @@ class RecipeDetailFragment : Fragment(),  RecipeInterface.View, ClickListener {
     }
 
     private fun setupRecipeDetails(recipe: Recipe) {
+        var ingredientsList = ArrayList<IngredientCard>()
+        var preparationStepsList = ArrayList<StepCard>()
+
         binding.recipeTitleTV.text = recipe.name
         binding.categoryBtn.text = recipe.categories?.firstOrNull()?.name ?: "Sin categoría"
-        setImage(recipe.imageUrls?.firstOrNull() ?: "")
-/*        AndroidNetworking.get(recipe.imageUrls?.firstOrNull() ?: "")
-                .build()
-                .getAsBitmap(object : BitmapRequestListener {
-                    override fun onResponse(response: Bitmap?) {
-                        binding.tvBgImg.setImageBitmap(response)
-                    }
+        setRecipeHeaderImage(recipe.imageUrls?.firstOrNull() ?: "")
 
-                    override fun onError(anError: ANError?) {
-                        println(anError?.message.toString())
-                    }
-                })*/
+        if (!recipe.ingredients.isNullOrEmpty())
+            for (item in recipe.ingredients!!)
+                item?.let { ingredientsList.add(IngredientCard(it)) }
 
+        var count = 0
+        if (!recipe.preparationSteps.isNullOrEmpty())
+            for (step in recipe.preparationSteps!!)
+                step?.let { preparationStepsList.add(StepCard(++count, it)) }
+
+        if (ingredientsList.isNotEmpty())
+            setupIngredientRV(ingredientsList)
+
+        if (preparationStepsList.isNotEmpty())
+            setupStepRV(preparationStepsList)
     }
 
-    fun setImage(imgUri: String) {
+    fun setRecipeHeaderImage(imgUri: String) {
         AndroidNetworking.get(imgUri)
             .build()
             .getAsBitmap(object: BitmapRequestListener {
@@ -182,9 +185,9 @@ class RecipeDetailFragment : Fragment(),  RecipeInterface.View, ClickListener {
         val layout = LinearLayoutManager(requireContext())
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvSimilares.layoutManager = layout
-        val adaptador = RecipeCardAdapter(recipeList)
-        binding.rvSimilares.adapter = adaptador
-        adaptador.listener = this
+        val recommendedRecipeAdapter = RecipeCardAdapter(recipeList)
+        binding.rvSimilares.adapter = recommendedRecipeAdapter
+        recommendedRecipeAdapter.listener = this
     }
 
     override fun onDestroyView() {

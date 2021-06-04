@@ -16,7 +16,7 @@ import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentHomeBinding
-import com.itesm.equipo3.provechito.interfaces.RecipeInterface
+import com.itesm.equipo3.provechito.interfaces.IRecipe
 import com.itesm.equipo3.provechito.models.CategoryCard
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
@@ -26,7 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class HomeFragment : Fragment(), RecipeInterface.View, ClickListener {
+class HomeFragment : Fragment(), IRecipe.View, ClickListener {
     private val recipePresenter: RecipePresenter = RecipePresenter(this)
     private var arrRecipeCard = ArrayList<Recipe>()
     private var arrRecentRecipes = ArrayList<Recipe>()
@@ -58,10 +58,8 @@ class HomeFragment : Fragment(), RecipeInterface.View, ClickListener {
         savedInstanceState: Bundle?
     ): View {
         context?.let {
-            if (arrRecentRecipes.isNullOrEmpty())
-                recipePresenter.getRecipes(it, 1)
-            if (arrRecentRecipes.isNullOrEmpty())
-                recipePresenter.getRecipes(it, 2)
+            recipePresenter.getRecipes(it, 1)
+            recipePresenter.getRecipes(it, 2)
         }
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         getHomeCategory()
@@ -167,10 +165,9 @@ class HomeFragment : Fragment(), RecipeInterface.View, ClickListener {
     }
 
     override fun showRecipes(recipeResponseList: RecipeListResponse, type: Int) {
-        Log.e("Recipe fetch", " ${Gson().toJson(recipeResponseList)}")
         when (type) {
             1 -> {
-                Log.e("Recipe fetch type", "$type")
+                Log.i("Recipe fetch type", "$type")
                 recipeResponseList.recipes?.let {
                     arrRecipeCard.addAll(it)
                     setupRecipeCardRV(arrRecipeCard)

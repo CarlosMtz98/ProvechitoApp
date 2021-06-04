@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentProfileBinding
-import com.itesm.equipo3.provechito.interfaces.RecipeInterface
+import com.itesm.equipo3.provechito.interfaces.IRecipe
 import com.itesm.equipo3.provechito.models.StatisticsCard
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
@@ -23,7 +23,7 @@ import com.itesm.equipo3.provechito.views.adapters.StatisticsCardAdapter
 /*
     Autor: Zoe Caballero
  */
-class ProfileFragment : Fragment(), RecipeInterface.View, ClickListener {
+class ProfileFragment : Fragment(), IRecipe.View, ClickListener {
     private lateinit var listener: HomeClickListener
     private val presenter = RecipePresenter(this)
     private var _binding: FragmentProfileBinding? = null
