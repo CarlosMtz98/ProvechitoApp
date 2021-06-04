@@ -12,6 +12,7 @@ import com.itesm.equipo3.provechito.pojo.Products.Product
 import com.itesm.equipo3.provechito.pojo.Products.ProductListResponse
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
+import com.itesm.equipo3.provechito.pojo.User.UserRequestResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -88,5 +89,5 @@ interface ApiService {
 
     // Profile
     @GET("/api/users/me")
-    fun getUserData(): Call<User>
+    fun getUserData(): Call<UserRequestResponse>
 }

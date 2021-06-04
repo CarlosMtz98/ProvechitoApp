@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="#0001684B"
+            android:enabled="false"
             android:minHeight="24dp"
             android:text="@string/category"
             android:textAlignment="center"
@@ -125,7 +126,7 @@
                 android:scaleX="1"
                 android:scaleY="1"
                 android:src="@drawable/ic_skip_previous"
-                android:tint="?attr/colorOnPrimary" />
+                app:tint="?attr/colorOnPrimary" />
 
             <ImageButton
                 android:id="@+id/imgButtonPause"
@@ -137,7 +138,7 @@
                 android:scaleX="1"
                 android:scaleY="1"
                 android:src="@drawable/ic_pause"
-                android:tint="?attr/colorOnPrimary" />
+                app:tint="?attr/colorOnPrimary" />
 
             <ImageButton
                 android:id="@+id/imgButtonStart"
@@ -146,7 +147,7 @@
                 android:layout_weight="1"
                 android:background="#00FFFFFF"
                 android:src="@drawable/ic_play_circle_outline"
-                android:tint="?attr/colorOnPrimary" />
+                app:tint="?attr/colorOnPrimary" />
         </LinearLayout>
 
         <TextView

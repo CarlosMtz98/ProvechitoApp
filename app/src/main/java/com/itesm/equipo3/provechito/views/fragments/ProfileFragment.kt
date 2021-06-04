@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.itesm.equipo3.provechito.views.listeners.ClickListener
 import com.itesm.equipo3.provechito.databinding.FragmentProfileBinding
+import com.itesm.equipo3.provechito.interfaces.IUser
 import com.itesm.equipo3.provechito.interfaces.IRecipe
+import com.itesm.equipo3.provechito.models.User
 import com.itesm.equipo3.provechito.pojo.Category.Category
 import com.itesm.equipo3.provechito.pojo.Recipe.Recipe
 import com.itesm.equipo3.provechito.pojo.Recipe.RecipeListResponse
 import com.itesm.equipo3.provechito.presenters.RecipePresenter
+import com.itesm.equipo3.provechito.presenters.UserPresenter
 import com.itesm.equipo3.provechito.views.listeners.HomeClickListener
 import com.itesm.equipo3.provechito.views.adapters.RecipeCardAdapter
 import com.itesm.equipo3.provechito.views.adapters.StatisticsCardAdapter
@@ -26,9 +29,10 @@ import com.itesm.equipo3.provechito.views.adapters.RecipeCardFullAdapter
 /*
     Autor: Zoe Caballero
  */
-class ProfileFragment : Fragment(), IRecipe.View, ClickListener, LikeClickListener {
+class ProfileFragment : Fragment(), IRecipe.View, LikeClickListener, IUser.View, ClickListener {
     private lateinit var listener: HomeClickListener
-    private val recipePresenter = RecipePresenter(this)
+    private val presenter = RecipePresenter(this)
+    private val userPresenter = UserPresenter(this)
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private var arrLastRecipesList = ArrayList<Recipe>()
@@ -51,11 +55,8 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener, LikeClickListen
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         context?.let {
-            recipePresenter.getRecipes(it, 2)
-        }
-
-        binding.imgButtonSettings.setOnClickListener {
-            listener.onSettingsClicked()
+            presenter.getRecipes(it, 2)
+            userPresenter.getUserData(it)
         }
 
         binding.imageButton3.setOnClickListener {
@@ -76,7 +77,7 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener, LikeClickListen
         layout.orientation = LinearLayoutManager.HORIZONTAL
         binding.rvLastRecipesCards.layoutManager = layout
 
-        val recipeAdapter = RecipeCardFullAdapter(recipeList)
+        val recipeAdapter = RecipeCardAdapter(recipeList)
         binding.rvLastRecipesCards.adapter = recipeAdapter
 
         recipeAdapter.listener = this
@@ -114,13 +115,24 @@ class ProfileFragment : Fragment(), IRecipe.View, ClickListener, LikeClickListen
         Toast.makeText(this.context, "Receta removida de favoritos", Toast.LENGTH_SHORT).show()
     }
 
+    override fun showProfile(user: User) {
+        if (!user.name.isNullOrEmpty()) {
+            binding.tvProfileName.text = user.name
+        } else if (!user.email.isNullOrEmpty()) {
+            binding.tvProfileName.text = user.email
+        }
+        binding.imgButtonSettings.setOnClickListener {
+            listener.onSettingsClicked(user)
+        }
+    }
+
     override fun likeOnClick(recipeId: String) {
         Log.i("LikeClicked", "RecipeId: $recipeId")
-        context?.let { recipePresenter.addLike(it, recipeId) }
+        context?.let { presenter.addLike(it, recipeId) }
     }
 
     override fun unlikeOnClick(recipeId: String, index: Int) {
         Log.i("LikeUnClicked", "RecipeId: $recipeId, Index:")
-        context?.let { recipePresenter.removeLike(it, recipeId) }
+        context?.let { presenter.removeLike(it, recipeId) }
     }
 }

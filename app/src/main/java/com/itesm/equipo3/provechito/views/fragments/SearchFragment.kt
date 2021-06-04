@@ -38,7 +38,6 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private lateinit var apiClient: ApiClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +48,6 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener {
         super.onAttach(context)
         if (context is HomeClickListener) {
             listener = context
-            apiClient = ApiClient()
         } else {
             throw ClassCastException("$context must implement HomeClickListner.")
         }
