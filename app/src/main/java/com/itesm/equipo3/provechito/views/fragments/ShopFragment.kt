@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Gravity.END
 import android.view.LayoutInflater
 import android.view.MenuInflater
@@ -26,6 +28,7 @@ import com.itesm.equipo3.provechito.views.components.slideLinearLayout.CustomVie
 import com.itesm.equipo3.provechito.views.adapters.ProductCardAdapter
 import com.itesm.equipo3.provechito.presenters.ProductPresenter
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ShopFragment : Fragment(), ShopListener, IProduct.View {
@@ -34,6 +37,7 @@ class ShopFragment : Fragment(), ShopListener, IProduct.View {
     private val binding get() = _binding!!
     private val productPresenter = ProductPresenter(this)
     private var productsList = ArrayList<Product>()
+    private var searchproductsList = ArrayList<Product>()
 
     companion object {
         private val TAG : String = ShopFragment::class.java.getSimpleName()
@@ -56,10 +60,10 @@ class ShopFragment : Fragment(), ShopListener, IProduct.View {
         super.onAttach(context)
     }
 
-    private fun setupProductsRV() {
+    private fun setupProductsRV(newProductsList: ArrayList<Product>) {
         val layout = GridLayoutManager(requireContext(), 1)
         binding.rvProducts.layoutManager = layout
-        val adapter = ProductCardAdapter(productsList)
+        val adapter = ProductCardAdapter(newProductsList)
         binding.rvProducts.adapter = adapter
         adapter.listener = this
     }
@@ -81,6 +85,33 @@ class ShopFragment : Fragment(), ShopListener, IProduct.View {
         binding.btnAddItem.setOnClickListener {
             addItem()
         }
+
+        binding.tvSearch.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                println(s)
+                searchproductsList.clear()
+                if (count > 0) {
+                    val re = Regex("$s", RegexOption.IGNORE_CASE)
+                    for (recipe in productsList) {
+                        recipe.name?.let { it1 ->
+                            if (re.containsMatchIn(it1)) {
+                                searchproductsList.add(recipe)
+                            }
+                        }
+                    }
+                } else {
+                    searchproductsList = productsList
+                }
+                setupProductsRV(searchproductsList)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+
         return binding.root
     }
 
@@ -173,7 +204,7 @@ class ShopFragment : Fragment(), ShopListener, IProduct.View {
     override fun showProducts(productsList: ProductListResponse) {
         productsList.products?.let {
             this.productsList.addAll(it)
-            setupProductsRV()
+            setupProductsRV(this.productsList)
         }
     }
 

@@ -84,13 +84,15 @@
             android:shadowRadius="1.5"
             app:hintEnabled="false">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <android.widget.EditText
                 android:id="@+id/tvSearch"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:background="@drawable/round_corner_toggle"
                 android:backgroundTint="@color/white"
                 android:hint="@string/buscar"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:textAppearance="@style/BodyText"
                 android:textColor="?attr/colorOnPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
