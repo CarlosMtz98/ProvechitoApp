@@ -40,7 +40,7 @@ class RecipeModel(val presenter: RecipePresenter) : IRecipe.Model {
     }
 
     override fun getRecipes(context: Context) {
-        apiClient.getApiService(context).getRecipes()
+        apiClient.getApiService(context).getRecipes(1, 200)
                 .enqueue(object : Callback<RecipeListResponse> {
                     override fun onFailure(call: Call<RecipeListResponse>, t: Throwable) {
                         Log.e("RecipeModel", "Failed")
@@ -145,7 +145,6 @@ class RecipeModel(val presenter: RecipePresenter) : IRecipe.Model {
                         if (response.isSuccessful && serviceResponse != null) {
                             Log.i("RecipeModel", "AddLike response Success")
                             serviceResponse.recipe?.let { presenter.likeAdded(it) }
-                            Toast.makeText(context, "Receta agregada de favoritos", Toast.LENGTH_SHORT).show()
 
                         } else {
                             Log.e("RecipeModel", "AddLike response failed STATUS: ${response.isSuccessful}")
@@ -168,8 +167,7 @@ class RecipeModel(val presenter: RecipePresenter) : IRecipe.Model {
                             if (serviceResponse != null) {
                                 presenter.view.recipeProductAdded(serviceResponse)
                             }
-                            Toast.makeText(context, "${product.name} añadido a carrito",
-                                           Toast.LENGTH_SHORT).show()
+
                         } else {
                             Log.e("RecipeModel", "AddProduct Failed Response")
                         }
@@ -190,7 +188,6 @@ class RecipeModel(val presenter: RecipePresenter) : IRecipe.Model {
                             if (response.isSuccessful) {
                                 Log.i("LikeModel", "RemoveLike response Success")
                                 presenter.view.removedLike(recipeId)
-                                Toast.makeText(context, "Receta eliminada de favoritos", Toast.LENGTH_SHORT).show()
                             } else {
                                 Log.e("LikeModel", "RemoveLike response failed STATUS: ${response.isSuccessful}")
                             }
