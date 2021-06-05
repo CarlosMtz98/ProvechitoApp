@@ -30,7 +30,7 @@ interface ApiService {
 
     // Recipes
     @GET("/api/recipe/")
-    fun getRecipes(): Call<RecipeListResponse>
+    fun getRecipes(@Query("page") page: Int = 1, @Query("limit") limit: Int = 20): Call<RecipeListResponse>
 
     @GET("/api/recipe/recent")
     fun getRecentRecipes(): Call<RecipeListResponse>

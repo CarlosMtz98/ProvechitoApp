@@ -39,7 +39,7 @@ class RecipeModel(val presenter: RecipePresenter) : IRecipe.Model {
     }
 
     override fun getRecipes(context: Context) {
-        apiClient.getApiService(context).getRecipes()
+        apiClient.getApiService(context).getRecipes(1, 200)
                 .enqueue(object : Callback<RecipeListResponse> {
                     override fun onFailure(call: Call<RecipeListResponse>, t: Throwable) {
                         Log.e("RecipeModel", "Failed")
