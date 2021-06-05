@@ -83,7 +83,7 @@ class SearchFragment : Fragment(), IRecipe.View, ClickListener {
                             }
                         }
                     } else {
-                        arrSearchedRecipes = arrRecipes
+                        arrSearchedRecipes.addAll(arrRecipes)
                     }
                     configureRV(arrSearchedRecipes)
                 }

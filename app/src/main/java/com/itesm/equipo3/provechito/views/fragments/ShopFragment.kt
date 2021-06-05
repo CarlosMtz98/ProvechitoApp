@@ -103,7 +103,7 @@ class ShopFragment : Fragment(), ShopListener, IProduct.View {
                         }
                     }
                 } else {
-                    searchproductsList = productsList
+                    searchproductsList.addAll(productsList)
                 }
                 setupProductsRV(searchproductsList)
             }
